@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCell" rowHeight="68" id="y41-WU-49e" customClass="QuoteTableViewCell" customModule="App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y41-WU-49e" id="9Y8-qB-QGD">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Date" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1G-hR-kuV">
+                        <rect key="frame" x="15" y="8" width="290" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-HI-nnw">
+                        <rect key="frame" x="15" y="35" width="290" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OtP-HI-nnw" firstAttribute="top" secondItem="U1G-hR-kuV" secondAttribute="bottom" constant="7" id="7zS-Kg-O7m"/>
+                    <constraint firstItem="OtP-HI-nnw" firstAttribute="leading" secondItem="9Y8-qB-QGD" secondAttribute="leadingMargin" constant="7" id="87r-Tp-YHH"/>
+                    <constraint firstItem="U1G-hR-kuV" firstAttribute="top" secondItem="9Y8-qB-QGD" secondAttribute="topMargin" id="OOh-Gn-tZB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="U1G-hR-kuV" secondAttribute="trailing" constant="7" id="Pko-xs-gxE"/>
+                    <constraint firstItem="U1G-hR-kuV" firstAttribute="leading" secondItem="9Y8-qB-QGD" secondAttribute="leadingMargin" constant="7" id="Uoq-Xj-prU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="OtP-HI-nnw" secondAttribute="trailing" constant="7" id="ZqB-w3-Qah"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="OtP-HI-nnw" secondAttribute="bottom" constant="2.5" id="rP7-QM-5Kp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="U1G-hR-kuV" id="RcO-E4-LWy"/>
+                <outlet property="textlabel" destination="OtP-HI-nnw" id="B2t-6P-Tq3"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

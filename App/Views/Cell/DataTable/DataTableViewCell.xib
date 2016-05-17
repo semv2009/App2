@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" showsReorderControl="YES" indentationWidth="16" reuseIdentifier="DataCell" rowHeight="45" id="Rpc-Lv-aEr" customClass="DataTableViewCell" customModule="App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="611" height="49"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="252" verticalHuggingPriority="252" tableViewCell="Rpc-Lv-aEr" id="pan-k2-GM3">
+                <rect key="frame" x="0.0" y="0.0" width="611" height="48"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pqq-wW-pcj">
+                        <rect key="frame" x="53" y="7" width="550" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="550" id="o3Z-cE-NHB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOV-T2-ZXq">
+                        <rect key="frame" x="8" y="15" width="37" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="wXL-0a-rix"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pqq-wW-pcj" firstAttribute="leading" secondItem="mOV-T2-ZXq" secondAttribute="trailing" constant="8" id="4dP-vF-PvU"/>
+                    <constraint firstItem="pqq-wW-pcj" firstAttribute="width" secondItem="mOV-T2-ZXq" secondAttribute="width" id="7SU-LO-FLX"/>
+                    <constraint firstItem="pqq-wW-pcj" firstAttribute="leading" secondItem="mOV-T2-ZXq" secondAttribute="trailing" constant="8" id="uCq-Ul-nZI"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="4dP-vF-PvU"/>
+                        <exclude reference="7SU-LO-FLX"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pqq-wW-pcj" secondAttribute="trailing" constant="8" id="7xZ-eL-kAV"/>
+                <constraint firstItem="mOV-T2-ZXq" firstAttribute="top" secondItem="Rpc-Lv-aEr" secondAttribute="top" constant="15" id="ZND-cr-iqH"/>
+                <constraint firstAttribute="bottom" secondItem="pqq-wW-pcj" secondAttribute="bottom" constant="9" id="cVB-l6-bDq"/>
+                <constraint firstItem="pqq-wW-pcj" firstAttribute="top" secondItem="Rpc-Lv-aEr" secondAttribute="top" constant="7" id="muh-xW-VHU"/>
+                <constraint firstItem="mOV-T2-ZXq" firstAttribute="leading" secondItem="Rpc-Lv-aEr" secondAttribute="leading" constant="8" id="rFT-H4-RCx"/>
+                <constraint firstAttribute="bottom" secondItem="mOV-T2-ZXq" secondAttribute="bottom" constant="16" id="rTT-8z-OSI"/>
+            </constraints>
+            <connections>
+                <outlet property="dataTextField" destination="pqq-wW-pcj" id="XWO-aV-Uzf"/>
+                <outlet property="nameLabel" destination="mOV-T2-ZXq" id="OOS-m3-pSi"/>
+            </connections>
+            <point key="canvasLocation" x="539.5" y="191.5"/>
+        </tableViewCell>
+    </objects>
+</document>
