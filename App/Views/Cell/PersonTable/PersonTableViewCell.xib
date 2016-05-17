@@ -8,34 +8,41 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" showsReorderControl="YES" indentationWidth="16" reuseIdentifier="PersonCell" id="Rpc-Lv-aEr" customClass="PersonTableViewCell" customModule="App" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" showsReorderControl="YES" indentationWidth="16" reuseIdentifier="PersonCell" rowHeight="286" id="Rpc-Lv-aEr" customClass="PersonTableViewCell" customModule="App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="286"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="252" verticalHuggingPriority="252" tableViewCell="Rpc-Lv-aEr" id="pan-k2-GM3">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="521" translatesAutoresizingMaskIntoConstraints="NO" id="kwB-61-7PA">
-                        <rect key="frame" x="8" y="0.0" width="584" height="71"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwB-61-7PA">
+                        <rect key="frame" x="8" y="0.0" width="584" height="58"/>
                         <gestureRecognizers/>
                         <string key="text">На праймериз в Юте сенатор США от штата Техас, кандидат в президенты от Республиканской партии Тед Круз одержал победу над миллиардером Дональдом Трампом. Об этом в среду, 23 марта, </string>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ap1-1J-Gem">
+                        <rect key="frame" x="0.0" y="66" width="600" height="219"/>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="kwB-61-7PA" secondAttribute="bottom" constant="-10" id="2eC-Kz-88c"/>
-                    <constraint firstItem="kwB-61-7PA" firstAttribute="trailing" secondItem="pan-k2-GM3" secondAttribute="trailingMargin" id="HF6-Ru-29Q"/>
-                    <constraint firstItem="kwB-61-7PA" firstAttribute="top" secondItem="pan-k2-GM3" secondAttribute="top" id="XYb-aF-EP2"/>
-                    <constraint firstItem="kwB-61-7PA" firstAttribute="leading" secondItem="pan-k2-GM3" secondAttribute="leadingMargin" id="z3c-tD-H9s"/>
+                    <constraint firstItem="ap1-1J-Gem" firstAttribute="top" secondItem="kwB-61-7PA" secondAttribute="bottom" constant="8" id="4wE-vD-WQN"/>
+                    <constraint firstItem="kwB-61-7PA" firstAttribute="top" secondItem="pan-k2-GM3" secondAttribute="topMargin" constant="-8" id="8mZ-xZ-PCg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ap1-1J-Gem" secondAttribute="trailing" constant="-8" id="EeO-Ef-WOa"/>
+                    <constraint firstItem="ap1-1J-Gem" firstAttribute="leading" secondItem="pan-k2-GM3" secondAttribute="leadingMargin" constant="-8" id="Guj-83-r80"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ap1-1J-Gem" secondAttribute="bottom" constant="-8" id="Zcn-s0-DiS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="kwB-61-7PA" secondAttribute="trailing" id="coB-Ck-YED"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="kwB-61-7PA" secondAttribute="leading" id="woD-j1-9Wr"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="nameLabel" destination="kwB-61-7PA" id="F7y-GP-muB"/>
+                <outlet property="stack" destination="ap1-1J-Gem" id="yYI-K7-B4U"/>
             </connections>
-            <point key="canvasLocation" x="525" y="189"/>
+            <point key="canvasLocation" x="525" y="297"/>
         </tableViewCell>
     </objects>
 </document>

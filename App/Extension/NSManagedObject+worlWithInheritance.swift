@@ -35,4 +35,23 @@ extension NSManagedObject {
             }
         }
     }
+    
+    func isEmptyValue(name: String, typeAttribute: TypeAttribute) -> Bool {
+        if let value = self.valueForKey(name) {
+            if TypeAttribute.String ==  typeAttribute {
+                return isEmptyStringValue(value)
+            }
+            return false
+        }
+        return true
+    }
+    
+    func isEmptyStringValue(value: AnyObject) -> Bool {
+        if let value = value as? String {
+            if value.characters.count > 0 {
+                return false
+            }
+        }
+        return true
+    }
 }

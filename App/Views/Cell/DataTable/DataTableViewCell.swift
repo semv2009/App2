@@ -25,7 +25,6 @@ class DataTableViewCell: UITableViewCell {
         self.attribute = attribute
         nameLabel.text = attribute.description
         dataTextField.resignFirstResponder()
-        
         switch attribute.type {
         case .Date:
             datePiсker.datePickerMode = .Time
@@ -37,6 +36,7 @@ class DataTableViewCell: UITableViewCell {
                 dataTextField.text = ""
             }
         case .Number:
+            dataTextField.inputView = nil
             if let value = person.valueForKey(attribute.name) as? Int {
                 dataTextField.text = "\(value)"
             } else {
@@ -44,6 +44,7 @@ class DataTableViewCell: UITableViewCell {
             }
             dataTextField.keyboardType = .NumbersAndPunctuation
         case .String:
+            dataTextField.inputView = nil
             if let value = person.valueForKey(attribute.name) as? String {
                 dataTextField.text = value
             } else {
