@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Accountant" representedClassName=".Accountant" parentEntity="Employee" syncable="YES">
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="Integer 64" syncable="YES">
             <userInfo>
                 <entry key="description" value="type"/>
+                <entry key="extensionType" value="701"/>
                 <entry key="order" value="301"/>
             </userInfo>
         </attribute>
@@ -15,12 +16,14 @@
         <attribute name="beginLunchTime" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="description" value="begin lunch time"/>
+                <entry key="extensionType" value="901"/>
                 <entry key="order" value="202"/>
             </userInfo>
         </attribute>
         <attribute name="endLunchTime" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="description" value="end lunch time"/>
+                <entry key="extensionType" value="901"/>
                 <entry key="order" value="203"/>
             </userInfo>
         </attribute>
@@ -40,12 +43,14 @@
         <attribute name="beginBusinessHours" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="description" value="begin business hours"/>
+                <entry key="extensionType" value="901"/>
                 <entry key="order" value="201"/>
             </userInfo>
         </attribute>
         <attribute name="endBusinessHours" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="description" value="end business hours"/>
+                <entry key="extensionType" value="901"/>
                 <entry key="order" value="202"/>
             </userInfo>
         </attribute>

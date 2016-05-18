@@ -49,6 +49,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error)
         }
     }
-    
-    
 }

@@ -32,7 +32,7 @@ class PersonTableViewCell: UITableViewCell {
             if attribute.name != "fullName" {
                 if !person.isEmptyValue(attribute.name, typeAttribute: attribute.type) {
                     let personDetailView = PersonDetailView()
-                    personDetailView.updateUI(attribute, person: person)
+                    personDetailView.updateUI(attribute, value: person.valueForKey(attribute.name))
                     stack.addArrangedSubview(personDetailView)
                 }
             }

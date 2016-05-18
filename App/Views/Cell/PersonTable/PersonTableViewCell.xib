@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,20 +16,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwB-61-7PA">
-                        <rect key="frame" x="8" y="0.0" width="584" height="58"/>
+                        <rect key="frame" x="8" y="13" width="584" height="58"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="584" id="e6S-TS-Pmg"/>
+                        </constraints>
                         <string key="text">На праймериз в Юте сенатор США от штата Техас, кандидат в президенты от Республиканской партии Тед Круз одержал победу над миллиардером Дональдом Трампом. Об этом в среду, 23 марта, </string>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="e6S-TS-Pmg"/>
+                            </mask>
+                        </variation>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ap1-1J-Gem">
-                        <rect key="frame" x="0.0" y="66" width="600" height="219"/>
+                        <rect key="frame" x="0.0" y="79" width="600" height="206"/>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ap1-1J-Gem" firstAttribute="top" secondItem="kwB-61-7PA" secondAttribute="bottom" constant="8" id="4wE-vD-WQN"/>
-                    <constraint firstItem="kwB-61-7PA" firstAttribute="top" secondItem="pan-k2-GM3" secondAttribute="topMargin" constant="-8" id="8mZ-xZ-PCg"/>
+                    <constraint firstItem="kwB-61-7PA" firstAttribute="top" secondItem="pan-k2-GM3" secondAttribute="topMargin" constant="5" id="8mZ-xZ-PCg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ap1-1J-Gem" secondAttribute="trailing" constant="-8" id="EeO-Ef-WOa"/>
                     <constraint firstItem="ap1-1J-Gem" firstAttribute="leading" secondItem="pan-k2-GM3" secondAttribute="leadingMargin" constant="-8" id="Guj-83-r80"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ap1-1J-Gem" secondAttribute="bottom" constant="-8" id="Zcn-s0-DiS"/>

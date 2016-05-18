@@ -16,9 +16,14 @@ extension NSManagedObject {
         for property in propertyes {
             let attributeName = property.0
             let userInfo = property.1.valueForKey("userInfo")
-            if let attributeOrder = userInfo?.valueForKey("order") as? String, attributeDescription =  userInfo?.valueForKey("description") as? String,
+            if let attributeOrder = userInfo?.valueForKey("order") as? String,
+                attributeDescription =  userInfo?.valueForKey("description") as? String,
                 attributeType = property.1.valueForKey("attributeType") as? Int {
-                if let order = Int(attributeOrder), type = TypeAttribute(rawValue: attributeType) {
+          
+                if let order = Int(attributeOrder), var type = TypeAttribute(rawValue: attributeType) {
+                    if let typeString =  userInfo?.valueForKey("extensionType") as? String, typeInt = Int(typeString) {
+                        type = TypeAttribute(rawValue: typeInt)!
+                    }
                     attributes.append(AttributeInfo(name: attributeName, order: order, description: attributeDescription, type: type))
                 }
             }

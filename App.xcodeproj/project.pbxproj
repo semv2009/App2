@@ -42,6 +42,7 @@
 		8B51DE271CE9108000684AB5 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B51DE251CE9108000684AB5 /* DetailTableViewCell.xib */; };
 		8B51DE2A1CE910BC00684AB5 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51DE281CE910BC00684AB5 /* QuoteTableViewCell.swift */; };
 		8B51DE2B1CE910BC00684AB5 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B51DE291CE910BC00684AB5 /* QuoteTableViewCell.xib */; };
+		8B51DE491CECCE910033E139 /* String+toStringForAttributeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51DE481CECCE910033E139 /* String+toStringForAttributeType.swift */; };
 		8B74E6821CDE817D008985CC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6801CDE817D008985CC /* Person.swift */; };
 		8B74E6861CDE81CB008985CC /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6841CDE81CB008985CC /* Employee.swift */; };
 		8B74E68A1CDE8208008985CC /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6881CDE8208008985CC /* Accountant.swift */; };
@@ -89,6 +90,7 @@
 		8B51DE251CE9108000684AB5 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailTableViewCell.xib; path = Views/Cell/Detail/DetailTableViewCell.xib; sourceTree = "<group>"; };
 		8B51DE281CE910BC00684AB5 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		8B51DE291CE910BC00684AB5 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuoteTableViewCell.xib; sourceTree = "<group>"; };
+		8B51DE481CECCE910033E139 /* String+toStringForAttributeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+toStringForAttributeType.swift"; sourceTree = "<group>"; };
 		8B74E6801CDE817D008985CC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Model/Person.swift; sourceTree = "<group>"; };
 		8B74E6841CDE81CB008985CC /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Employee.swift; path = Model/Employee.swift; sourceTree = "<group>"; };
 		8B74E6881CDE8208008985CC /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Accountant.swift; path = Model/Accountant.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */,
 				8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */,
 				8B291F9B1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift */,
+				8B51DE481CECCE910033E139 /* String+toStringForAttributeType.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				8B47EF3D1CEB8BEE00014656 /* PersonDetailView.swift in Sources */,
 				8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */,
 				8B3868B01CEA629100C87DFE /* ServiceViewController.swift in Sources */,
+				8B51DE491CECCE910033E139 /* String+toStringForAttributeType.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
 				8B4A97DC1CDB4444007F3439 /* MainTabViewController.swift in Sources */,
 				8B39C8FC1CE205940046D369 /* DataTableViewCell.swift in Sources */,

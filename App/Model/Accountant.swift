@@ -11,7 +11,7 @@ import CoreData
 import BNRCoreDataStack
 
 class Accountant: Employee {
-    @NSManaged var type: String?
+    @NSManaged var type: NSNumber?
     
     // MARK: - CoreDataModelable
     override class var entityName: String {

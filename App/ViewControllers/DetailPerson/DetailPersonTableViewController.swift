@@ -82,7 +82,8 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         guard let cell =  cell as? DetailTableViewCell else { fatalError("Cell is not registered") }
         if let person = person {
-            cell.updateUI(attributes[indexPath.row], person: person)
+            let attribute = attributes[indexPath.row]
+            cell.updateUI(attribute, value: person.valueForKey(attribute.name))
         }
     }
     

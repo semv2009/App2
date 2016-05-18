@@ -9,9 +9,11 @@
 import UIKit
 import BNRCoreDataStack
 
-class CreatePersonViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
+class CreatePersonViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var personSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint! 
     
     weak var person: NSManagedObject?
     weak var newPerson: NSManagedObject?
@@ -29,6 +31,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITextF
         configureSegmentedControl(person)
         configureView()
         createBarButtons()
+        configureKeyboardNotification()
     }
     
     init(coreDataStack stack: CoreDataStack) {
@@ -36,12 +39,16 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITextF
         super.init(nibName: nil, bundle: nil)
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         preconditionFailure("init(coder:) has not been implemented")
     }
     
-    
     // MARK: Navigator
+    
     func configureView() {
         tableView.delegate = self
         tableView.registerNib(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "DataCell")
@@ -183,10 +190,36 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITextF
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         guard let cell = (tableView.dequeueReusableCellWithIdentifier("DataCell", forIndexPath: indexPath)) as? DataTableViewCell else { fatalError("Cell is not registered") }
         if let newPerson = newPerson {
-            cell.updateUI(attributes[indexPath.row], person: newPerson)
-            cell.dataTextField.delegate = self
+            let attribute = attributes[indexPath.row]
+            cell.updateUI(attribute, value: newPerson.valueForKey(attribute.name))
         }
         return cell
+    }
+    
+    // MARK: Keyboard space
+    
+    func configureKeyboardNotification() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreatePersonViewController.keyboardNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CreatePersonViewController.keyboardNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardNotification(notification: NSNotification) {
+        let isShowing = notification.name == UIKeyboardWillShowNotification
+        
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue()
+            let endFrameHeight = endFrame?.size.height ?? 0.0
+            let duration: NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
+            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            self.bottomSpacingConstraint?.constant = isShowing ? endFrameHeight : 0.0
+            UIView.animateWithDuration(duration,
+                                       delay: NSTimeInterval(0),
+                                       options: animationCurve,
+                                       animations: { self.view.layoutIfNeeded() },
+                                       completion: nil)
+        }
     }
 }
 
@@ -201,4 +234,8 @@ enum TypeAttribute: Int {
     case String = 700
     case Date = 900
     case Number = 300
+    
+    case TypeAccountan = 701
+    case Time = 901
+    
 }
