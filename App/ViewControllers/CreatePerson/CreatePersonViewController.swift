@@ -54,7 +54,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         tableView.registerNib(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "DataCell")
         if let person = person, entity = person.entity.name {
             title = "Update profile"
-            //fsdfdsfdsfs
             switch entity {
             case Accountant.entityName:
                 self.newPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
@@ -87,8 +86,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     
     func configureSegmentedControl(person: NSManagedObject?) {
-        
-        
         if let person = person, entity = person.entity.name {
             switch entity {
             case Accountant.entityName:
@@ -191,7 +188,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         guard let cell = (tableView.dequeueReusableCellWithIdentifier("DataCell", forIndexPath: indexPath)) as? DataTableViewCell else { fatalError("Cell is not registered") }
         if let newPerson = newPerson {
             let attribute = attributes[indexPath.row]
-            cell.updateUI(attribute, value: newPerson.valueForKey(attribute.name))
+            cell.updateUI(attribute, person: newPerson)
         }
         return cell
     }

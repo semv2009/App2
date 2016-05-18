@@ -15,14 +15,17 @@ class DataTableViewCell: UITableViewCell {
     @IBOutlet weak var dataTextField: UITextField!
     
     var attribute: AttributeInfo!
+    var person: NSManagedObject!
     
     lazy var datePiсker = UIDatePicker()
     var dataPiсker = UIPickerView()
     var dataArray = [SimpleData]()
     
     
-    func updateUI(attribute: AttributeInfo, value: AnyObject?) {
+    func updateUI(attribute: AttributeInfo, person: NSManagedObject) {
+        let value = person.valueForKey(attribute.name)
         self.attribute = attribute
+        self.person = person
         nameLabel.text = attribute.description
         configureTextField(attribute.type, value: value)
     }
@@ -68,7 +71,7 @@ class DataTableViewCell: UITableViewCell {
     }
     
     func hell(texField: UITextField) {
-        //print("fdsf")
+        print(texField.text)
     }
     
     func datePickerChanged(sender: UIDatePicker) {
@@ -138,11 +141,17 @@ extension DataTableViewCell: UITextFieldDelegate {
     }
     
     func donePressed() {
+        print(self.dataTextField.text)
         self.contentView.endEditing(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print(self.dataTextField.text)
         self.contentView.endEditing(true)
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        person.setValue(value, forKey: attribute.name)
     }
 }
