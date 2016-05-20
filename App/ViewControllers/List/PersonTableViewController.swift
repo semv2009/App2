@@ -77,6 +77,7 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
     
     func showCreatePersonViewController() {
         let createPersonVC = CreatePersonViewController(coreDataStack: stack)
+        createPersonVC.deleteDelegate = self
         showViewController(UINavigationController(rootViewController: createPersonVC), sender: self)
     }
     
@@ -127,12 +128,12 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    //
+   
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         fetchedResultsController.changeOrderPersons(moveRowAtIndexPath: fromIndexPath, toIndexPath: toIndexPath)
         tableView.reloadData()
     }
-    //
+
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         if self.tableView.editing {return .Delete}
         return .None
@@ -180,7 +181,9 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
                                   didChangeObject change: FetchedResultsObjectChange<Person>) {
         switch change {
         case let .Insert(_, indexPath):
+            
             if let person = controller.getObject(indexPath) as? Person, section = controller.sections {
+                print("Sort entity = \(person.entitySort)")
                 person.order = section[indexPath.section].objects.count - 1
             }
             tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)

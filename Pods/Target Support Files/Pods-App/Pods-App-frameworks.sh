@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-App/AEXML.framework"
   install_framework "Pods-App/Alamofire.framework"
   install_framework "Pods-App/BNRCoreDataStack.framework"
+  install_framework "Pods-App/SnapKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-App/AEXML.framework"
   install_framework "Pods-App/Alamofire.framework"
   install_framework "Pods-App/BNRCoreDataStack.framework"
+  install_framework "Pods-App/SnapKit.framework"
 fi

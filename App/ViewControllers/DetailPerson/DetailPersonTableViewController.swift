@@ -9,7 +9,6 @@
 import UIKit
 import BNRCoreDataStack
 class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate {
-    
     var person: NSManagedObject? {
         didSet {
             if let person = person, entity = person.entity.name {
@@ -45,11 +44,11 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     
     
     // MARK: Navigator
+    
     func configureView() {
         tableView.delegate = self
         tableView.registerNib(UINib(nibName: "DetailTableViewCell", bundle: nil), forCellReuseIdentifier: "DetailCell")
     }
-    
     
     func createBarButtons() {
         self.navigationController?.navigationBar.translucent = false
@@ -57,8 +56,6 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
         editButton =  UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(DetailPersonTableViewController.edit))
         navigationItem.rightBarButtonItem = editButton
     }
-    
-
     
     @objc private func edit() {
         let createVC = CreatePersonViewController(coreDataStack: stack)

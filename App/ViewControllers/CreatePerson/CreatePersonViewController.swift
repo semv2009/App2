@@ -12,11 +12,14 @@ import BNRCoreDataStack
 class CreatePersonViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var personSegmentedControl: UISegmentedControl!
-    
-    @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint! 
+    @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     
     weak var person: NSManagedObject?
-    weak var newPerson: NSManagedObject?
+    weak var newPerson: NSManagedObject? {
+        didSet {
+            checkAllAttribute()
+        }
+    }
     
     var doneButton: UIBarButtonItem!
     var stack: CoreDataStack!
@@ -28,9 +31,9 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSegmentedControl(person)
-        configureView()
         createBarButtons()
+        configureView()
+        configureSegmentedControl(person)
         configureKeyboardNotification()
     }
     
@@ -151,28 +154,25 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
     
     func updateTableView(nameEntity: String) {
+        var selectPerson: NSManagedObject?
         if let newPerson = newPerson {
             switch nameEntity {
             case Accountant.entityName:
-                let selectPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
-                selectPerson.copyData(newPerson)
-                self.stack.mainQueueContext.deleteObject(newPerson)
-                self.newPerson = selectPerson
-                attributes = selectPerson.getAttributes()
+                selectPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
             case Leadership.entityName:
-                let selectPerson = Leadership(managedObjectContext: self.stack.mainQueueContext)
-                selectPerson.copyData(newPerson)
-                self.stack.mainQueueContext.deleteObject(newPerson)
-                self.newPerson = selectPerson
-                attributes = selectPerson.getAttributes()
+                selectPerson = Leadership(managedObjectContext: self.stack.mainQueueContext)
             case FellowWorker.entityName:
-                let selectPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
-                selectPerson.copyData(newPerson)
-                self.stack.mainQueueContext.deleteObject(newPerson)
-                self.newPerson = selectPerson
-                attributes = selectPerson.getAttributes()
+                selectPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
             default:
                 break
+            }
+            
+            if let selectPerson = selectPerson {
+                selectPerson.copyData(newPerson)
+                deleteDelegate?.deletePersons.append(newPerson)
+                //self.stack.mainQueueContext.deleteObject(newPerson)
+                self.newPerson = selectPerson
+                attributes = selectPerson.getAttributes()
             }
             tableView.reloadData()
         }
@@ -188,7 +188,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         guard let cell = (tableView.dequeueReusableCellWithIdentifier("DataCell", forIndexPath: indexPath)) as? DataTableViewCell else { fatalError("Cell is not registered") }
         if let newPerson = newPerson {
             let attribute = attributes[indexPath.row]
-            cell.updateUI(attribute, person: newPerson)
+            cell.updateUI(attribute, person: newPerson, delegate: self)
         }
         return cell
     }
@@ -220,11 +220,28 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
 }
 
+extension CreatePersonViewController: SwitchSaveButtonDelegate {
+    func checkAllAttribute() {
+        if let newPerson = newPerson {
+            if newPerson.checkOptionAttributes() {
+                doneButton.enabled = true
+            } else {
+                doneButton.enabled = false
+            }
+        }
+    }
+}
+
+protocol SwitchSaveButtonDelegate {
+    func checkAllAttribute()
+}
+
 struct  AttributeInfo {
     var name: String
     var order: Int
     var description: String
     var type: TypeAttribute
+    var optional: Int
 }
 
 enum TypeAttribute: Int {
@@ -234,5 +251,4 @@ enum TypeAttribute: Int {
     
     case TypeAccountan = 701
     case Time = 901
-    
 }

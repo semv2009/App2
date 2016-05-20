@@ -15,16 +15,22 @@ class Person: NSManagedObject, CoreDataModelable {
     @NSManaged var salary: Int
     @NSManaged var order: Int
     
-    
-    
     // MARK: - CoreDataModelable
     class var entityName: String {
         return "Person"
     }
     
-    var descriptionName: String {
-        guard let description = entity.valueForKey("userInfo")?.valueForKey("description") as? String else { fatalError("Have't description entity") }
-        return description
+    var entitySort: Int {
+        get {
+            guard let sortStr = entity.valueForKey("userInfo")?.valueForKey("sort") as? String, sort = Int(sortStr) else { fatalError("Have't description entity") }
+            return sort
+        }
+        
+        set {
+            if let userInfo = entity.valueForKey("userInfo") {
+                userInfo.setValue(newValue, forKey: "sort")
+            }
+        }
     }
 }
 

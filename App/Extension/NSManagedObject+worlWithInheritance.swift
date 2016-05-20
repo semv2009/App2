@@ -18,13 +18,14 @@ extension NSManagedObject {
             let userInfo = property.1.valueForKey("userInfo")
             if let attributeOrder = userInfo?.valueForKey("order") as? String,
                 attributeDescription =  userInfo?.valueForKey("description") as? String,
-                attributeType = property.1.valueForKey("attributeType") as? Int {
+                attributeType = property.1.valueForKey("attributeType") as? Int,
+                attributeOptinal = property.1.valueForKey("isOptional") as? Int {
           
                 if let order = Int(attributeOrder), var type = TypeAttribute(rawValue: attributeType) {
                     if let typeString =  userInfo?.valueForKey("extensionType") as? String, typeInt = Int(typeString) {
                         type = TypeAttribute(rawValue: typeInt)!
                     }
-                    attributes.append(AttributeInfo(name: attributeName, order: order, description: attributeDescription, type: type))
+                    attributes.append(AttributeInfo(name: attributeName, order: order, description: attributeDescription, type: type, optional: attributeOptinal))
                 }
             }
         }
@@ -41,21 +42,21 @@ extension NSManagedObject {
         }
     }
     
-    func isEmptyValue(name: String, typeAttribute: TypeAttribute) -> Bool {
-        if let value = self.valueForKey(name) {
-            if TypeAttribute.String ==  typeAttribute {
-                return isEmptyStringValue(value)
+    func checkOptionAttributes() -> Bool {
+        let attributes = self.getAttributes()
+        for attribute in attributes {
+            if attribute.optional == 0 {
+                if valueForKey(attribute.name) == nil {
+                    return false
+                }
             }
-            return false
         }
         return true
     }
     
-    func isEmptyStringValue(value: AnyObject) -> Bool {
-        if let value = value as? String {
-            if value.characters.count > 0 {
-                return false
-            }
+    func isEmptyValue(name: String, typeAttribute: TypeAttribute) -> Bool {
+        if let _ = self.valueForKey(name) {
+            return false
         }
         return true
     }

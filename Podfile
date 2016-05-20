@@ -7,5 +7,6 @@ target 'App' do
 pod 'BNRCoreDataStack'
 pod 'Alamofire', '~> 3.3'
 pod 'AEXML'
+pod 'SnapKit', '~> 0.15.0'
 end
 

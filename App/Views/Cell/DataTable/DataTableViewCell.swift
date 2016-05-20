@@ -16,13 +16,15 @@ class DataTableViewCell: UITableViewCell {
     
     var attribute: AttributeInfo!
     var person: NSManagedObject!
+    var switchSaveButtonDelegate: SwitchSaveButtonDelegate?
     
     lazy var datePiсker = UIDatePicker()
     var dataPiсker = UIPickerView()
     var dataArray = [SimpleData]()
     
     
-    func updateUI(attribute: AttributeInfo, person: NSManagedObject) {
+    func updateUI(attribute: AttributeInfo, person: NSManagedObject, delegate: SwitchSaveButtonDelegate) {
+        self.switchSaveButtonDelegate = delegate
         let value = person.valueForKey(attribute.name)
         self.attribute = attribute
         self.person = person
@@ -33,8 +35,6 @@ class DataTableViewCell: UITableViewCell {
     func configureTextField(type: TypeAttribute, value: AnyObject?) {
         addToolBar(dataTextField)
         dataTextField.text = String.value(forAttribute: attribute.type, value: value)
-        dataTextField.addTarget(self, action: #selector(DataTableViewCell.hell(_:)), forControlEvents: .EditingChanged)
-        
         switch type {
         case .Date:
             datePiсker.datePickerMode = .Date
@@ -70,39 +70,32 @@ class DataTableViewCell: UITableViewCell {
 
     }
     
-    func hell(texField: UITextField) {
-        print(texField.text)
-    }
-    
+
     func datePickerChanged(sender: UIDatePicker) {
         dataTextField.text = datePiсker.date.getTimeFormat()
     }
     
     var value: AnyObject? {
+        if let text = dataTextField.text {
+            if text.characters.count == 0 {
+                return nil
+            }
+        }
+        
         switch attribute.type {
         case .Date, .Time:
-            if let text = dataTextField.text {
-                if text.characters.count > 0 {
-                    return datePiсker.date
-                }
-            }
-            return nil
+            return datePiсker.date
         case .Number:
             if let text = dataTextField.text {
                 return Int(text)
-            } else {
-                return nil
             }
         case .String:
             return dataTextField.text
         case .TypeAccountan:
-            if let text = dataTextField.text {
-                if text.characters.count > 0 {
-                    return dataPiсker.selectedRowInComponent(0)
-                }
-            }
-            return nil
+            return dataPiсker.selectedRowInComponent(0)
         }
+        
+        return nil
     }
 }
 
@@ -141,17 +134,16 @@ extension DataTableViewCell: UITextFieldDelegate {
     }
     
     func donePressed() {
-        print(self.dataTextField.text)
         self.contentView.endEditing(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print(self.dataTextField.text)
         self.contentView.endEditing(true)
         return true
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
         person.setValue(value, forKey: attribute.name)
+        switchSaveButtonDelegate?.checkAllAttribute()
     }
 }

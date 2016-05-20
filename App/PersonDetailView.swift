@@ -47,6 +47,4 @@ import BNRCoreDataStack
         nameLabel.text = attribute.description
         valueLabel.text = String.value(forAttribute: attribute.type, value: value)
     }
-    
-    
 }
