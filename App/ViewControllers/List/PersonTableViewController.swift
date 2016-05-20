@@ -48,20 +48,13 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("Failed to fetch objects: \(error)")
-        }
+        performFetch()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        for person in deletePersons {
-            if let person = person {
-                self.stack.mainQueueContext.deleteObject(person)
-            }
-        }
+        frcDelegate.tableView = tableView
+        performFetch()
         tableView.reloadData()
     }
     
@@ -75,7 +68,16 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     
+    func performFetch() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("Failed to fetch objects: \(error)")
+        }
+    }
+    
     func showCreatePersonViewController() {
+        frcDelegate.tableView = nil
         let createPersonVC = CreatePersonViewController(coreDataStack: stack)
         createPersonVC.deleteDelegate = self
         showViewController(UINavigationController(rootViewController: createPersonVC), sender: self)
@@ -140,6 +142,7 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        frcDelegate.tableView = nil
         let person = fetchedResultsController.getObject(indexPath)
         let createVC = DetailPersonTableViewController(coreDataStack: stack)
         createVC.person = person
@@ -191,6 +194,7 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         case let .Delete(_, indexPath):
             tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             
+            
         case let .Move(_, fromIndexPath, toIndexPath):
             tableView?.moveRowAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
             
@@ -203,10 +207,14 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
                                   didChangeSection change: FetchedResultsSectionChange<Person>) {
         switch change {
         case let .Insert(_, index):
+             print("Delete section = \(index)")
+            tableView?.reloadData()
             tableView?.insertSections(NSIndexSet(index: index), withRowAnimation: .Automatic)
             
         case let .Delete(_, index):
+            print("Delete section = \(index)")
             tableView?.deleteSections(NSIndexSet(index: index), withRowAnimation: .Automatic)
+            tableView?.reloadData()
         }
     }
 }

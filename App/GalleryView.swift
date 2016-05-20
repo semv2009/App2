@@ -95,6 +95,10 @@ import UIKit
         }
     }
     
+    func resetScale() {
+        scrollView.zoomScale = 1.0
+    }
+    
     func loadViewFromNib() -> UIView {
         let bundle = NSBundle(forClass: self.dynamicType)
         let nib = UINib(nibName: nibName, bundle: bundle)

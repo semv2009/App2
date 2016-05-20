@@ -80,10 +80,10 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
             attributes = newPerson!.getAttributes()
         } else {
             title = "Create profile"
-            newPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
-            if let newPerson = newPerson {
-                attributes = newPerson.getAttributes()
-            }
+//            newPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
+//            if let newPerson = newPerson {
+//                attributes = newPerson.getAttributes()
+//            }
         }
     }
     
@@ -114,6 +114,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     @objc private func dismiss() {
         if let newPerson = newPerson {
+           //deleteDelegate?.deletePersons.append(newPerson)
             self.stack.mainQueueContext.deleteObject(newPerson)
         }
         dismissViewControllerAnimated(true, completion: nil)
@@ -127,7 +128,8 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
                 }
             }
             if let person = person {
-                deleteDelegate?.deletePersons.append(person)
+                //deleteDelegate?.deletePersons.append(person)
+                self.stack.mainQueueContext.deleteObject(person)
             }
             showDelegate?.person = newPerson
         } else {
@@ -155,27 +157,33 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     func updateTableView(nameEntity: String) {
         var selectPerson: NSManagedObject?
+    
+        switch nameEntity {
+        case Accountant.entityName:
+            selectPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
+        case Leadership.entityName:
+            selectPerson = Leadership(managedObjectContext: self.stack.mainQueueContext)
+        case FellowWorker.entityName:
+            selectPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
+        default:
+            break
+        }
+        
         if let newPerson = newPerson {
-            switch nameEntity {
-            case Accountant.entityName:
-                selectPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
-            case Leadership.entityName:
-                selectPerson = Leadership(managedObjectContext: self.stack.mainQueueContext)
-            case FellowWorker.entityName:
-                selectPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
-            default:
-                break
-            }
-            
             if let selectPerson = selectPerson {
                 selectPerson.copyData(newPerson)
-                deleteDelegate?.deletePersons.append(newPerson)
-                //self.stack.mainQueueContext.deleteObject(newPerson)
-                self.newPerson = selectPerson
+                //deleteDelegate?.deletePersons.append(newPerson)
+                self.stack.mainQueueContext.deleteObject(newPerson)
                 attributes = selectPerson.getAttributes()
             }
-            tableView.reloadData()
         }
+        
+        if let selectPerson = selectPerson {
+            self.newPerson = selectPerson
+            attributes = selectPerson.getAttributes()
+        }
+        
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
