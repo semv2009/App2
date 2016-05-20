@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GalleryView" customModule="App" customModuleProvider="target">
             <connections>
                 <outlet property="photoImage" destination="87W-eZ-27h" id="XCl-zl-Ybh"/>
+                <outlet property="scrollView" destination="xJW-zB-ZED" id="wfb-Tg-iPL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -15,33 +16,30 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="87W-eZ-27h">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="xJW-zB-ZED">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="87W-eZ-27h">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="PXX-KA-tSg"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="rYz-au-ibg"/>
+                        <constraint firstItem="87W-eZ-27h" firstAttribute="leading" secondItem="xJW-zB-ZED" secondAttribute="leading" id="6Fj-EB-JUN"/>
+                        <constraint firstAttribute="trailing" secondItem="87W-eZ-27h" secondAttribute="trailing" id="GNp-Wg-7yJ"/>
+                        <constraint firstItem="87W-eZ-27h" firstAttribute="top" secondItem="xJW-zB-ZED" secondAttribute="top" id="GcH-bS-1pj"/>
+                        <constraint firstItem="87W-eZ-27h" firstAttribute="centerX" secondItem="xJW-zB-ZED" secondAttribute="centerX" id="LLv-ET-Q0H"/>
+                        <constraint firstItem="87W-eZ-27h" firstAttribute="centerY" secondItem="xJW-zB-ZED" secondAttribute="centerY" id="PtM-vo-zZz"/>
+                        <constraint firstAttribute="bottom" secondItem="87W-eZ-27h" secondAttribute="bottom" id="kdh-Te-n8v"/>
                     </constraints>
-                </imageView>
+                </scrollView>
             </subviews>
             <constraints>
-                <constraint firstItem="87W-eZ-27h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5Fd-om-SO2"/>
-                <constraint firstItem="87W-eZ-27h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CKa-Dc-ddO"/>
-                <constraint firstItem="87W-eZ-27h" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Fec-vv-eAM"/>
-                <constraint firstAttribute="bottom" secondItem="87W-eZ-27h" secondAttribute="bottom" id="HEK-NX-IqT"/>
-                <constraint firstItem="87W-eZ-27h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YGr-bF-MLG"/>
-                <constraint firstAttribute="trailing" secondItem="87W-eZ-27h" secondAttribute="trailing" id="p8O-UV-95K"/>
-                <constraint firstItem="87W-eZ-27h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w8E-QY-96c"/>
-                <constraint firstItem="87W-eZ-27h" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x6X-2H-EZj"/>
+                <constraint firstAttribute="trailing" secondItem="xJW-zB-ZED" secondAttribute="trailing" id="aOW-RT-6Wb"/>
+                <constraint firstItem="xJW-zB-ZED" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aeW-hQ-Thy"/>
+                <constraint firstAttribute="bottom" secondItem="xJW-zB-ZED" secondAttribute="bottom" id="hOm-AR-9a1"/>
+                <constraint firstItem="xJW-zB-ZED" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mT5-aR-cUf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="HEK-NX-IqT"/>
-                    <exclude reference="YGr-bF-MLG"/>
-                    <exclude reference="p8O-UV-95K"/>
-                    <exclude reference="w8E-QY-96c"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="400" y="232"/>
         </view>
     </objects>

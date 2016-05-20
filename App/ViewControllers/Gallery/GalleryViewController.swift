@@ -38,15 +38,8 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         for i in 0...3 {
             let d = CGFloat(Double(i))
             let image = UIImage(named: "\(i)")!
-            let newView = GalleryView(frame: CGRectMake(scrollViewWidth * d, 0, scrollViewWidth, scrollViewHeight))
-            let imageView = UIImageView(frame: CGRectMake(scrollViewWidth * d, 0,(image.size.width), image.size.height))
-            imageView.image = image
-            arrayImageView.append(imageView)
-           
-            newView.photoImage.image = image
-            setZoomScale(newView.photoImage, ddddd: d)
-            //setZoomScale(imageView, ddddd: d)
-            self.scrollView.addSubview(newView)
+            let newView = GalleryView(frame: CGRectMake(scrollViewWidth * d, 0, scrollViewWidth, scrollViewHeight), image: image)
+            self.scrollView.addSubview(newView!)
         }
 
         //center(arrayImageView[0])
@@ -64,7 +57,8 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         
         //scrollView.minimumZoomScale = min(widthScale, heightScale)
         scrollView.minimumZoomScale = min(widthScale, heightScale)
-        scrollView.zoomScale = scrollView.minimumZoomScale
+        
+        scrollView.zoomScale = 1
         imageView.contentMode = .ScaleAspectFit
         imageView.frame = CGRectMake(scrollView.bounds.width * ddddd, 0, imageViewSize.width * scrollView.minimumZoomScale, imageViewSize.height * scrollView.minimumZoomScale)
     }

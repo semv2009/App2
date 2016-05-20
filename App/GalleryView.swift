@@ -8,8 +8,9 @@
 
 import UIKit
 
-@IBDesignable class GalleryView: UIView {
+@IBDesignable class GalleryView: UIView, UIScrollViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     var view: UIView!
    
     @IBOutlet weak var photoImage: UIImageView!
@@ -26,11 +27,72 @@ import UIKit
         setup()
     }
     
+    required init?(frame: CGRect, image: UIImage) {
+        super.init(frame: frame)
+        setup()
+        photoImage.image = image
+        configureScrollView()
+    }
+    
     func setup() {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         addSubview(view)
+    }
+    
+    func configureScrollView() {
+        self.scrollView.frame = view.bounds
+        scrollView.backgroundColor = UIColor.whiteColor()
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 3, self.scrollView.frame.height)
+        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        scrollView.contentOffset = CGPoint(x: 1111, y: 1111)
+        scrollView.delegate = self
+        setZoomScale()
+        setupGestureRecognizer()
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return photoImage
+    }
+   
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        let imageViewSize = photoImage.frame.size
+        let scrollViewSize = scrollView.bounds.size
+        
+        let verticalPadding = imageViewSize.height < scrollViewSize.height ? (scrollViewSize.height - imageViewSize.height) / 2 : 0
+        let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
+        
+        scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
+    }
+    
+    func setZoomScale() {
+        let imageViewSize = photoImage.bounds.size
+        let scrollViewSize = scrollView.bounds.size
+        let widthScale = scrollViewSize.width / imageViewSize.width
+        let heightScale = scrollViewSize.height / imageViewSize.height
+        scrollView.minimumZoomScale = 1
+        scrollView.zoomScale = 1
+        scrollView.maximumZoomScale = 2
+        photoImage.contentMode = .ScaleAspectFit
+        photoImage.frame = CGRectMake(0, 0, imageViewSize.width * scrollView.minimumZoomScale, imageViewSize.height * scrollView.minimumZoomScale)
+    }
+
+    
+    func setupGestureRecognizer() {
+        let doubleTap = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
+        doubleTap.numberOfTapsRequired = 2
+        scrollView.addGestureRecognizer(doubleTap)
+    }
+    
+    func handleDoubleTap(recognizer: UITapGestureRecognizer) {
+        if (scrollView.zoomScale > scrollView.minimumZoomScale) {
+            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+        } else {
+            scrollView.setZoomScale(scrollView.maximumZoomScale, animated: true)
+        }
     }
     
     func loadViewFromNib() -> UIView {
