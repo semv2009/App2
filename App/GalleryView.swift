@@ -41,13 +41,22 @@ import UIKit
         addSubview(view)
     }
     
+    func loadViewFromNib() -> UIView {
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        if let view = nib.instantiateWithOwner(self, options: nil)[0] as? UIView {
+            return view
+        }
+        return UIView()
+    }
+    
     func configureScrollView() {
         self.scrollView.frame = view.bounds
         scrollView.backgroundColor = UIColor.whiteColor()
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 3, self.scrollView.frame.height)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
         scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
-        scrollView.contentOffset = CGPoint(x: 1111, y: 1111)
+        //scrollView.contentOffset = CGPoint(x: 1111, y: 1111)
         scrollView.delegate = self
         setZoomScale()
         setupGestureRecognizer()
@@ -88,7 +97,7 @@ import UIKit
     }
     
     func handleDoubleTap(recognizer: UITapGestureRecognizer) {
-        if (scrollView.zoomScale > scrollView.minimumZoomScale) {
+        if scrollView.zoomScale > scrollView.minimumZoomScale {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
         } else {
             scrollView.setZoomScale(scrollView.maximumZoomScale, animated: true)
@@ -99,12 +108,11 @@ import UIKit
         scrollView.zoomScale = 1.0
     }
     
-    func loadViewFromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        if let view = nib.instantiateWithOwner(self, options: nil)[0] as? UIView {
-            return view
+    func setImage(name: String?) {
+        if let name = name {
+            photoImage.image = UIImage(named: name)!
+        } else {
+            photoImage.image = nil
         }
-        return UIView()
     }
 }

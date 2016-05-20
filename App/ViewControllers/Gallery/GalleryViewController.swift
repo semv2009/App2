@@ -20,7 +20,10 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     var indexPage = 0
     var contentOffsetX: CGFloat = 0
+    var startIndex = 0
     var views = [GalleryView]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(view.bounds)
@@ -82,6 +85,8 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     func moveToPreviousPage() {
         print("Previous")
+        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        startIndex = index
         let pageWidth: CGFloat = CGRectGetWidth(self.scrollView.frame)
         let maxWidth: CGFloat = pageWidth * 4
         let contentOffset: CGFloat = self.scrollView.contentOffset.x
@@ -93,32 +98,53 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
        // print("fdsfsd")
-        if scrollView.contentOffset.x - contentOffsetX == scrollView.bounds.width {
-            contentOffsetX = scrollView.contentOffset.x
-            indexPage += 1
-            print(indexPage)
-            views[indexPage-1].resetScale()
-        }
-        
-        if scrollView.contentOffset.x - contentOffsetX == -scrollView.bounds.width {
-            contentOffsetX = scrollView.contentOffset.x
-            indexPage -= 1
-            print(indexPage)
-            views[indexPage+1].resetScale()
-        }
+//        if scrollView.contentOffset.x - contentOffsetX == scrollView.bounds.width {
+//            contentOffsetX = scrollView.contentOffset.x
+//            indexPage += 1
+//            print(indexPage)
+//            views[indexPage-1].resetScale()
+//        }
+//        
+//        if scrollView.contentOffset.x - contentOffsetX == -scrollView.bounds.width {
+//            contentOffsetX = scrollView.contentOffset.x
+//            indexPage -= 1
+//            print(indexPage)
+//            views[indexPage+1].resetScale()
+//        }
         
     }
     
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         print("Start")
+        print(scrollView.contentOffset.x)
+        print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
+        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        startIndex = index
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
+        //if scrollView.contentOffset.x
+        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        print("Index end = \(index)")
+        indexPage = index
+        if index == startIndex {
+            if index + 1 != views.count {
+                views[index+1].resetScale()
+            }
+        } else {
+            if index - 1 != -1 {
+                views[index - 1].resetScale()
+            }
+        }
         print("End")
     }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        print("Begin")
+    }
+    
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         
-        print("Hay")
+        print("Stop")
     }
 }
