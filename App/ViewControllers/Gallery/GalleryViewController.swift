@@ -37,11 +37,34 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         navigationItem.rightBarButtonItem = nextButton
         navigationItem.leftBarButtonItem = previousButton
 
-        for i in 0...3 {
-            let image = UIImage(named: "\(i)")!
-            let newView = GalleryView(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height), image: image)
-            views.append(newView!)
-            self.scrollView.addSubview(newView!)
+        for i in 0...14 {
+//            var image: UIImage? = UIImage(named: "\(i)")
+//            var imageData: NSData? = UIImagePNGRepresentation(image!)!
+//            image = nil
+            let newView = GalleryView(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+            //imageData = nil
+            views.append(newView)
+            self.scrollView.addSubview(newView)
+        }
+        views[0].setImage("0")
+        clearImage(0)
+    }
+    
+    func clearImage(index: Int) {
+        if index - 2 > -1 {
+            views[index - 2].setImage(nil)
+        }
+        
+        if index + 2 < views.count {
+            views[index + 2].setImage(nil)
+        }
+        
+        if index + 1 < views.count {
+            views[index + 1].setImage("\(index + 1)")
+        }
+        
+        if index - 1 > -1 {
+            views[index - 1].setImage("\(index - 1)")
         }
     }
     
@@ -54,28 +77,35 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         let scrollViewHeight: CGFloat = self.scrollView.frame.height
 
        
-        for i in 0...3 {
+        for i in 0...14 {
             print("Hello")
             let index = CGFloat(Double(i))
-            views[i].frame = CGRectMake(scrollViewWidth * index, 0, scrollViewWidth, scrollViewHeight)
+            views[i].frame =   CGRectMake(scrollViewWidth * index, 0, scrollViewWidth, scrollViewHeight)
+            views[i].configureScrollView()
         }
         
-        self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: false)
+        //self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: false)
 
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 4, self.scrollView.frame.height)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * CGFloat(views.count), self.scrollView.frame.height)
         self.scrollView.delegate = self
         
         print("X = \(scrollView.contentOffset.x)")
         print("Index = \(indexPage)")
         print("View = \(views[indexPage].frame)")
-        self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: true)
+        self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: false)
         contentOffsetX = scrollView.contentOffset.x
     }
 
     func moveToNextPage() {
         print("Next")
+        print("---->\(indexPage)")
+        //views[indexPage].photoImage.image = nil
+        if indexPage + 1 < views.count {
+            clearImage(indexPage + 1)
+            views[indexPage + 1].resetScale()
+        }
         let pageWidth: CGFloat = CGRectGetWidth(self.scrollView.frame)
-        let maxWidth: CGFloat = pageWidth * 4
+        let maxWidth: CGFloat = pageWidth * CGFloat(views.count)
         let contentOffset: CGFloat = self.scrollView.contentOffset.x
         let slideToX = contentOffset + pageWidth
         if  contentOffset + pageWidth != maxWidth {
@@ -85,10 +115,17 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     func moveToPreviousPage() {
         print("Previous")
+        print("---->\(indexPage)")
+         //views[indexPage].photoImage.image = nil
+        if indexPage - 1 > -1{
+             clearImage(indexPage - 1)
+            views[indexPage - 1].resetScale()
+        }
+       
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         startIndex = index
         let pageWidth: CGFloat = CGRectGetWidth(self.scrollView.frame)
-        let maxWidth: CGFloat = pageWidth * 4
+        let maxWidth: CGFloat = pageWidth * CGFloat(views.count)
         let contentOffset: CGFloat = self.scrollView.contentOffset.x
         let slideToX = contentOffset - pageWidth
         if  contentOffset - pageWidth != -pageWidth {
@@ -135,17 +172,22 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
                 views[index - 1].resetScale()
             }
         }
-        //print("End \(index))")
-        //print("End")
+        print("End \(index))")
+        clearImage(index)
+        print("End")
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         print("Begin")
         print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
+        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        //clearImage(index)
     }
     
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        
+        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        indexPage = index
+        print(indexPage)
         print("Stop")
     }
 }

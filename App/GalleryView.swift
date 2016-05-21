@@ -110,7 +110,11 @@ import UIKit
     
     func setImage(name: String?) {
         if let name = name {
-            photoImage.image = UIImage(named: name)!
+            var image: UIImage? = UIImage(named: name)
+            var imageData: NSData? = UIImagePNGRepresentation(image!)!
+            photoImage.image = UIImage(data: imageData!)
+            image = nil
+            imageData = nil
         } else {
             photoImage.image = nil
         }
