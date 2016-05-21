@@ -115,17 +115,16 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        print("Start")
+        //print("Start")
         print(scrollView.contentOffset.x)
-        print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
+        //print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         startIndex = index
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        //if scrollView.contentOffset.x
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        print("Index end = \(index)")
+        //print("Index end = \(index)")
         indexPage = index
         if index == startIndex {
             if index + 1 != views.count {
@@ -136,11 +135,13 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
                 views[index - 1].resetScale()
             }
         }
-        print("End")
+        //print("End \(index))")
+        //print("End")
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         print("Begin")
+        print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
     }
     
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
