@@ -12,8 +12,6 @@
 		8B291FA91CE32F93000F5B0B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */; };
 		8B3450961CE8CF36005777C9 /* DetailPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3450941CE8CF36005777C9 /* DetailPersonTableViewController.swift */; };
 		8B3450971CE8CF36005777C9 /* DetailPersonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3450951CE8CF36005777C9 /* DetailPersonTableViewController.xib */; };
-		8B3868B01CEA629100C87DFE /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3868AE1CEA629100C87DFE /* ServiceViewController.swift */; };
-		8B3868B11CEA629100C87DFE /* ServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3868AF1CEA629100C87DFE /* ServiceViewController.xib */; };
 		8B39C9031CE205C60046D369 /* NSDate+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */; };
 		8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */; };
 		8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45AEDD1CDFE1F300F01815 /* CreatePersonViewController.swift */; };
@@ -50,6 +48,8 @@
 		8BF3B4311CF1E67F00AF5E25 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */; };
 		8BF3B4341CF1E69400AF5E25 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4321CF1E69400AF5E25 /* DataTableViewCell.swift */; };
 		8BF3B4351CF1E69400AF5E25 /* DataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B4331CF1E69400AF5E25 /* DataTableViewCell.xib */; };
+		8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */; };
+		8BF3B4391CF1E74A00AF5E25 /* ServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */; };
 		9A7034D0FECA622A88A37725 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27819D767AD0DEF8D8380DD9 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,8 +60,6 @@
 		8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonHeaderView.xib; path = Views/PersonHeader/PersonHeaderView.xib; sourceTree = "<group>"; };
 		8B3450941CE8CF36005777C9 /* DetailPersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailPersonTableViewController.swift; path = ViewControllers/DetailPerson/DetailPersonTableViewController.swift; sourceTree = "<group>"; };
 		8B3450951CE8CF36005777C9 /* DetailPersonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailPersonTableViewController.xib; path = ViewControllers/DetailPerson/DetailPersonTableViewController.xib; sourceTree = "<group>"; };
-		8B3868AE1CEA629100C87DFE /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceViewController.swift; path = ViewControllers/ServiceViewController.swift; sourceTree = "<group>"; };
-		8B3868AF1CEA629100C87DFE /* ServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceViewController.xib; path = ViewControllers/ServiceViewController.xib; sourceTree = "<group>"; };
 		8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+StringRepresentation.swift"; path = "Extension/NSDate+StringRepresentation.swift"; sourceTree = "<group>"; };
 		8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSManagedObject+worlWithInheritance.swift"; path = "Extension/NSManagedObject+worlWithInheritance.swift"; sourceTree = "<group>"; };
 		8B45AEDD1CDFE1F300F01815 /* CreatePersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePersonViewController.swift; path = ViewControllers/CreatePerson/CreatePersonViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +98,8 @@
 		8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonTableViewCell.xib; path = Views/Cell/Person/PersonTableViewCell.xib; sourceTree = "<group>"; };
 		8BF3B4321CF1E69400AF5E25 /* DataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataTableViewCell.swift; path = Views/Cell/Data/DataTableViewCell.swift; sourceTree = "<group>"; };
 		8BF3B4331CF1E69400AF5E25 /* DataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DataTableViewCell.xib; path = Views/Cell/Data/DataTableViewCell.xib; sourceTree = "<group>"; };
+		8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceViewController.swift; path = ViewControllers/Service/ServiceViewController.swift; sourceTree = "<group>"; };
+		8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceViewController.xib; path = ViewControllers/Service/ServiceViewController.xib; sourceTree = "<group>"; };
 		ECAE02C2818E67504ACE3D17 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		FC53FF69F23E231198EC1380 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,8 +305,8 @@
 		8B4A97E01CDB4BA8007F3439 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				8B3868AE1CEA629100C87DFE /* ServiceViewController.swift */,
-				8B3868AF1CEA629100C87DFE /* ServiceViewController.xib */,
+				8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */,
+				8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -449,9 +449,9 @@
 				8B4A97EC1CDB4C4B007F3439 /* PersonTableViewController.xib in Resources */,
 				8BF3B42D1CF1E65800AF5E25 /* QuoteTableViewCell.xib in Resources */,
 				8B3450971CE8CF36005777C9 /* DetailPersonTableViewController.xib in Resources */,
+				8BF3B4391CF1E74A00AF5E25 /* ServiceViewController.xib in Resources */,
 				8BF3B4251CF1E5CB00AF5E25 /* PersonDetailView.xib in Resources */,
 				8BF3B4211CF1E59500AF5E25 /* GalleryView.xib in Resources */,
-				8B3868B11CEA629100C87DFE /* ServiceViewController.xib in Resources */,
 				8B4A979B1CDB3259007F3439 /* Assets.xcassets in Resources */,
 				8B51DE271CE9108000684AB5 /* DetailTableViewCell.xib in Resources */,
 				8B4A97DD1CDB4444007F3439 /* MainTabViewController.xib in Resources */,
@@ -528,9 +528,9 @@
 				8BF3B4241CF1E5CB00AF5E25 /* PersonDetailView.swift in Sources */,
 				8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */,
 				8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */,
-				8B3868B01CEA629100C87DFE /* ServiceViewController.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
 				8BF3B4291CF1E60C00AF5E25 /* String+toStringForAttributeType.swift in Sources */,
+				8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */,
 				8B4A97DC1CDB4444007F3439 /* MainTabViewController.swift in Sources */,
 				8B39C9031CE205C60046D369 /* NSDate+StringRepresentation.swift in Sources */,
 				8BF3B4301CF1E67F00AF5E25 /* PersonTableViewCell.swift in Sources */,

@@ -21,6 +21,7 @@ extension FetchedResultsController {
         return sections[indexPath.section].name
     }
     
+    
     func changeOrderPersons(moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
         var begin: Int
         var end: Int
@@ -48,8 +49,11 @@ extension FetchedResultsController {
             
         }
         
+        
+        
         if let movePerson = self.getObject(fromIndexPath) as? Person {
-            movePerson.order = toIndexPath.row
+            movePerson.order = toIndexPath.row + 1
         }
     }
+    
 }

@@ -128,7 +128,9 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
                 }
             }
             if let person = person {
-                //deleteDelegate?.deletePersons.append(person)
+                if person.entity.name == newPerson.entity.name {
+                    newPerson.setValue(person.valueForKey("order"), forKey: "order")
+                }
                 self.stack.mainQueueContext.deleteObject(person)
             }
             showDelegate?.person = newPerson

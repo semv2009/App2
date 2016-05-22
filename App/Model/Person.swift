@@ -22,14 +22,11 @@ class Person: NSManagedObject, CoreDataModelable {
     
     var entitySort: Int {
         get {
-            guard let sortStr = entity.valueForKey("userInfo")?.valueForKey("sort") as? String, sort = Int(sortStr) else { fatalError("Have't description entity") }
+            guard let sortStr = entity.valueForKey("userInfo")!.valueForKey("sort") as? String, sort = Int(sortStr) else { fatalError() }
             return sort
         }
-        
         set {
-            if let userInfo = entity.valueForKey("userInfo") {
-                userInfo.setValue(newValue, forKey: "sort")
-            }
+            entity.userInfo?["sort"] = "\(newValue)"
         }
     }
 }

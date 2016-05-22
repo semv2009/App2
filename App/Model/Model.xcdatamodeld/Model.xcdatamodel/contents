@@ -10,7 +10,7 @@
         </attribute>
         <userInfo>
             <entry key="description" value="Accountant"/>
-            <entry key="sort" value="2"/>
+            <entry key="sort" value="0"/>
         </userInfo>
     </entity>
     <entity name="Employee" representedClassName=".Employee" parentEntity="Person" syncable="YES">
@@ -58,7 +58,7 @@
         </attribute>
         <userInfo>
             <entry key="description" value="Leadership"/>
-            <entry key="sort" value="1"/>
+            <entry key="sort" value="0"/>
         </userInfo>
     </entity>
     <entity name="Person" representedClassName=".Person" syncable="YES">
