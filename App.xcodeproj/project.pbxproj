@@ -124,13 +124,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8B220B011CEF49B800CFC0DB /* GalleryView */ = {
+		8B220B011CEF49B800CFC0DB /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
 				8B220B021CEF49DB00CFC0DB /* GalleryView.swift */,
 				8B220B031CEF49DB00CFC0DB /* GalleryView.xib */,
 			);
-			name = GalleryView;
+			name = Gallery;
 			sourceTree = "<group>";
 		};
 		8B291F9D1CE32B4B000F5B0B /* PersonHeader */ = {
@@ -244,7 +244,7 @@
 		8B4A97A61CDB334A007F3439 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8B220B011CEF49B800CFC0DB /* GalleryView */,
+				8B220B011CEF49B800CFC0DB /* Gallery */,
 				8B47EF3A1CEB8B7F00014656 /* PersonDetail */,
 				8B291F9D1CE32B4B000F5B0B /* PersonHeader */,
 				8B74E6611CDE6A67008985CC /* Cells */,
