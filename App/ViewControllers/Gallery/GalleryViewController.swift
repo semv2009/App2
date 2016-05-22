@@ -23,10 +23,21 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     var startIndex = 0
     var views = [GalleryView]()
     
+    var move = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(view.bounds)
+        
+        let upGs = UISwipeGestureRecognizer(target: self, action: #selector(GalleryViewController.handleSwipes(_:)))
+        let downGs = UISwipeGestureRecognizer(target: self, action: #selector(GalleryViewController.handleSwipes(_:)))
+        
+        upGs.direction = .Left
+        downGs.direction = .Right
+        
+        scrollView.addGestureRecognizer(upGs)
+        scrollView.addGestureRecognizer(downGs)
+        
         UINavigationBar.appearance().backgroundColor = UIColor(red: 100, green: 100, blue: 100, alpha: 0.2)
         self.navigationController?.navigationBar.translucent = false
         self.edgesForExtendedLayout = UIRectEdge.None
@@ -48,6 +59,17 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         }
         views[0].setImage("0")
         clearImage(0)
+    }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+    
+        if (sender.direction == .Left) {
+            print("Up")
+        }
+        
+        if (sender.direction == .Right) {
+            print("Down")
+        }
     }
     
     func clearImage(index: Int) {
@@ -75,6 +97,9 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         print("Screen \(view.frame)")
+        
+       
+        
         let screenSize: CGRect = view.bounds
         self.scrollView.frame = CGRectMake(0, 0, screenSize.width, screenSize.height)
         let scrollViewWidth: CGFloat = self.scrollView.frame.width
@@ -91,22 +116,46 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         //self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: false)
 
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * CGFloat(views.count), self.scrollView.frame.height)
+        
         self.scrollView.delegate = self
         
         print("X = \(scrollView.contentOffset.x)")
         print("Index = \(indexPage)")
         print("View = \(views[indexPage].frame)")
-        self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: false)
+        
+        
+        if indexPage + 1 < views.count {
+            //nextButton.enabled = true
+        } else {
+            nextButton.enabled = false
+        }
+        
+        if indexPage - 1 > -1 {
+            //previousButton.enabled = true
+        } else {
+            previousButton.enabled = false
+        }
+        
+        if move {
+            self.scrollView.scrollRectToVisible(views[indexPage].frame, animated: false)
+        } else {
+            move = true
+        }
+        
         contentOffsetX = scrollView.contentOffset.x
     }
 
     func moveToNextPage() {
         print("Next")
         print("---->\(indexPage)")
+        move = false
         //views[indexPage].photoImage.image = nil
         if indexPage + 1 < views.count {
+            
+
             clearImage(indexPage + 1)
             views[indexPage + 1].resetScale()
+            indexPage += 1
         }
         
         nextButton.enabled = false
@@ -123,10 +172,13 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     func moveToPreviousPage() {
         print("Previous")
         print("---->\(indexPage)")
+        move = false
          //views[indexPage].photoImage.image = nil
-        if indexPage - 1 > -1{
+        if indexPage - 1 > -1 {
+            
             clearImage(indexPage - 1)
             views[indexPage - 1].resetScale()
+            indexPage -= 1
         }
         
         previousButton.enabled = false
@@ -158,6 +210,8 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
 //            views[indexPage+1].resetScale()
 //        }
         
+
+        
     }
     
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
@@ -184,22 +238,41 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         //scrollView.contentSize.width += scrollView.frame.size.width
         print("End \(index))")
         clearImage(index)
+        
+//        if indexPage + 1 < views.count {
+//            nextButton.enabled = true
+//        }
+//        
+//        if indexPage - 1 > -1 {
+//            previousButton.enabled = true
+//        }
+        if indexPage + 1 < views.count {
+            nextButton.enabled = true
+        }
+        
+        if indexPage - 1 > -1 {
+            previousButton.enabled = true
+        }
+        scrollView.userInteractionEnabled = true
         print("End")
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         print("Begin")
-        
+        scrollView.userInteractionEnabled = false
         print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         //clearImage(index)
     }
     
+    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
+        return false
+    }
+    
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        indexPage = index
+        //indexPage = index
         print(indexPage)
-        
         if indexPage + 1 < views.count {
             nextButton.enabled = true
         }
