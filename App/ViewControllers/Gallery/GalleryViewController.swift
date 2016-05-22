@@ -68,6 +68,10 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        print("viewWillAppear")
+        print(view.bounds)
+    }
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         print("Screen \(view.frame)")
@@ -78,7 +82,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
 
        
         for i in 0...14 {
-            print("Hello")
+            //print("Hello")
             let index = CGFloat(Double(i))
             views[i].frame =   CGRectMake(scrollViewWidth * index, 0, scrollViewWidth, scrollViewHeight)
             views[i].configureScrollView()
@@ -104,6 +108,9 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
             clearImage(indexPage + 1)
             views[indexPage + 1].resetScale()
         }
+        
+        nextButton.enabled = false
+        
         let pageWidth: CGFloat = CGRectGetWidth(self.scrollView.frame)
         let maxWidth: CGFloat = pageWidth * CGFloat(views.count)
         let contentOffset: CGFloat = self.scrollView.contentOffset.x
@@ -118,9 +125,11 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         print("---->\(indexPage)")
          //views[indexPage].photoImage.image = nil
         if indexPage - 1 > -1{
-             clearImage(indexPage - 1)
+            clearImage(indexPage - 1)
             views[indexPage - 1].resetScale()
         }
+        
+        previousButton.enabled = false
        
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         startIndex = index
@@ -172,6 +181,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
                 views[index - 1].resetScale()
             }
         }
+        //scrollView.contentSize.width += scrollView.frame.size.width
         print("End \(index))")
         clearImage(index)
         print("End")
@@ -179,6 +189,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         print("Begin")
+        
         print("Index start = \(Int(scrollView.contentOffset.x / scrollView.frame.size.width))")
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         //clearImage(index)
@@ -188,6 +199,14 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         indexPage = index
         print(indexPage)
+        
+        if indexPage + 1 < views.count {
+            nextButton.enabled = true
+        }
+        
+        if indexPage - 1 > -1 {
+            previousButton.enabled = true
+        }
         print("Stop")
     }
 }
