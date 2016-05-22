@@ -96,7 +96,6 @@ import UIKit
         }
     }
 
-    
     // MARK: ScrollView Delete
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
