@@ -58,6 +58,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func configureNavigationBar() {
+        title = "Gallery"
         self.edgesForExtendedLayout = UIRectEdge.None
         
         nextButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(GalleryViewController.moveToNextPage))

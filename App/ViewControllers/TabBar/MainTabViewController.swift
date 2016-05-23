@@ -44,8 +44,4 @@ class MainTabViewController: UITabBarController {
             image: UIImage(imageLiteral: "Service"),
             tag: 1)
     }
-
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        print("\(item.title)")
-    }
 }

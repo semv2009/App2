@@ -60,8 +60,8 @@ import UIKit
     func setZoomScale() {
         let imageViewSize = photoImage.bounds.size
         scrollView.minimumZoomScale = 1
-        scrollView.zoomScale = 1
         scrollView.maximumZoomScale = 2
+        scrollView.zoomScale = 1
         photoImage.contentMode = .ScaleAspectFit
         photoImage.frame = CGRect.init(x: 0, y: 0, width: imageViewSize.width * scrollView.minimumZoomScale, height: imageViewSize.height * scrollView.minimumZoomScale)
     }
@@ -86,11 +86,9 @@ import UIKit
     
     func setImage(name: String?) {
         if let name = name {
-            var image: UIImage? = UIImage(named: name)
-            var imageData: NSData? = UIImagePNGRepresentation(image!)!
-            photoImage.image = UIImage(data: imageData!)
-            image = nil
-            imageData = nil
+            if let image = UIImage(named: name), imageData = UIImagePNGRepresentation(image) {
+                 photoImage.image = UIImage(data: imageData)
+            }
         } else {
             photoImage.image = nil
         }

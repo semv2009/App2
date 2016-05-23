@@ -55,6 +55,7 @@ class PersonTableViewController: UITableViewController {
         frcDelegate.tableView = tableView
         performFetch()
         tableView.reloadData()
+        stack.mainQueueContext.saveContext()
     }
     
     func configureView() {
@@ -119,7 +120,6 @@ class PersonTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             guard let person = fetchedResultsController.getObject(indexPath) as? Person else { fatalError("Don't get task from fetchedResultsController") }
-            print(person)
                 self.stack.mainQueueContext.deleteObject(person)
         }
     }
@@ -187,9 +187,7 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         switch change {
         case let .Insert(_, indexPath):
             if let person = controller.getObject(indexPath) as? Person, sections = controller.sections {
-                print(controller.checkSort(indexPath))
                 if controller.checkSort(indexPath) {
-                    print(sections[indexPath.section].objects.count)
                     person.order = sections[indexPath.section].objects.count
                 }
             }
@@ -218,9 +216,6 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         }
     }
 
-    
-    
-    
     func fetchedResultsController(controller: FetchedResultsController<Person>,
                                   didChangeSection change: FetchedResultsSectionChange<Person>) {
         switch change {

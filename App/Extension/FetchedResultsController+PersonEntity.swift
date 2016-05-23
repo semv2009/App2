@@ -31,6 +31,7 @@ extension FetchedResultsController {
             for index in begin...end {
                 let indexPath = NSIndexPath(forRow: index, inSection: toIndexPath.section)
                 if let movePerson = self.getObject(indexPath) as? Person {
+                    print(movePerson)
                     let order = movePerson.order
                     movePerson.order = order + 1
                 }
