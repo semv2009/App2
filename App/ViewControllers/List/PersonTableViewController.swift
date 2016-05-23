@@ -119,6 +119,7 @@ class PersonTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             guard let person = fetchedResultsController.getObject(indexPath) as? Person else { fatalError("Don't get task from fetchedResultsController") }
+            print(person)
                 self.stack.mainQueueContext.deleteObject(person)
         }
     }
@@ -188,6 +189,7 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
             if let person = controller.getObject(indexPath) as? Person, sections = controller.sections {
                 print(controller.checkSort(indexPath))
                 if controller.checkSort(indexPath) {
+                    print(sections[indexPath.section].objects.count)
                     person.order = sections[indexPath.section].objects.count
                 }
             }
@@ -200,8 +202,8 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
                     let section = sections[indexPath.section]
                     let isIndex = section.objects.indices.contains(indexPath.row)
                     if isIndex && controller.checkSort(indexPath) {
-                        let toIndexPath = NSIndexPath(forItem: section.objects.count - 1, inSection: indexPath.section)
-                        controller.changeOrderPersons(moveRowAtIndexPath: indexPath, toIndexPath:  toIndexPath)
+                        let endIndexPath = NSIndexPath(forItem: section.objects.count - 1, inSection: indexPath.section)
+                        controller.changeSortAfterDelete(fromRowAtIndexPath: indexPath, endIndexPath:  endIndexPath)
                     }
                 }
             }

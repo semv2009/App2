@@ -67,4 +67,15 @@ extension FetchedResultsController {
         return false
     }
     
+    func changeSortAfterDelete(fromRowAtIndexPath fromRowAtIndexPath: NSIndexPath, endIndexPath: NSIndexPath) {
+        let start = fromRowAtIndexPath.row
+        let end = endIndexPath.row
+        for index in start...end {
+            let indexPath = NSIndexPath(forRow: index, inSection: fromRowAtIndexPath.section)
+            if let person = self.getObject(indexPath) as? Person {
+                person.order -= 1
+            }
+        }
+    }
+    
 }
