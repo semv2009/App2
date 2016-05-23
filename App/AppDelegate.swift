@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         do {
+            print("Save")
             print("Save context")
             try stack.mainQueueContext.save()
         } catch {
