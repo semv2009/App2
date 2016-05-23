@@ -20,6 +20,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     var indexOfPage = 0
     var contentOffsetX: CGFloat = 0
+    var scrollWidth = 0
     var startIndex = 0
     var views = [GalleryView]()
     var move = true
@@ -35,7 +36,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         }
         
         views[0].setImage("0")
-        resetImage(0)
+        resetRightImage(0)
     }
     
     override func viewDidLayoutSubviews() {
@@ -43,8 +44,9 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         
         for i in 0...14 {
             let index = CGFloat(Double(i))
-            views[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
             views[i].configureScrollView()
+            views[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+            
         }
         
         disableNavigationButtons()
@@ -55,6 +57,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
             move = true
         }
         contentOffsetX = scrollView.contentOffset.x
+        
     }
     
     func configureNavigationBar() {
@@ -92,21 +95,22 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    func resetImage(index: Int) {
-        if index - 2 > -1 {
-            views[index - 2].setImage(nil)
-        }
+    func resetLeftImage(index: Int) {
         
         if index + 2 < views.count {
             views[index + 2].setImage(nil)
         }
-        
-        if index + 1 < views.count {
-            views[index + 1].setImage("\(index + 1)")
-        }
-        
         if index - 1 > -1 {
             views[index - 1].setImage("\(index - 1)")
+        }
+    }
+    
+    func resetRightImage(index: Int) {
+        if index - 2 > -1 {
+            views[index - 2].setImage(nil)
+        }
+        if index + 1 < views.count {
+            views[index + 1].setImage("\(index + 1)")
         }
     }
     
@@ -116,7 +120,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         move = false
         nextButton.enabled = false
         if indexOfPage + 1 < views.count {
-            resetImage(indexOfPage + 1)
+            resetRightImage(indexOfPage + 1)
             views[indexOfPage + 1].resetScale()
             indexOfPage += 1
             self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
@@ -127,7 +131,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         move = false
         previousButton.enabled = false
         if indexOfPage - 1 > -1 {
-            resetImage(indexOfPage - 1)
+            resetLeftImage(indexOfPage - 1)
             views[indexOfPage - 1].resetScale()
             indexOfPage -= 1
             self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
@@ -149,13 +153,20 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
             if index + 1 != views.count {
                 views[index+1].resetScale()
             }
+            
         } else {
             if index - 1 != -1 {
                 views[index - 1].resetScale()
             }
         }
+        
+        if startIndex - index < 0 {
+            resetRightImage(index)
+        } else {
+            resetLeftImage(index)
+        }
         enableNavigationButtons()
-        resetImage(index)
+        
         scrollView.userInteractionEnabled = true
     }
     

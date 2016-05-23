@@ -79,6 +79,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
             doneButton.enabled = true
         } else {
             title = "Create profile"
+            doneButton.enabled = false
         }
     }
     
