@@ -49,11 +49,22 @@ extension FetchedResultsController {
             
         }
         
-        
-        
         if let movePerson = self.getObject(fromIndexPath) as? Person {
             movePerson.order = toIndexPath.row + 1
         }
+    }
+    
+    func checkSort(indexPath: NSIndexPath) -> Bool {
+        if let  sections = self.sections {
+            for object in sections[indexPath.section].objects {
+                if let person = object as? Person {
+                    if person.order != 0 {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
     
 }

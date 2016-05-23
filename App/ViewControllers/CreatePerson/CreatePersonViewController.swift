@@ -25,8 +25,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     var stack: CoreDataStack!
     
     var attributes = [AttributeInfo]()
-    
-    var deleteDelegate: DeleteDelegate?
     var showDelegate: ShowPersonDelegate?
     
     override func viewDidLoad() {
@@ -114,7 +112,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     @objc private func dismiss() {
         if let newPerson = newPerson {
-           //deleteDelegate?.deletePersons.append(newPerson)
             self.stack.mainQueueContext.deleteObject(newPerson)
         }
         dismissViewControllerAnimated(true, completion: nil)
@@ -174,7 +171,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         if let newPerson = newPerson {
             if let selectPerson = selectPerson {
                 selectPerson.copyData(newPerson)
-                //deleteDelegate?.deletePersons.append(newPerson)
                 self.stack.mainQueueContext.deleteObject(newPerson)
                 attributes = selectPerson.getAttributes()
             }

@@ -25,8 +25,6 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     
     var attributes = [AttributeInfo]()
     
-    var deleteDelegate: DeleteDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -60,7 +58,6 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     @objc private func edit() {
         let createVC = CreatePersonViewController(coreDataStack: stack)
         createVC.person = person
-        createVC.deleteDelegate = deleteDelegate
         createVC.showDelegate = self
         showViewController(UINavigationController(rootViewController: createVC), sender: self)
     }

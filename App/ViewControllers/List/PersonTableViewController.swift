@@ -10,10 +10,9 @@ import UIKit
 import BNRCoreDataStack
 import CoreData
 
-class PersonTableViewController: UITableViewController, DeleteDelegate {
+class PersonTableViewController: UITableViewController {
     
     var stack: CoreDataStack!
-    var deletePersons = [NSManagedObject?]()
     
     private lazy var fetchedResultsController: FetchedResultsController<Person> = {
         let fetchRequest = NSFetchRequest(entityName: Person.entityName)
@@ -79,7 +78,6 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
     func showCreatePersonViewController() {
         frcDelegate.tableView = nil
         let createPersonVC = CreatePersonViewController(coreDataStack: stack)
-        createPersonVC.deleteDelegate = self
         showViewController(UINavigationController(rootViewController: createPersonVC), sender: self)
     }
     
@@ -117,11 +115,10 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    //
+   
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             guard let person = fetchedResultsController.getObject(indexPath) as? Person else { fatalError("Don't get task from fetchedResultsController") }
-            print("Delete person \(person)")
                 self.stack.mainQueueContext.deleteObject(person)
         }
     }
@@ -152,7 +149,6 @@ class PersonTableViewController: UITableViewController, DeleteDelegate {
         let person = fetchedResultsController.getObject(indexPath)
         let createVC = DetailPersonTableViewController(coreDataStack: stack)
         createVC.person = person
-        createVC.deleteDelegate = self
         showViewController(createVC, sender: self)
     }
     
@@ -190,13 +186,8 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         switch change {
         case let .Insert(_, indexPath):
             if let person = controller.getObject(indexPath) as? Person, sections = controller.sections {
-                var checkSort = false
-                for personSort in sections[indexPath.section].objects {
-                    if personSort.order != 0 {
-                        checkSort = true
-                    }
-                }
-                if checkSort {
+                print(controller.checkSort(indexPath))
+                if controller.checkSort(indexPath) {
                     person.order = sections[indexPath.section].objects.count
                 }
             }
@@ -208,7 +199,7 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
                 if isIndexValid {
                     let section = sections[indexPath.section]
                     let isIndex = section.objects.indices.contains(indexPath.row)
-                    if isIndex {
+                    if isIndex && controller.checkSort(indexPath) {
                         let toIndexPath = NSIndexPath(forItem: section.objects.count - 1, inSection: indexPath.section)
                         controller.changeOrderPersons(moveRowAtIndexPath: indexPath, toIndexPath:  toIndexPath)
                     }
@@ -239,8 +230,4 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         }
     }
     
-}
-
-protocol DeleteDelegate {
-    var deletePersons: [NSManagedObject?] { get set }
 }
