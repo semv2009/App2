@@ -9,28 +9,17 @@
 import UIKit
 
 class ServiceViewController: UIViewController, UITableViewDelegate {
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tryAgainButton: UIButton!
     
     var quotes = [Quote]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Service"
-        activityIndicatorView.hidesWhenStopped = true
-        startActivityIndicator()
         configureTableView()
-        
-        WebHelper.getQuotes(
-            success: { [unowned self] (result) in
-                self.quotes = result
-                self.tableView.reloadData()
-                self.stopActivityIndicator()
-            },
-            failed: {(error) in
-                self.stopActivityIndicator()
-        })
+        loadQuotes()
     }
     
     func configureTableView() {
@@ -38,14 +27,32 @@ class ServiceViewController: UIViewController, UITableViewDelegate {
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "QuoteTableViewCell", bundle: nil), forCellReuseIdentifier: "QuoteCell")
+        tryAgainButton.addTarget(self, action: #selector(ServiceViewController.loadQuotes), forControlEvents: .TouchDown)
     }
     
-    func startActivityIndicator() {
-        activityIndicatorView.startAnimating()
-    }
-    
-    func stopActivityIndicator() {
-        activityIndicatorView.stopAnimating()
+    func loadQuotes() {
+        tryAgainButton.hidden = false
+        showLoadingView(StatusConstants.Loading.load, disableUI: true)
+        WebHelper.getQuotes(
+            success: { [unowned self] (result) in
+                self.quotes = result
+                self.tableView.reloadData()
+                self.hideLoadingView()
+                self.tryAgainButton.hidden = true
+            },
+            failed: {(error) in
+                self.tryAgainButton.hidden = false
+                if let error = error {
+                    switch error.code {
+                    case Error.notInternet:
+                        self.hideLoadingView(StatusConstants.Failed.noInternet, success: false, animated: true)
+                    default:
+                        self.hideLoadingView(StatusConstants.Failed.error, success: false, animated: true)
+                    }
+                } else {
+                    self.hideLoadingView(StatusConstants.Failed.error, success: false, animated: true)
+                }
+        })
     }
     
     // MARK: - Table view data source

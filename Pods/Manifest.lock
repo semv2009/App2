@@ -2,18 +2,21 @@ PODS:
   - AEXML (3.0.0)
   - Alamofire (3.3.1)
   - BNRCoreDataStack (1.2.4)
+  - EZLoadingActivity (0.8)
   - SnapKit (0.15.0)
 
 DEPENDENCIES:
   - AEXML
   - Alamofire (~> 3.3)
   - BNRCoreDataStack
+  - EZLoadingActivity
   - SnapKit (~> 0.15.0)
 
 SPEC CHECKSUMS:
   AEXML: 716fb0a8decba4a3517324a71fee3685b30233d2
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   BNRCoreDataStack: 8b4102fe383c472141ffe5e31cc93e56dd80e1d2
+  EZLoadingActivity: 6fd75a05765a4085f4b6fef6f62edf9f144b3139
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
 
 COCOAPODS: 0.39.0

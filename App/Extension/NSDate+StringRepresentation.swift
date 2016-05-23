@@ -1,8 +1,8 @@
 //
 //  NSDate+StringRepresentation.swift
-//  WeatherMap
+//  App
 //
-//  Created by developer on 27.04.16.
+//  Created by developer on 16.05.16.
 //  Copyright © 2016 developer. All rights reserved.
 //
 

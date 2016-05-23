@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ServiceViewController" customModule="App" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicatorView" destination="MXA-qf-4Kp" id="Jsk-OH-Ayv"/>
                 <outlet property="tableView" destination="hlO-xK-i4d" id="qEO-VZ-eqK"/>
+                <outlet property="tryAgainButton" destination="z8v-OF-glG" id="mAC-Gw-P7a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,18 +25,23 @@
                         <outlet property="delegate" destination="-1" id="eSG-1H-yWn"/>
                     </connections>
                 </tableView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="MXA-qf-4Kp">
-                    <rect key="frame" x="282" y="281" width="37" height="37"/>
-                    <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </activityIndicatorView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8v-OF-glG">
+                    <rect key="frame" x="242" y="272" width="116" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="mOJ-5V-4aN"/>
+                        <constraint firstAttribute="width" constant="116" id="nL6-rU-j2Q"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <state key="normal" title="Try again"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="hlO-xK-i4d" secondAttribute="bottom" id="0EA-mm-nIG"/>
                 <constraint firstItem="hlO-xK-i4d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FLf-ge-1Ct"/>
                 <constraint firstItem="hlO-xK-i4d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IyA-bI-axi"/>
-                <constraint firstItem="MXA-qf-4Kp" firstAttribute="centerY" secondItem="hlO-xK-i4d" secondAttribute="centerY" id="MyT-p6-ZOs"/>
-                <constraint firstItem="MXA-qf-4Kp" firstAttribute="centerX" secondItem="hlO-xK-i4d" secondAttribute="centerX" id="flc-G2-iPl"/>
+                <constraint firstItem="z8v-OF-glG" firstAttribute="centerX" secondItem="hlO-xK-i4d" secondAttribute="centerX" id="gg1-i7-GoA"/>
+                <constraint firstItem="z8v-OF-glG" firstAttribute="centerY" secondItem="hlO-xK-i4d" secondAttribute="centerY" id="n2x-hu-b65"/>
                 <constraint firstAttribute="trailing" secondItem="hlO-xK-i4d" secondAttribute="trailing" id="pho-CG-LML"/>
             </constraints>
         </view>

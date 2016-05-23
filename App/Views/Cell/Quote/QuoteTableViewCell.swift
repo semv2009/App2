@@ -1,8 +1,8 @@
 //
-//  TableViewCell.swift
-//  ToDoList
+//  QuoteTableViewCell.swift
+//  App
 //
-//  Created by developer on 06.04.16.
+//  Created by developer on 08.05.16.
 //  Copyright © 2016 developer. All rights reserved.
 //
 

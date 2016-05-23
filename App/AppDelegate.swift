@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let mainViewController = MainTabViewController(coreDataStack: self.coreDataStack!)
                     self.window?.rootViewController = mainViewController
                 }
-                
             case .Failure(let error):
                 assertionFailure("\(error)")
             }

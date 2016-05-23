@@ -1,11 +1,10 @@
 //
-//  Widget.swift
-//  Custom View from Xib
+//  PersonDetailView.swift
+//  App
 //
-//  Created by Paul Solt on 12/7/14.
-//  Copyright (c) 2014 Paul Solt. All rights reserved.
+//  Created by developer on 08.05.16.
+//  Copyright © 2016 developer. All rights reserved.
 //
-
 import UIKit
 import BNRCoreDataStack
 
