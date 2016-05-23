@@ -76,15 +76,11 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
             }
             
             attributes = newPerson!.getAttributes()
+            doneButton.enabled = true
         } else {
             title = "Create profile"
-//            newPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
-//            if let newPerson = newPerson {
-//                attributes = newPerson.getAttributes()
-//            }
         }
     }
-    
     
     func configureSegmentedControl(person: NSManagedObject?) {
         if let person = person, entity = person.entity.name {
@@ -99,7 +95,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
                 break
             }
         }
-        
     }
     
     func createBarButtons() {

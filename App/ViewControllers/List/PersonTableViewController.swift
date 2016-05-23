@@ -43,7 +43,6 @@ class PersonTableViewController: UITableViewController {
         preconditionFailure("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
