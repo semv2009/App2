@@ -58,10 +58,10 @@ class PersonTableViewController: UITableViewController {
     }
     
     func configureView() {
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableViewAutomaticDimension
         title = "List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(PersonTableViewController.showCreatePersonViewController))
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "PersonTableViewCell", bundle: nil), forCellReuseIdentifier: "PersonCell")
         tableView.sectionHeaderHeight = 48.0
         navigationItem.leftBarButtonItem = editButtonItem()
