@@ -24,19 +24,27 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     var startIndex = 0
     var views = [GalleryView]()
     var move = true
+    var images = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getListImages()
         configureNavigationBar()
+        addImageView()
         
-        for _ in 0...14 {
-            let newView = GalleryView(frame: view.frame)
-            views.append(newView)
-            self.scrollView.addSubview(newView)
-        }
         
-        views[0].setImage("0")
+        views[0].loadImage()
         resetRightImage(0)
+        
+    }
+    
+    func addImageView() {
+        for index in 0...images.count - 1 {
+            if  let newView = GalleryView(frame: view.frame, imagePath: images[index]) {
+                views.append(newView)
+                self.scrollView.addSubview(newView)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -58,6 +66,23 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         }
         contentOffsetX = scrollView.contentOffset.x
         
+    }
+    
+    func getListImages() {
+        let fileManager = NSFileManager.defaultManager()
+        let str = NSBundle.mainBundle().resourcePath
+        let resource = str! + "/Images"
+        do {
+            let contents = try fileManager.contentsOfDirectoryAtPath(resource)
+            for image in contents {
+                let imagePath = resource + "/\(image)"
+                images.append(imagePath)
+            }
+        } catch {
+            print("error")
+        }
+        print(images)
+        print(images.count)
     }
     
     func configureNavigationBar() {
@@ -98,19 +123,19 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     func resetLeftImage(index: Int) {
         
         if index + 2 < views.count {
-            views[index + 2].setImage(nil)
+            views[index + 2].removeImage()
         }
         if index - 1 > -1 {
-            views[index - 1].setImage("\(index - 1)")
+            views[index - 1].loadImage()
         }
     }
     
     func resetRightImage(index: Int) {
         if index - 2 > -1 {
-            views[index - 2].setImage(nil)
+            views[index - 2].removeImage()
         }
         if index + 1 < views.count {
-            views[index + 1].setImage("\(index + 1)")
+            views[index + 1].loadImage()
         }
     }
     

@@ -38,12 +38,24 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="hlO-xK-i4d" secondAttribute="bottom" id="0EA-mm-nIG"/>
+                <constraint firstItem="z8v-OF-glG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="3c1-I2-1lP"/>
+                <constraint firstItem="z8v-OF-glG" firstAttribute="centerY" secondItem="hlO-xK-i4d" secondAttribute="centerY" id="85L-j8-Qar"/>
+                <constraint firstItem="z8v-OF-glG" firstAttribute="centerX" secondItem="hlO-xK-i4d" secondAttribute="centerX" id="9vH-to-n9v"/>
+                <constraint firstItem="z8v-OF-glG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="C5h-cb-tWH"/>
                 <constraint firstItem="hlO-xK-i4d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FLf-ge-1Ct"/>
                 <constraint firstItem="hlO-xK-i4d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IyA-bI-axi"/>
                 <constraint firstItem="z8v-OF-glG" firstAttribute="centerX" secondItem="hlO-xK-i4d" secondAttribute="centerX" id="gg1-i7-GoA"/>
                 <constraint firstItem="z8v-OF-glG" firstAttribute="centerY" secondItem="hlO-xK-i4d" secondAttribute="centerY" id="n2x-hu-b65"/>
                 <constraint firstAttribute="trailing" secondItem="hlO-xK-i4d" secondAttribute="trailing" id="pho-CG-LML"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="85L-j8-Qar"/>
+                    <exclude reference="9vH-to-n9v"/>
+                    <exclude reference="gg1-i7-GoA"/>
+                    <exclude reference="n2x-hu-b65"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

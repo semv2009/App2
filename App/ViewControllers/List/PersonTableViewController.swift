@@ -119,6 +119,7 @@ class PersonTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             guard let person = fetchedResultsController.getObject(indexPath) as? Person else { fatalError("Don't get task from fetchedResultsController") }
+            print(person)
                 self.stack.mainQueueContext.deleteObject(person)
         }
     }
@@ -149,6 +150,7 @@ class PersonTableViewController: UITableViewController {
         let person = fetchedResultsController.getObject(indexPath)
         let createVC = DetailPersonTableViewController(coreDataStack: stack)
         createVC.person = person
+        print(person)
         showViewController(createVC, sender: self)
     }
     
@@ -186,7 +188,9 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         switch change {
         case let .Insert(_, indexPath):
             if let person = controller.getObject(indexPath) as? Person, sections = controller.sections {
+                print(controller.checkSort(indexPath))
                 if controller.checkSort(indexPath) {
+                    
                     person.order = sections[indexPath.section].objects.count
                 }
             }

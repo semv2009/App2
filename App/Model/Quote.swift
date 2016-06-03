@@ -17,17 +17,13 @@ struct Quote {
     init(xml: AEXMLElement) {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy, HH:mm"
-        idQuote = 0
-        date = NSDate()
-        text = ""
-        if let text = xml["text"].value,
-            idString = xml["id"].value,
-            dateString = xml["date"].value,
-            idInt = Int(idString),
-            date = dateFormatter.dateFromString(dateString) {
-            self.date = date
-            self.idQuote = idInt
-            self.text = text
-        }
+        let text = xml["text"].value
+        let idString = xml["id"].value
+        let dateString = xml["date"].value
+        let idInt = Int(idString ?? "0")
+        let date = dateFormatter.dateFromString(dateString ?? "")
+        self.date = date ?? NSDate()
+        self.idQuote = idInt ?? 0
+        self.text = text ?? ""
     }
 }

@@ -14,15 +14,24 @@ import UIKit
     var view: UIView!
    
     @IBOutlet weak var photoImage: UIImageView!
+    let imagePath: String
     
     var nibName: String = "GalleryView"
     
     override init(frame: CGRect) {
+        imagePath = ""
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(frame: CGRect, imagePath: String) {
+        self.imagePath = imagePath
         super.init(frame: frame)
         setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        imagePath = ""
         super.init(coder: aDecoder)
         setup()
     }
@@ -84,14 +93,22 @@ import UIKit
         scrollView.zoomScale = 1.0
     }
     
-    func setImage(name: String?) {
-        if let name = name {
-            if let image = UIImage(named: name), imageData = UIImagePNGRepresentation(image) {
-                 photoImage.image = UIImage(data: imageData)
-            }
-        } else {
-            photoImage.image = nil
-        }
+//    func resetImage(name: String?) {
+//        if let name = name {
+//            if let image = UIImage(named: name), imageData = UIImagePNGRepresentation(image) {
+//                 photoImage.image = UIImage(data: imageData)
+//            }
+//        } else {
+//            photoImage.image = nil
+//        }
+//    }
+    
+    func loadImage() {
+        photoImage.image = UIImage(contentsOfFile: imagePath)
+    }
+    
+    func removeImage() {
+        photoImage.image = nil
     }
 
     // MARK: ScrollView Delete

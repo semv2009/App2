@@ -35,6 +35,7 @@
 		8B51DE1E1CE9044C00684AB5 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51DE1D1CE9044C00684AB5 /* Quote.swift */; };
 		8B51DE261CE9108000684AB5 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51DE241CE9108000684AB5 /* DetailTableViewCell.swift */; };
 		8B51DE271CE9108000684AB5 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B51DE251CE9108000684AB5 /* DetailTableViewCell.xib */; };
+		8B707BD71D0208040030F068 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8B707BD61D0208040030F068 /* Images */; };
 		8B74E6821CDE817D008985CC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6801CDE817D008985CC /* Person.swift */; };
 		8B74E6861CDE81CB008985CC /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6841CDE81CB008985CC /* Employee.swift */; };
 		8B74E68A1CDE8208008985CC /* Accountant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6881CDE8208008985CC /* Accountant.swift */; };
@@ -89,6 +90,7 @@
 		8B51DE1D1CE9044C00684AB5 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quote.swift; path = Model/Quote.swift; sourceTree = "<group>"; };
 		8B51DE241CE9108000684AB5 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTableViewCell.swift; path = Views/Cell/Detail/DetailTableViewCell.swift; sourceTree = "<group>"; };
 		8B51DE251CE9108000684AB5 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailTableViewCell.xib; path = Views/Cell/Detail/DetailTableViewCell.xib; sourceTree = "<group>"; };
+		8B707BD61D0208040030F068 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
 		8B74E6801CDE817D008985CC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Model/Person.swift; sourceTree = "<group>"; };
 		8B74E6841CDE81CB008985CC /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Employee.swift; path = Model/Employee.swift; sourceTree = "<group>"; };
 		8B74E6881CDE8208008985CC /* Accountant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Accountant.swift; path = Model/Accountant.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		8B4A97DF1CDB4B23007F3439 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				8B707BD61D0208040030F068 /* Images */,
 				8B4A97E11CDB4BFE007F3439 /* GalleryViewController.swift */,
 				8B4A97E21CDB4BFE007F3439 /* GalleryViewController.xib */,
 			);
@@ -474,6 +477,7 @@
 				8BF3B4211CF1E59500AF5E25 /* GalleryView.xib in Resources */,
 				8B4A979B1CDB3259007F3439 /* Assets.xcassets in Resources */,
 				8B51DE271CE9108000684AB5 /* DetailTableViewCell.xib in Resources */,
+				8B707BD71D0208040030F068 /* Images in Resources */,
 				8B4A97DD1CDB4444007F3439 /* MainTabViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
