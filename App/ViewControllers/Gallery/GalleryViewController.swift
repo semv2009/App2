@@ -20,7 +20,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     var indexOfPage = 0
     var contentOffsetX: CGFloat = 0
-    var scrollWidth = 0
+    var scrollWidth: CGFloat = 0
     var startIndex = 0
     var views = [GalleryView]()
     var move = true
@@ -32,10 +32,8 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         configureNavigationBar()
         addImageView()
         
-        
         views[0].loadImage()
         resetRightImage(0)
-        
     }
     
     func addImageView() {
@@ -48,23 +46,39 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        configureScrollView()
-        
-        for i in 0...14 {
-            let index = CGFloat(Double(i))
-            views[i].configureScrollView()
-            views[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+        print("BUY")
+
+        if scrollWidth != self.scrollView.frame.width {
+            print("Переворот")
+            move = false
+            configureScrollView()
+            for i in 0...images.count - 1 {
+                let index = CGFloat(Double(i))
+                views[i].configureScrollView()
+                views[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+                print(views[i].frame)
+                
+            }
+            scrollWidth = self.scrollView.frame.width
+            print("Perevorot index \(indexOfPage)")
+            //self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: false)
+            
+            self.scrollView.contentOffset.x = CGFloat(indexOfPage) * scrollView.frame.width
+            print(self.scrollView.contentOffset.x)
+            contentOffsetX = scrollView.contentOffset.x
+            //print("Content = \(contentOffsetX)")
+            move = true
+        } else {
+            print("FFFFFFF")
+            move = true
             
         }
         
+        
         disableNavigationButtons()
         
-        if move {
-            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: false)
-        } else {
-            move = true
-        }
-        contentOffsetX = scrollView.contentOffset.x
+        
+        //views[indexOfPage].loadImage()
         
     }
     
@@ -79,11 +93,11 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
                 images.append(imagePath)
             }
         } catch {
-            print("error")
         }
-        print(images)
         print(images.count)
     }
+    
+    
     
     func configureNavigationBar() {
         title = "Gallery"
@@ -100,6 +114,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.frame = CGRect.init(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         self.scrollView.contentSize = CGSize.init(width: self.scrollView.frame.width * CGFloat(views.count), height: self.scrollView.frame.height)
         self.scrollView.delegate = self
+        
     }
     
     func enableNavigationButtons() {
@@ -128,9 +143,31 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         if index - 1 > -1 {
             views[index - 1].loadImage()
         }
+        if index + 1 < views.count {
+            views[index + 1].resetScale()
+        }
     }
     
     func resetRightImage(index: Int) {
+        if index - 2 > -1 {
+            views[index - 2].removeImage()
+        }
+        if index + 1 < views.count {
+            views[index + 1].loadImage()
+        }
+        if index - 1 > -1 {
+            views[index - 1].resetScale()
+        }
+    }
+    
+    func resetImage(index: Int) {
+        if index + 2 < views.count {
+            views[index + 2].removeImage()
+        }
+        if index - 1 > -1 {
+            views[index - 1].loadImage()
+        }
+        
         if index - 2 > -1 {
             views[index - 2].removeImage()
         }
@@ -142,60 +179,88 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     // MARK: ScrollView Actions
     
     func moveToNextPage() {
-        move = false
-        nextButton.enabled = false
-        if indexOfPage + 1 < views.count {
-            resetRightImage(indexOfPage + 1)
-            views[indexOfPage + 1].resetScale()
-            indexOfPage += 1
-            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
-        }
+//        move = false
+//        nextButton.enabled = false
+//        if indexOfPage + 1 < views.count {
+//            resetRightImage(indexOfPage + 1)
+//            views[indexOfPage + 1].resetScale()
+//            indexOfPage += 1
+//            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
+//        }
     }
     
     func moveToPreviousPage() {
-        move = false
-        previousButton.enabled = false
-        if indexOfPage - 1 > -1 {
-            resetLeftImage(indexOfPage - 1)
-            views[indexOfPage - 1].resetScale()
-            indexOfPage -= 1
-            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
-        }
+//        move = false
+//        previousButton.enabled = false
+//        if indexOfPage - 1 > -1 {
+//            resetLeftImage(indexOfPage - 1)
+//            views[indexOfPage - 1].resetScale()
+//            indexOfPage -= 1
+//            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
+//        }
     }
     
-     // MARK: ScrollView Delegate
+//     // MARK: ScrollView Delegate
+//    
+//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+//        //scrollView.userInteractionEnabled = false
+//        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+//        startIndex = index
+//    }
+//    
+//    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+//        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+//        indexOfPage = index
+//        if index == startIndex {
+//            if index + 1 != views.count {
+//                views[index+1].resetScale()
+//            }
+//            
+//        } else {
+//            if index - 1 != -1 {
+//                views[index - 1].resetScale()
+//            }
+//        }
+//        
+//        if startIndex - index < 0 {
+//            resetRightImage(index)
+//        } else {
+//            resetLeftImage(index)
+//        }
+//        enableNavigationButtons()
+//        
+//        scrollView.userInteractionEnabled = true
+//    }
+//    
+//    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+//        enableNavigationButtons()
+//    }
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        scrollView.userInteractionEnabled = false
-        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        startIndex = index
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        getIndex(scrollView.contentOffset.x)
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let index = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        indexOfPage = index
-        if index == startIndex {
-            if index + 1 != views.count {
-                views[index+1].resetScale()
+    func getIndex(content: CGFloat) {
+        if move && view.frame.width == scrollWidth {
+            print("view = \(view.frame.width)")
+            let content = content + scrollView.frame.size.width / 2
+            print(content)
+            let newindex = Int(content / scrollView.frame.size.width)
+            print("Newindez = \(newindex)")
+            if indexOfPage - newindex > 0 {
+                print("Left")
+                resetLeftImage(newindex)
+            } else if indexOfPage - newindex == 0 {
+                print("NO")
+            } else {
+                print("Right")
+                resetRightImage(newindex)
             }
-            
-        } else {
-            if index - 1 != -1 {
-                views[index - 1].resetScale()
-            }
+            indexOfPage = Int((content) / scrollView.frame.size.width)
+            print("IndexPage = \(indexOfPage)")
+            //resetImage(indexOfPage)
         }
         
-        if startIndex - index < 0 {
-            resetRightImage(index)
-        } else {
-            resetLeftImage(index)
-        }
-        enableNavigationButtons()
         
-        scrollView.userInteractionEnabled = true
-    }
-    
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        enableNavigationButtons()
     }
 }
