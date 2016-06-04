@@ -36,9 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-
         guard let stack = coreDataStack else {
-            assertionFailure("Stack was not setup first")
             return
         }
         do {

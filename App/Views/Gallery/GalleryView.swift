@@ -93,16 +93,6 @@ import UIKit
         scrollView.zoomScale = 1.0
     }
     
-//    func resetImage(name: String?) {
-//        if let name = name {
-//            if let image = UIImage(named: name), imageData = UIImagePNGRepresentation(image) {
-//                 photoImage.image = UIImage(data: imageData)
-//            }
-//        } else {
-//            photoImage.image = nil
-//        }
-//    }
-    
     func loadImage() {
         photoImage.image = UIImage(contentsOfFile: imagePath)
     }
