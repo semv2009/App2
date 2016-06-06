@@ -33,14 +33,14 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func loadFirstImage() {
-        if images.count > 0 {
+        if !images.isEmpty {
             views[0].loadImage()
             resetRightImage(0)
         }
     }
     
     func addImageView() {
-        if images.count > 0 {
+        if !images.isEmpty {
             for index in 0...images.count - 1 {
                 if  let newView = GalleryView(frame: view.frame, imagePath: images[index]) {
                     views.append(newView)
@@ -54,7 +54,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         if scrollWidth != self.scrollView.frame.width {
             move = false
             configureScrollView()
-            if images.count > 0 {
+            if !images.isEmpty {
                 for i in 0...images.count - 1 {
                     let index = CGFloat(Double(i))
                     views[i].configureScrollView()
@@ -101,66 +101,50 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func switchNavigationButtons() {
-        if indexOfPage + 1 < images.count {
+        if let _ = views.getElement(indexOfPage + 1) {
             nextButton.enabled = true
-        }
-        if indexOfPage - 1 > -1 {
-            previousButton.enabled = true
-        }
-
-        if indexOfPage + 1 == images.count {
+        } else {
             nextButton.enabled = false
         }
         
-        if indexOfPage - 1 == -1 {
-             previousButton.enabled = false
+        if let _ = views.getElement(indexOfPage - 1) {
+            previousButton.enabled = true
+        } else {
+            previousButton.enabled = false
         }
     }
 
     func resetLeftImage(index: Int) {
-        
-        if index + 2 < views.count {
-            views[index + 2].removeImage()
-        }
-        if index - 1 > -1 {
-            views[index - 1].loadImage()
-        }
-        if index + 1 < views.count {
-            views[index + 1].resetScale()
-        }
+        views.getElement(index + 2)?.removeImage()
+        views.getElement(index - 1)?.loadImage()
+        views.getElement(index + 1)?.resetScale()
     }
     
     func resetRightImage(index: Int) {
-        if index - 2 > -1 {
-            views[index - 2].removeImage()
-        }
-        if index + 1 < views.count {
-            views[index + 1].loadImage()
-        }
-        if index - 1 > -1 {
-            views[index - 1].resetScale()
-        }
+        views.getElement(index - 2)?.removeImage()
+        views.getElement(index + 1)?.loadImage()
+        views.getElement(index - 1)?.resetScale()
     }
     
     // MARK: ScrollView Actions
     
     func moveToNextPage() {
-        if indexOfPage + 1 < views.count {
+         if let nextView = views.getElement(indexOfPage + 1) {
             move = false
             resetRightImage(indexOfPage + 1)
-            views[indexOfPage + 1].resetScale()
             indexOfPage += 1
-            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
+            nextView.resetScale()
+            self.scrollView.scrollRectToVisible(nextView.frame, animated: true)
         }
     }
     
     func moveToPreviousPage() {
-        if indexOfPage - 1 > -1 {
+        if let previousView = views.getElement(indexOfPage - 1) {
             move = false
             resetLeftImage(indexOfPage - 1)
-            views[indexOfPage - 1].resetScale()
             indexOfPage -= 1
-            self.scrollView.scrollRectToVisible(views[indexOfPage].frame, animated: true)
+            previousView.resetScale()
+            self.scrollView.scrollRectToVisible(previousView.frame, animated: true)
         }
     }
     

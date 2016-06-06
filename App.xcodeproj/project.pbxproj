@@ -10,6 +10,7 @@
 		8B291F9C1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B291F9B1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift */; };
 		8B291FA81CE32F93000F5B0B /* PersonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B291FA61CE32F93000F5B0B /* PersonHeaderView.swift */; };
 		8B291FA91CE32F93000F5B0B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */; };
+		8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */; };
 		8B3450961CE8CF36005777C9 /* DetailPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3450941CE8CF36005777C9 /* DetailPersonTableViewController.swift */; };
 		8B3450971CE8CF36005777C9 /* DetailPersonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3450951CE8CF36005777C9 /* DetailPersonTableViewController.xib */; };
 		8B3501481CF33CEC0074D3DA /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */; };
@@ -63,6 +64,7 @@
 		8B291F9B1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FetchedResultsController+PersonEntity.swift"; path = "Extension/FetchedResultsController+PersonEntity.swift"; sourceTree = "<group>"; };
 		8B291FA61CE32F93000F5B0B /* PersonHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonHeaderView.swift; path = Views/PersonHeader/PersonHeaderView.swift; sourceTree = "<group>"; };
 		8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonHeaderView.xib; path = Views/PersonHeader/PersonHeaderView.xib; sourceTree = "<group>"; };
+		8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+SafeGetElement.swift"; path = "Extension/Array+SafeGetElement.swift"; sourceTree = "<group>"; };
 		8B3450941CE8CF36005777C9 /* DetailPersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailPersonTableViewController.swift; path = ViewControllers/DetailPerson/DetailPersonTableViewController.swift; sourceTree = "<group>"; };
 		8B3450951CE8CF36005777C9 /* DetailPersonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailPersonTableViewController.xib; path = ViewControllers/DetailPerson/DetailPersonTableViewController.xib; sourceTree = "<group>"; };
 		8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EZLoadingActivity.swift; path = Extension/EZLoadingActivity.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				8BF3B4281CF1E60C00AF5E25 /* String+toStringForAttributeType.swift */,
 				8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */,
 				8B3501471CF33CEC0074D3DA /* UIViewController+ EZLoadingActivity.swift */,
+				8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				8B74E68A1CDE8208008985CC /* Accountant.swift in Sources */,
 				8B4A97EB1CDB4C4B007F3439 /* PersonTableViewController.swift in Sources */,
 				8B51DE261CE9108000684AB5 /* DetailTableViewCell.swift in Sources */,
+				8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */,
 				8B74E6821CDE817D008985CC /* Person.swift in Sources */,
 				8B4A97941CDB3259007F3439 /* AppDelegate.swift in Sources */,
 				8B74E6861CDE81CB008985CC /* Employee.swift in Sources */,
