@@ -12,7 +12,7 @@ import BNRCoreDataStack
 
 class Person: NSManagedObject, CoreDataModelable {
     @NSManaged var fullName: String?
-    @NSManaged var salary: Int
+    @NSManaged var salary: NSNumber?
     @NSManaged var order: Int
     
     // MARK: - CoreDataModelable
@@ -29,26 +29,123 @@ class Person: NSManagedObject, CoreDataModelable {
             entity.userInfo?["sort"] = "\(newValue)"
         }
     }
-}
-
-struct SimpleData {
-    let name: String
-    let index: Int
-}
-
-struct TypeAccountants {
-    static let Financial = SimpleData(name: "Financial", index: 0)
-    static let Management = SimpleData(name: "Management", index: 1)
-    static let Project = SimpleData(name: "Project", index: 2)
     
-    static func getTypeAccountant(index index: Int) -> SimpleData {
-        switch index {
-        case 0: return Financial
-        case 1: return Management
-        case 2: return Project
-        default: return Financial
+    func getListAttributes() -> [Attribute] {
+        var attributes = [Attribute]()
+        attributes.append(Attribute(
+            name: "full name",
+            type: .String,
+            keys: [Key(name: "fullName", value: fullName)])
+        )
+        attributes.append(Attribute(
+            name: "salary",
+            type: .Number,
+            keys: [Key(name: "salary", value: salary)])
+        )
+        return attributes
+    }
+    
+    static func getListAttributes(entityName: String, stack: CoreDataStack, oldAttribute: [Attribute]? = nil) -> [Attribute] {
+        var attributes = [Attribute]()
+        switch entityName {
+        case Accountant.entityName:
+            attributes = Accountant(managedObjectContext: stack.newChildContext()).getListAttributes()
+        case Leadership.entityName:
+            attributes = Leadership(managedObjectContext: stack.newChildContext()).getListAttributes()
+        case FellowWorker.entityName:
+            attributes = FellowWorker(managedObjectContext: stack.newChildContext()).getListAttributes()
+        default:
+            break
+        }
+        if let oldAttribute = oldAttribute {
+            copyOldAttributes(attributes, oldAttributes: oldAttribute)
+        }
+        return attributes
+    }
+    
+    static func copyOldAttributes(newAttributes: [Attribute], oldAttributes: [Attribute]) {
+        for newAttribute in newAttributes {
+            for oldAttribute in oldAttributes {
+                if oldAttribute.name == newAttribute.name {
+                    compare(newAttribute, old: oldAttribute)
+                }
+            }
         }
     }
     
-    static let allAccountants: [SimpleData] = [Financial, Management, Project]
+    static func compare(new: Attribute, old: Attribute) {
+        for newkey in new.keys {
+            for oldKey in old.keys {
+                if let newkey = newkey, oldKey = oldKey {
+                    if newkey.name == oldKey.name {
+                        newkey.value = oldKey.value
+                        print("newkey = \(newkey.value) oldkey = \(oldKey.value)")
+                    }
+                }
+            }
+        }
+    }
+}
+
+class Attribute {
+    var name: String
+    var type: TypeCell
+    var keys: [Key?]
+    var valid: Bool
+    
+    init(name: String, type: TypeCell, keys: [Key?], valid: Bool = true) {
+        self.name = name
+        self.type = type
+        self.keys = keys
+        self.valid = valid
+    }
+    
+    func isValid() -> Bool {
+        self.valid = false
+        switch type {
+        case .Number, .String, .AccountantType:
+            if let _ = keys[0]?.value {
+                self.valid =  true
+            }
+        case .RangeTime:
+            if let startTime = keys[0]?.value as? NSDate, endTime = keys[1]?.value as? NSDate {
+                if startTime.compare(endTime) == NSComparisonResult.OrderedAscending {
+                    print(startTime)
+                    print(endTime)
+                    self.valid = true
+                }
+            }
+        }
+        return self.valid
+    }
+    
+//    func isEmpty() -> Bool {
+//        switch type {
+//        case .Number, .String, .AccountantType:
+//            if let _ = keys[0]?.value {
+//                return  false
+//            }
+//        case .RangeTime:
+//        if let startTime = keys[0]?.value as? NSDate, endTime = keys[1]?.value as? NSDate {
+//                self.valid = true
+//        }
+//    }
+//    }
+}
+
+enum TypeCell: String {
+    case String = "StringCell"
+    case Number = "NumberCell"
+    case RangeTime = "RangeTimeCell"
+    case AccountantType = "AccountantTypeCell"
+}
+
+class Key {
+    var name: String
+    var value: AnyObject?
+    
+    init(name: String, value: AnyObject? = nil) {
+        self.name = name
+        self.value = value
+    }
 }

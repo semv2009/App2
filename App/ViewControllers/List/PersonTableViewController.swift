@@ -44,7 +44,6 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        print("hello")
         super.viewDidLoad()
         configureView()
         performFetch()

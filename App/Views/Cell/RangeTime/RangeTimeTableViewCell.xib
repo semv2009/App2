@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" showsReorderControl="YES" indentationWidth="16" reuseIdentifier="RangeTimeCell" rowHeight="41" id="Rpc-Lv-aEr" customClass="RangeTimeTableViewCell" customModule="App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="611" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="252" verticalHuggingPriority="252" tableViewCell="Rpc-Lv-aEr" id="pan-k2-GM3">
+                <rect key="frame" x="0.0" y="0.0" width="611" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MnK-pb-zDd">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP3-Vd-38T">
+                                <rect key="frame" x="8" y="11" width="37" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oP3-Vd-38T" secondAttribute="trailing" id="66d-YC-hbB"/>
+                            <constraint firstAttribute="bottom" secondItem="oP3-Vd-38T" secondAttribute="bottom" constant="12" id="KVF-Bw-Wz8"/>
+                            <constraint firstItem="oP3-Vd-38T" firstAttribute="leading" secondItem="MnK-pb-zDd" secondAttribute="leading" constant="8" id="Tkr-GC-uE5"/>
+                            <constraint firstItem="oP3-Vd-38T" firstAttribute="top" secondItem="MnK-pb-zDd" secondAttribute="top" constant="11" id="U8F-FC-ozR"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWd-UN-F48">
+                        <rect key="frame" x="53" y="0.0" width="558" height="44"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="start" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mjZ-gg-NRq">
+                                <rect key="frame" x="0.0" y="6" width="271" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="end" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-W2-3we">
+                                <rect key="frame" x="279" y="6" width="271" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ik8-W2-3we" secondAttribute="trailing" constant="8" id="49y-fb-j28"/>
+                            <constraint firstItem="mjZ-gg-NRq" firstAttribute="leading" secondItem="qWd-UN-F48" secondAttribute="leading" id="86K-g9-mOq"/>
+                            <constraint firstAttribute="bottom" secondItem="mjZ-gg-NRq" secondAttribute="bottom" constant="8" id="KDK-Aj-WYU"/>
+                            <constraint firstItem="Ik8-W2-3we" firstAttribute="width" secondItem="mjZ-gg-NRq" secondAttribute="width" id="Zw9-AO-TBz"/>
+                            <constraint firstAttribute="bottom" secondItem="Ik8-W2-3we" secondAttribute="bottom" constant="8" id="i9R-wp-VNt"/>
+                            <constraint firstItem="Ik8-W2-3we" firstAttribute="top" secondItem="qWd-UN-F48" secondAttribute="top" constant="6" id="oGn-Or-AP4"/>
+                            <constraint firstItem="Ik8-W2-3we" firstAttribute="leading" secondItem="mjZ-gg-NRq" secondAttribute="trailing" constant="8" id="tvr-6b-7lP"/>
+                            <constraint firstItem="mjZ-gg-NRq" firstAttribute="top" secondItem="qWd-UN-F48" secondAttribute="top" constant="6" id="z2n-uf-eMT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MnK-pb-zDd" firstAttribute="top" secondItem="pan-k2-GM3" secondAttribute="topMargin" constant="-8" id="Gfj-W8-QAJ"/>
+                    <constraint firstItem="MnK-pb-zDd" firstAttribute="leading" secondItem="pan-k2-GM3" secondAttribute="leadingMargin" constant="-8" id="J0L-yE-WkU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qWd-UN-F48" secondAttribute="trailing" constant="-8" id="MVp-Ka-pZ6"/>
+                    <constraint firstItem="qWd-UN-F48" firstAttribute="top" secondItem="pan-k2-GM3" secondAttribute="topMargin" constant="-8" id="Tqf-sG-yqU"/>
+                    <constraint firstItem="qWd-UN-F48" firstAttribute="width" secondItem="MnK-pb-zDd" secondAttribute="width" id="YWP-2C-ths"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="MnK-pb-zDd" secondAttribute="bottom" constant="-8" id="fsi-U5-hbC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="qWd-UN-F48" secondAttribute="bottom" constant="-8" id="q6g-0Q-85j"/>
+                    <constraint firstItem="qWd-UN-F48" firstAttribute="leading" secondItem="MnK-pb-zDd" secondAttribute="trailing" constant="8" id="zyz-2O-0Tb"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="YWP-2C-ths"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="endTime" destination="Ik8-W2-3we" id="Qrd-9I-Sqx"/>
+                <outlet property="nameLabel" destination="oP3-Vd-38T" id="S71-nt-Nac"/>
+                <outlet property="startTime" destination="mjZ-gg-NRq" id="Uie-NP-sNH"/>
+            </connections>
+            <point key="canvasLocation" x="539.5" y="189.5"/>
+        </tableViewCell>
+    </objects>
+</document>

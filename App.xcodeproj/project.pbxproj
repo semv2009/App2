@@ -11,6 +11,12 @@
 		8B291FA81CE32F93000F5B0B /* PersonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B291FA61CE32F93000F5B0B /* PersonHeaderView.swift */; };
 		8B291FA91CE32F93000F5B0B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */; };
 		8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */; };
+		8B33FB9E1D05E2F000653ABD /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB9D1D05E2F000653ABD /* DataCell.swift */; };
+		8B33FBA31D05E47200653ABD /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FBA11D05E47200653ABD /* DataTableViewCell.swift */; };
+		8B33FBA41D05E47200653ABD /* DataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B33FBA21D05E47200653ABD /* DataTableViewCell.xib */; };
+		8B33FBA71D05E91300653ABD /* StringTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */; };
+		8B33FBA81D05E91300653ABD /* StringTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B33FBA61D05E91300653ABD /* StringTableViewCell.xib */; };
+		8B33FBAA1D05F39C00653ABD /* DataCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FBA91D05F39C00653ABD /* DataCellProtocol.swift */; };
 		8B3450961CE8CF36005777C9 /* DetailPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3450941CE8CF36005777C9 /* DetailPersonTableViewController.swift */; };
 		8B3450971CE8CF36005777C9 /* DetailPersonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3450951CE8CF36005777C9 /* DetailPersonTableViewController.xib */; };
 		8B3501481CF33CEC0074D3DA /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */; };
@@ -52,10 +58,14 @@
 		8BF3B42D1CF1E65800AF5E25 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B42B1CF1E65800AF5E25 /* QuoteTableViewCell.xib */; };
 		8BF3B4301CF1E67F00AF5E25 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B42E1CF1E67F00AF5E25 /* PersonTableViewCell.swift */; };
 		8BF3B4311CF1E67F00AF5E25 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */; };
-		8BF3B4341CF1E69400AF5E25 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4321CF1E69400AF5E25 /* DataTableViewCell.swift */; };
-		8BF3B4351CF1E69400AF5E25 /* DataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B4331CF1E69400AF5E25 /* DataTableViewCell.xib */; };
 		8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */; };
 		8BF3B4391CF1E74A00AF5E25 /* ServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */; };
+		8BFBE4131D07770900EA29F3 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBE4111D07770900EA29F3 /* NumberTableViewCell.swift */; };
+		8BFBE4141D07770900EA29F3 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBE4121D07770900EA29F3 /* NumberTableViewCell.xib */; };
+		8BFBE4181D0779A800EA29F3 /* RangeTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBE4161D0779A800EA29F3 /* RangeTimeTableViewCell.swift */; };
+		8BFBE4191D0779A800EA29F3 /* RangeTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBE4171D0779A800EA29F3 /* RangeTimeTableViewCell.xib */; };
+		8BFBE41D1D07935200EA29F3 /* AccountantTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBE41B1D07935200EA29F3 /* AccountantTypeTableViewCell.swift */; };
+		8BFBE41E1D07935200EA29F3 /* AccountantTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBE41C1D07935200EA29F3 /* AccountantTypeTableViewCell.xib */; };
 		9A7034D0FECA622A88A37725 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27819D767AD0DEF8D8380DD9 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +75,12 @@
 		8B291FA61CE32F93000F5B0B /* PersonHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonHeaderView.swift; path = Views/PersonHeader/PersonHeaderView.swift; sourceTree = "<group>"; };
 		8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonHeaderView.xib; path = Views/PersonHeader/PersonHeaderView.xib; sourceTree = "<group>"; };
 		8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+SafeGetElement.swift"; path = "Extension/Array+SafeGetElement.swift"; sourceTree = "<group>"; };
+		8B33FB9D1D05E2F000653ABD /* DataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataCell.swift; path = Views/Cell/DataCell.swift; sourceTree = "<group>"; };
+		8B33FBA11D05E47200653ABD /* DataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataTableViewCell.swift; path = Views/Cell/Datas/DataTableViewCell.swift; sourceTree = "<group>"; };
+		8B33FBA21D05E47200653ABD /* DataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DataTableViewCell.xib; path = Views/Cell/Datas/DataTableViewCell.xib; sourceTree = "<group>"; };
+		8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringTableViewCell.swift; path = Views/Cell/String/StringTableViewCell.swift; sourceTree = "<group>"; };
+		8B33FBA61D05E91300653ABD /* StringTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StringTableViewCell.xib; path = Views/Cell/String/StringTableViewCell.xib; sourceTree = "<group>"; };
+		8B33FBA91D05F39C00653ABD /* DataCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataCellProtocol.swift; path = Views/Cell/DataCellProtocol.swift; sourceTree = "<group>"; };
 		8B3450941CE8CF36005777C9 /* DetailPersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailPersonTableViewController.swift; path = ViewControllers/DetailPerson/DetailPersonTableViewController.swift; sourceTree = "<group>"; };
 		8B3450951CE8CF36005777C9 /* DetailPersonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailPersonTableViewController.xib; path = ViewControllers/DetailPerson/DetailPersonTableViewController.xib; sourceTree = "<group>"; };
 		8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EZLoadingActivity.swift; path = Extension/EZLoadingActivity.swift; sourceTree = "<group>"; };
@@ -108,10 +124,14 @@
 		8BF3B42B1CF1E65800AF5E25 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuoteTableViewCell.xib; path = Views/Cell/Quote/QuoteTableViewCell.xib; sourceTree = "<group>"; };
 		8BF3B42E1CF1E67F00AF5E25 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonTableViewCell.swift; path = Views/Cell/Person/PersonTableViewCell.swift; sourceTree = "<group>"; };
 		8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonTableViewCell.xib; path = Views/Cell/Person/PersonTableViewCell.xib; sourceTree = "<group>"; };
-		8BF3B4321CF1E69400AF5E25 /* DataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataTableViewCell.swift; path = Views/Cell/Data/DataTableViewCell.swift; sourceTree = "<group>"; };
-		8BF3B4331CF1E69400AF5E25 /* DataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DataTableViewCell.xib; path = Views/Cell/Data/DataTableViewCell.xib; sourceTree = "<group>"; };
 		8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceViewController.swift; path = ViewControllers/Service/ServiceViewController.swift; sourceTree = "<group>"; };
 		8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceViewController.xib; path = ViewControllers/Service/ServiceViewController.xib; sourceTree = "<group>"; };
+		8BFBE4111D07770900EA29F3 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTableViewCell.swift; path = Views/Cell/Number/NumberTableViewCell.swift; sourceTree = "<group>"; };
+		8BFBE4121D07770900EA29F3 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NumberTableViewCell.xib; path = Views/Cell/Number/NumberTableViewCell.xib; sourceTree = "<group>"; };
+		8BFBE4161D0779A800EA29F3 /* RangeTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RangeTimeTableViewCell.swift; path = Views/Cell/RangeTime/RangeTimeTableViewCell.swift; sourceTree = "<group>"; };
+		8BFBE4171D0779A800EA29F3 /* RangeTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RangeTimeTableViewCell.xib; path = Views/Cell/RangeTime/RangeTimeTableViewCell.xib; sourceTree = "<group>"; };
+		8BFBE41B1D07935200EA29F3 /* AccountantTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountantTypeTableViewCell.swift; path = Views/Cell/AccountantType/AccountantTypeTableViewCell.swift; sourceTree = "<group>"; };
+		8BFBE41C1D07935200EA29F3 /* AccountantTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountantTypeTableViewCell.xib; path = Views/Cell/AccountantType/AccountantTypeTableViewCell.xib; sourceTree = "<group>"; };
 		ECAE02C2818E67504ACE3D17 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		FC53FF69F23E231198EC1380 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +172,27 @@
 				8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */,
 			);
 			name = PersonHeader;
+			sourceTree = "<group>";
+		};
+		8B33FB9F1D05E3F000653ABD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8BFBE41A1D0792FF00EA29F3 /* AccountantType */,
+				8BFBE4151D07795E00EA29F3 /* RangeTime */,
+				8BFBE4101D0776E300EA29F3 /* Number */,
+				8B33FBA01D05E40100653ABD /* String */,
+				8B33FB9D1D05E2F000653ABD /* DataCell.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		8B33FBA01D05E40100653ABD /* String */ = {
+			isa = PBXGroup;
+			children = (
+				8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */,
+				8B33FBA61D05E91300653ABD /* StringTableViewCell.xib */,
+			);
+			name = String;
 			sourceTree = "<group>";
 		};
 		8B3450931CE8CEAC005777C9 /* DetailPerson */ = {
@@ -202,13 +243,13 @@
 			name = CreatePerson;
 			sourceTree = "<group>";
 		};
-		8B45AEDC1CDFE19E00F01815 /* Data */ = {
+		8B45AEDC1CDFE19E00F01815 /* Datddda */ = {
 			isa = PBXGroup;
 			children = (
-				8BF3B4321CF1E69400AF5E25 /* DataTableViewCell.swift */,
-				8BF3B4331CF1E69400AF5E25 /* DataTableViewCell.xib */,
+				8B33FBA11D05E47200653ABD /* DataTableViewCell.swift */,
+				8B33FBA21D05E47200653ABD /* DataTableViewCell.xib */,
 			);
-			name = Data;
+			name = Datddda;
 			sourceTree = "<group>";
 		};
 		8B47EF3A1CEB8B7F00014656 /* PersonDetail */ = {
@@ -378,9 +419,11 @@
 		8B74E6611CDE6A67008985CC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8B33FB9F1D05E3F000653ABD /* Data */,
+				8B33FBA91D05F39C00653ABD /* DataCellProtocol.swift */,
 				8B51DE231CE9101B00684AB5 /* Quote */,
 				8B3450981CE8CFBD005777C9 /* Detail */,
-				8B45AEDC1CDFE19E00F01815 /* Data */,
+				8B45AEDC1CDFE19E00F01815 /* Datddda */,
 				8B74E6621CDE6A70008985CC /* Person */,
 			);
 			name = Cells;
@@ -393,6 +436,33 @@
 				8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */,
 			);
 			name = Person;
+			sourceTree = "<group>";
+		};
+		8BFBE4101D0776E300EA29F3 /* Number */ = {
+			isa = PBXGroup;
+			children = (
+				8BFBE4111D07770900EA29F3 /* NumberTableViewCell.swift */,
+				8BFBE4121D07770900EA29F3 /* NumberTableViewCell.xib */,
+			);
+			name = Number;
+			sourceTree = "<group>";
+		};
+		8BFBE4151D07795E00EA29F3 /* RangeTime */ = {
+			isa = PBXGroup;
+			children = (
+				8BFBE4161D0779A800EA29F3 /* RangeTimeTableViewCell.swift */,
+				8BFBE4171D0779A800EA29F3 /* RangeTimeTableViewCell.xib */,
+			);
+			name = RangeTime;
+			sourceTree = "<group>";
+		};
+		8BFBE41A1D0792FF00EA29F3 /* AccountantType */ = {
+			isa = PBXGroup;
+			children = (
+				8BFBE41B1D07935200EA29F3 /* AccountantTypeTableViewCell.swift */,
+				8BFBE41C1D07935200EA29F3 /* AccountantTypeTableViewCell.xib */,
+			);
+			name = AccountantType;
 			sourceTree = "<group>";
 		};
 		B656146BA994E6664879510D /* Pods */ = {
@@ -467,11 +537,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B4A97B01CDB33E4007F3439 /* LoadingViewController.xib in Resources */,
+				8B33FBA81D05E91300653ABD /* StringTableViewCell.xib in Resources */,
 				8BF3B4311CF1E67F00AF5E25 /* PersonTableViewCell.xib in Resources */,
 				8B45AEE01CDFE1F300F01815 /* CreatePersonViewController.xib in Resources */,
-				8BF3B4351CF1E69400AF5E25 /* DataTableViewCell.xib in Resources */,
+				8BFBE4191D0779A800EA29F3 /* RangeTimeTableViewCell.xib in Resources */,
 				8B291FA91CE32F93000F5B0B /* PersonHeaderView.xib in Resources */,
 				8B4A97E41CDB4BFE007F3439 /* GalleryViewController.xib in Resources */,
+				8BFBE4141D07770900EA29F3 /* NumberTableViewCell.xib in Resources */,
 				8B4A979E1CDB3259007F3439 /* LaunchScreen.storyboard in Resources */,
 				8B4A97EC1CDB4C4B007F3439 /* PersonTableViewController.xib in Resources */,
 				8BF3B42D1CF1E65800AF5E25 /* QuoteTableViewCell.xib in Resources */,
@@ -479,7 +551,9 @@
 				8BF3B4391CF1E74A00AF5E25 /* ServiceViewController.xib in Resources */,
 				8BF3B4251CF1E5CB00AF5E25 /* PersonDetailView.xib in Resources */,
 				8BF3B4211CF1E59500AF5E25 /* GalleryView.xib in Resources */,
+				8BFBE41E1D07935200EA29F3 /* AccountantTypeTableViewCell.xib in Resources */,
 				8B4A979B1CDB3259007F3439 /* Assets.xcassets in Resources */,
+				8B33FBA41D05E47200653ABD /* DataTableViewCell.xib in Resources */,
 				8B51DE271CE9108000684AB5 /* DetailTableViewCell.xib in Resources */,
 				8B707BD71D0208040030F068 /* Images in Resources */,
 				8B4A97DD1CDB4444007F3439 /* MainTabViewController.xib in Resources */,
@@ -545,12 +619,16 @@
 				8B74E68E1CDE8225008985CC /* FellowWorker.swift in Sources */,
 				8B291F9C1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift in Sources */,
 				8B291FA81CE32F93000F5B0B /* PersonHeaderView.swift in Sources */,
+				8BFBE41D1D07935200EA29F3 /* AccountantTypeTableViewCell.swift in Sources */,
 				8B3501491CF33CEC0074D3DA /* UIViewController+ EZLoadingActivity.swift in Sources */,
 				8B74E68A1CDE8208008985CC /* Accountant.swift in Sources */,
 				8B4A97EB1CDB4C4B007F3439 /* PersonTableViewController.swift in Sources */,
 				8B51DE261CE9108000684AB5 /* DetailTableViewCell.swift in Sources */,
 				8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */,
+				8BFBE4181D0779A800EA29F3 /* RangeTimeTableViewCell.swift in Sources */,
 				8B74E6821CDE817D008985CC /* Person.swift in Sources */,
+				8BFBE4131D07770900EA29F3 /* NumberTableViewCell.swift in Sources */,
+				8B33FBAA1D05F39C00653ABD /* DataCellProtocol.swift in Sources */,
 				8B4A97941CDB3259007F3439 /* AppDelegate.swift in Sources */,
 				8B74E6861CDE81CB008985CC /* Employee.swift in Sources */,
 				8B74E6921CDE8243008985CC /* Leadership.swift in Sources */,
@@ -560,6 +638,7 @@
 				8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */,
 				8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
+				8B33FBA31D05E47200653ABD /* DataTableViewCell.swift in Sources */,
 				8BF3B4291CF1E60C00AF5E25 /* String+toStringForAttributeType.swift in Sources */,
 				8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */,
 				8B35014D1CF33D1E0074D3DA /* StatusConstants.swift in Sources */,
@@ -567,10 +646,11 @@
 				8B39C9031CE205C60046D369 /* NSDate+StringRepresentation.swift in Sources */,
 				8BF3B4301CF1E67F00AF5E25 /* PersonTableViewCell.swift in Sources */,
 				8B4A97D41CDB3581007F3439 /* Model.xcdatamodeld in Sources */,
-				8BF3B4341CF1E69400AF5E25 /* DataTableViewCell.swift in Sources */,
 				8BF3B42C1CF1E65800AF5E25 /* QuoteTableViewCell.swift in Sources */,
+				8B33FB9E1D05E2F000653ABD /* DataCell.swift in Sources */,
 				8B51DE1E1CE9044C00684AB5 /* Quote.swift in Sources */,
 				8BF3B4201CF1E59500AF5E25 /* GalleryView.swift in Sources */,
+				8B33FBA71D05E91300653ABD /* StringTableViewCell.swift in Sources */,
 				8B35014C1CF33D1E0074D3DA /* Error.swift in Sources */,
 				8B3450961CE8CF36005777C9 /* DetailPersonTableViewController.swift in Sources */,
 			);

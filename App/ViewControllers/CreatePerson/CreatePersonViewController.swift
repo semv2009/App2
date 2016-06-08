@@ -15,17 +15,15 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     
     weak var person: NSManagedObject?
-    weak var newPerson: NSManagedObject? {
-        didSet {
-            checkAllAttribute()
-        }
-    }
+    weak var newPerson: NSManagedObject? 
     
     var doneButton: UIBarButtonItem!
     var stack: CoreDataStack!
     
     var attributes = [AttributeInfo]()
     var showDelegate: ShowPersonDelegate?
+
+    var attr = [Attribute]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +35,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     init(coreDataStack stack: CoreDataStack) {
         self.stack = stack
+       
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -53,6 +52,10 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     func configureView() {
         tableView.delegate = self
         tableView.registerNib(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "DataCell")
+        tableView.registerNib(UINib(nibName: "StringTableViewCell", bundle: nil), forCellReuseIdentifier: "StringCell")
+        tableView.registerNib(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "NumberCell")
+        tableView.registerNib(UINib(nibName: "RangeTimeTableViewCell", bundle: nil), forCellReuseIdentifier: "RangeTimeCell")
+        tableView.registerNib(UINib(nibName: "AccountantTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountantTypeCell")
         if let person = person, entity = person.entity.name {
             title = "Update profile"
             switch entity {
@@ -148,48 +151,38 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
     
     func updateTableView(nameEntity: String) {
-        var selectPerson: NSManagedObject?
-    
-        switch nameEntity {
-        case Accountant.entityName:
-            selectPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
-        case Leadership.entityName:
-            selectPerson = Leadership(managedObjectContext: self.stack.mainQueueContext)
-        case FellowWorker.entityName:
-            selectPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
-        default:
-            break
-        }
-        
-        if let newPerson = newPerson {
-            if let selectPerson = selectPerson {
-                selectPerson.copyData(newPerson)
-                self.stack.mainQueueContext.deleteObject(newPerson)
-                attributes = selectPerson.getAttributes()
-            }
-        }
-        
-        if let selectPerson = selectPerson {
-            self.newPerson = selectPerson
-            attributes = selectPerson.getAttributes()
-        }
-        
+        attr = Person.getListAttributes(nameEntity, stack: stack, oldAttribute: attr)
+        checkAllAttributes()
         tableView.reloadData()
     }
     
     // MARK: - Table view data source
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  attributes.count
+        //return  attributes.count
+        return  attr.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = (tableView.dequeueReusableCellWithIdentifier("DataCell", forIndexPath: indexPath)) as? DataTableViewCell else { fatalError("Cell is not registered") }
-        if let newPerson = newPerson {
-            let attribute = attributes[indexPath.row]
-            cell.updateUI(attribute, person: newPerson, delegate: self)
+        let attribute = attr[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(attribute.type.rawValue, forIndexPath: indexPath)
+        cell.tag = indexPath.row
+        if let cell = cell as? DataCell {
+            cell.addTarget(
+                editingChanged: {[unowned self] () in
+                    self.checkAllAttributes()
+                })
+            cell.updateUI(attribute)
         }
         return cell
+    }
+    
+    func checkAllAttributes() {
+        var valid = true
+        for attribute in self.attr {
+            valid = valid && attribute.isValid()
+        }
+        self.doneButton.enabled = valid
     }
     
     // MARK: Keyboard space
@@ -217,22 +210,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
                                        completion: nil)
         }
     }
-}
-
-extension CreatePersonViewController: SwitchSaveButtonDelegate {
-    func checkAllAttribute() {
-        if let newPerson = newPerson {
-            if newPerson.checkOptionAttributes() {
-                doneButton.enabled = true
-            } else {
-                doneButton.enabled = false
-            }
-        }
-    }
-}
-
-protocol SwitchSaveButtonDelegate {
-    func checkAllAttribute()
 }
 
 struct  AttributeInfo {

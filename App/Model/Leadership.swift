@@ -18,4 +18,15 @@ class Leadership: Person {
     override class var entityName: String {
         return "Leadership"
     }
+    
+    override func getListAttributes() -> [Attribute] {
+        var attributes = super.getListAttributes()
+        attributes.append(Attribute(
+            name: "business hours",
+            type: .RangeTime,
+            keys: [Key(name: "beginBusinessHours", value: beginBusinessHours),
+                   Key(name: "endBusinessHours", value: endBusinessHours)])
+        )
+        return attributes
+    }
 }
