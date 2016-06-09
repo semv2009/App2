@@ -1,5 +1,5 @@
 //
-//  DataTableViewCell.swift
+//  RangeTimeTableViewCell
 //  App
 //
 //  Created by developer on 08.05.16.

@@ -19,10 +19,8 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     var doneButton: UIBarButtonItem!
     var stack: CoreDataStack!
     
-    var attributes = [AttributeInfo]()
     var showDelegate: ShowPersonDelegate?
-
-    var attr = [Attribute]()
+    var attributes = [Attribute]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +32,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     init(coreDataStack stack: CoreDataStack) {
         self.stack = stack
-       
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,7 +47,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     func configureView() {
         tableView.delegate = self
-        
         tableView.registerNib(UINib(nibName: "StringTableViewCell", bundle: nil), forCellReuseIdentifier: "StringCell")
         tableView.registerNib(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "NumberCell")
         tableView.registerNib(UINib(nibName: "RangeTimeTableViewCell", bundle: nil), forCellReuseIdentifier: "RangeTimeCell")
@@ -59,12 +55,11 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         
         if let person = person {
             title = "Update profile"
-            attr = person.getListAttributes()
-            doneButton.enabled = false
+            attributes = person.getListAttributes()
         } else {
             title = "Create profile"
-            doneButton.enabled = false
         }
+        doneButton.enabled = false
     }
     
     func configureSegmentedControl(person: Person?) {
@@ -72,7 +67,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
             switch entity {
             case Accountant.entityName:
                 personSegmentedControl.selectedSegmentIndex = 2
-            case Leadership.entityName:
+            case Director.entityName:
                 personSegmentedControl.selectedSegmentIndex = 1
             case FellowWorker.entityName:
                 personSegmentedControl.selectedSegmentIndex = 0
@@ -98,13 +93,13 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         let entity = personSegmentedControl.titleForSegmentAtIndex(personSegmentedControl.selectedSegmentIndex)
         if let person = person {
             if person.entity.name == entity {
-                person.update(attr)
+                person.update(attributes)
             } else {
                 stack.mainQueueContext.deleteObject(person)
-                self.person = Person.createPerson(entity!, stack: stack, attributes: attr)
+                self.person = Person.createPerson(entity!, stack: stack, attributes: attributes)
             }
         } else {
-            person = Person.createPerson(entity!, stack: stack, attributes: attr)
+            person = Person.createPerson(entity!, stack: stack, attributes: attributes)
         }
         showDelegate?.person = person
         dismissViewControllerAnimated(true, completion: nil)
@@ -120,7 +115,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
     
     func updateTableView(nameEntity: String) {
-        attr = Person.getListAttributes(nameEntity, stack: stack, oldAttribute: attr)
+        attributes = Person.getListAttributes(nameEntity, stack: stack, oldAttribute: attributes)
         checkAllAttributes()
         tableView.reloadData()
     }
@@ -128,13 +123,12 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     // MARK: - Table view data source
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  attr.count
+        return  attributes.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let attribute = attr[indexPath.row]
+        let attribute = attributes[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(attribute.type.rawValue, forIndexPath: indexPath)
-        cell.tag = indexPath.row
         if let cell = cell as? DataCell {
             cell.addTarget(
                 editingChanged: {[unowned self] () in
@@ -147,7 +141,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     func checkAllAttributes() {
         var valid = true
-        for attribute in self.attr {
+        for attribute in self.attributes {
             valid = valid && attribute.isValid()
         }
         self.doneButton.enabled = valid
@@ -180,19 +174,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
 }
 
-struct  AttributeInfo {
-    var name: String
-    var order: Int
-    var description: String
-    var type: TypeAttribute
-    var optional: Int
-}
-
-enum TypeAttribute: Int {
-    case String = 700
-    case Date = 900
-    case Number = 300
+extension CreatePersonViewController: UITextFieldDelegate {
     
-    case TypeAccountan = 701
-    case Time = 901
 }

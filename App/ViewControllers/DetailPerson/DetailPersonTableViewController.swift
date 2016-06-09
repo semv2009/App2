@@ -41,7 +41,6 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
         preconditionFailure("init(coder:) has not been implemented")
     }
     
-    
     // MARK: Navigator
     
     func configureView() {

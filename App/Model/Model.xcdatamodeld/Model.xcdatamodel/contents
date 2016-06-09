@@ -13,6 +13,26 @@
             <entry key="sort" value="0"/>
         </userInfo>
     </entity>
+    <entity name="Director" representedClassName=".Director" parentEntity="Person" syncable="YES">
+        <attribute name="beginBusinessHours" optional="YES" attributeType="Date" syncable="YES">
+            <userInfo>
+                <entry key="description" value="begin business hours"/>
+                <entry key="extensionType" value="901"/>
+                <entry key="order" value="201"/>
+            </userInfo>
+        </attribute>
+        <attribute name="endBusinessHours" optional="YES" attributeType="Date" syncable="YES">
+            <userInfo>
+                <entry key="description" value="end business hours"/>
+                <entry key="extensionType" value="901"/>
+                <entry key="order" value="202"/>
+            </userInfo>
+        </attribute>
+        <userInfo>
+            <entry key="description" value="Leadership"/>
+            <entry key="sort" value="0"/>
+        </userInfo>
+    </entity>
     <entity name="Employee" representedClassName=".Employee" parentEntity="Person" syncable="YES">
         <attribute name="beginLunchTime" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
@@ -41,26 +61,6 @@
             <entry key="sort" value="0"/>
         </userInfo>
     </entity>
-    <entity name="Leadership" representedClassName=".Leadership" parentEntity="Person" syncable="YES">
-        <attribute name="beginBusinessHours" optional="YES" attributeType="Date" syncable="YES">
-            <userInfo>
-                <entry key="description" value="begin business hours"/>
-                <entry key="extensionType" value="901"/>
-                <entry key="order" value="201"/>
-            </userInfo>
-        </attribute>
-        <attribute name="endBusinessHours" optional="YES" attributeType="Date" syncable="YES">
-            <userInfo>
-                <entry key="description" value="end business hours"/>
-                <entry key="extensionType" value="901"/>
-                <entry key="order" value="202"/>
-            </userInfo>
-        </attribute>
-        <userInfo>
-            <entry key="description" value="Leadership"/>
-            <entry key="sort" value="0"/>
-        </userInfo>
-    </entity>
     <entity name="Person" representedClassName=".Person" syncable="YES">
         <attribute name="fullName" attributeType="String" syncable="YES">
             <userInfo>
@@ -80,7 +80,7 @@
         <element name="Accountant" positionX="9" positionY="54" width="128" height="60"/>
         <element name="Employee" positionX="36" positionY="81" width="128" height="90"/>
         <element name="FellowWorker" positionX="-90" positionY="27" width="128" height="45"/>
-        <element name="Leadership" positionX="-216" positionY="18" width="128" height="75"/>
+        <element name="Director" positionX="-216" positionY="18" width="128" height="75"/>
         <element name="Person" positionX="-11" positionY="-243" width="128" height="90"/>
     </elements>
 </model>

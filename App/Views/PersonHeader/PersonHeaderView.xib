@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Leadership" translatesAutoresizingMaskIntoConstraints="NO" id="ooh-Zf-vjS">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Director" translatesAutoresizingMaskIntoConstraints="NO" id="ooh-Zf-vjS">
                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="7hZ-8Z-s3J"/>
@@ -46,6 +46,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Leadership" width="64" height="64"/>
+        <image name="Director" width="64" height="64"/>
     </resources>
 </document>

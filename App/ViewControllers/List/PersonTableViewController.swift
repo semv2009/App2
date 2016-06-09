@@ -65,14 +65,12 @@ class PersonTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "PersonTableViewCell", bundle: nil), forCellReuseIdentifier: "PersonCell")
-        let nib = UINib(nibName: "PersonUITableViewHeaderFooterView", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "PersonUITableViewHeaderFooterView")
         tableView.sectionHeaderHeight = 48.0
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        frcDelegate.editinfMode = editing
+        frcDelegate.editingMode = editing
     }
     
     func performFetch() {
@@ -84,7 +82,6 @@ class PersonTableViewController: UITableViewController {
     }
     
     func showCreatePersonViewController() {
-        //frcDelegate.tableView = nil
         self.setEditing(false, animated: true)
         let createPersonVC = CreatePersonViewController(coreDataStack: stack)
         showViewController(UINavigationController(rootViewController: createPersonVC), sender: self)
@@ -137,14 +134,11 @@ class PersonTableViewController: UITableViewController {
             if let section = fetchedResultsController.sections {
                 var persons = section[indexPath.section].objects
                 persons.removeAtIndex(indexPath.row)
-                
                 var index = -1
                 for sortPerson in persons {
                     index += 1
                     sortPerson.order = index
-                    print("Rest = \(sortPerson)")
                 }
-                
                 self.stack.mainQueueContext.deleteObject(person)
             }
             
@@ -152,19 +146,17 @@ class PersonTableViewController: UITableViewController {
     }
    
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        self.frcDelegate.editinfMode = true
+        self.frcDelegate.editingMode = true
         let person = fetchedResultsController.getObject(fromIndexPath)
         if let sections = fetchedResultsController.sections {
             if fromIndexPath != toIndexPath {
                 var persons = sections[fromIndexPath.section].objects
-                print("from = \(fromIndexPath.row) top = \(toIndexPath.row)")
                 persons.removeAtIndex(fromIndexPath.row)
                 persons.insert(person, atIndex: toIndexPath.row)
                 var index = -1
                 for sortPerson in persons {
                     index += 1
                     sortPerson.order = index
-                    print(sortPerson)
                 }
             }
         }
@@ -176,15 +168,13 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let createVC = DetailPersonTableViewController(coreDataStack: stack)
-        createVC.person = fetchedResultsController.getObject(indexPath)
-        print(fetchedResultsController.getObject(indexPath))
+        let detailVC = DetailPersonTableViewController(coreDataStack: stack)
+        detailVC.person = fetchedResultsController.getObject(indexPath)
         self.setEditing(false, animated: true)
-        showViewController(createVC, sender: self)
+        showViewController(detailVC, sender: self)
     }
     
     override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
-         print(proposedDestinationIndexPath)
         if sourceIndexPath.section != proposedDestinationIndexPath.section {
             return sourceIndexPath
         }
@@ -197,7 +187,7 @@ class PersonTableViewController: UITableViewController {
 class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate {
     
     private weak var tableView: UITableView?
-    var editinfMode: Bool = false
+    var editingMode: Bool = false
     
     init(tableView: UITableView) {
         self.tableView = tableView
@@ -208,59 +198,25 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
     }
     
     func fetchedResultsControllerWillChangeContent(controller: FetchedResultsController<Person>) {
-        
-        //if !editinfMode {
-            print("beginUpdates")
-            tableView?.beginUpdates()
-        //}
+        tableView?.beginUpdates()
     }
     
     func fetchedResultsControllerDidChangeContent(controller: FetchedResultsController<Person>) {
-       // if !editinfMode {
-             tableView?.endUpdates()
-       // }
+        tableView?.endUpdates()
     }
     
     func fetchedResultsController(controller: FetchedResultsController<Person>, didChangeObject change: FetchedResultsObjectChange<Person>) {
         switch change {
         case let .Insert(_, indexPath):
-            if !editinfMode {
-                let person = controller.getObject(indexPath)
-                if let sections = controller.sections {
-                    if controller.checkSort(indexPath) {
-                        person.order = sections[indexPath.section].objects.count - 1
-                    }
-                }
-                tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            }
-
+            insert(editingMode, indexPath: indexPath, controller: controller)
         case let .Delete(_, indexPath):
-            if !editinfMode {
-                if let sections = controller.sections {
-                    let isIndexValid = sections.indices.contains(indexPath.section)
-                    if isIndexValid {
-                        let persons = sections[indexPath.section].objects
-                        print(sections[indexPath.section].objects[indexPath.row])
-                        if controller.checkSort(indexPath) {
-                            var index = -1
-                            for sortPerson in persons {
-                                print(sortPerson)
-                                index += 1
-                                sortPerson.order = index
-                            }
-                        }
-                    }
-                }
-            }
-            tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            
-            
+            delete(editingMode, indexPath: indexPath, controller: controller)
         case let .Move(_, fromIndexPath, toIndexPath):
-            if !editinfMode {
+            if !editingMode {
                 tableView?.moveRowAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
             }
         case let .Update(_, indexPath):
-            if !editinfMode {
+            if !editingMode {
                 tableView?.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 
             }}
@@ -274,6 +230,41 @@ class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate 
         case let .Delete(_, index):
             tableView?.deleteSections(NSIndexSet(index: index), withRowAnimation: .Automatic)
             
+        }
+    }
+    
+    func insert(editingMode: Bool, indexPath: NSIndexPath, controller: FetchedResultsController<Person>) {
+        if !editingMode {
+            let person = controller.getObject(indexPath)
+            if let sections = controller.sections {
+                if controller.checkSort(indexPath) {
+                    person.order = sections[indexPath.section].objects.count - 1
+                }
+            }
+            tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
+    func delete(editingMode: Bool, indexPath: NSIndexPath, controller: FetchedResultsController<Person>) {
+        if !editingMode {
+            if let sections = controller.sections {
+                let isIndexValid = sections.indices.contains(indexPath.section)
+                if isIndexValid {
+                    let persons = sections[indexPath.section].objects
+                    if controller.checkSort(indexPath) {
+                        setIndexs(persons)
+                    }
+                }
+            }
+        }
+        tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    }
+    
+    func setIndexs(array: [Person]) {
+        var index = -1
+        for sortPerson in array {
+            index += 1
+            sortPerson.order = index
         }
     }
 }

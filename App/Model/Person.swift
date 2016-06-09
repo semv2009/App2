@@ -50,8 +50,8 @@ class Person: NSManagedObject, CoreDataModelable {
         switch entity {
         case Accountant.entityName:
             person = Accountant(managedObjectContext: stack.mainQueueContext)
-        case Leadership.entityName:
-            person = Leadership(managedObjectContext: stack.mainQueueContext)
+        case Director.entityName:
+            person = Director(managedObjectContext: stack.mainQueueContext)
         case FellowWorker.entityName:
             person = FellowWorker(managedObjectContext: stack.mainQueueContext)
         default:
@@ -79,8 +79,8 @@ class Person: NSManagedObject, CoreDataModelable {
         switch entityName {
         case Accountant.entityName:
             attributes = Accountant(managedObjectContext: stack.newChildContext()).getListAttributes()
-        case Leadership.entityName:
-            attributes = Leadership(managedObjectContext: stack.newChildContext()).getListAttributes()
+        case Director.entityName:
+            attributes = Director(managedObjectContext: stack.newChildContext()).getListAttributes()
         case FellowWorker.entityName:
             attributes = FellowWorker(managedObjectContext: stack.newChildContext()).getListAttributes()
         default:

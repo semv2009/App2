@@ -28,7 +28,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         getListImages()
         configureNavigationBar()
-        addImageView()
+        addImageViews()
         loadFirstImage()
     }
     
@@ -39,7 +39,7 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func addImageView() {
+    func addImageViews() {
         if !images.isEmpty {
             for index in 0...images.count - 1 {
                 if  let newView = GalleryView(frame: view.frame, imagePath: images[index]) {
