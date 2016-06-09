@@ -19,6 +19,7 @@ class NumberTableViewCell: DataCell {
         self.attribute = attribute
         addToolBar(dataTextField)
         dataTextField.addTarget(self, action: #selector(NumberTableViewCell.editingChanged), forControlEvents: .EditingChanged)
+        dataTextField.keyboardType = .NumbersAndPunctuation
         nameLabel.text = attribute.name
         if let data = attribute.keys[0]?.value as? Int {
             dataTextField.text = "\(data)"

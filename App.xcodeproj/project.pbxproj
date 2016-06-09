@@ -24,7 +24,6 @@
 		8B35014C1CF33D1E0074D3DA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35014A1CF33D1E0074D3DA /* Error.swift */; };
 		8B35014D1CF33D1E0074D3DA /* StatusConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B35014B1CF33D1E0074D3DA /* StatusConstants.swift */; };
 		8B39C9031CE205C60046D369 /* NSDate+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */; };
-		8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */; };
 		8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45AEDD1CDFE1F300F01815 /* CreatePersonViewController.swift */; };
 		8B45AEE01CDFE1F300F01815 /* CreatePersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B45AEDE1CDFE1F300F01815 /* CreatePersonViewController.xib */; };
 		8B4A97941CDB3259007F3439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4A97931CDB3259007F3439 /* AppDelegate.swift */; };
@@ -60,6 +59,8 @@
 		8BF3B4311CF1E67F00AF5E25 /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */; };
 		8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */; };
 		8BF3B4391CF1E74A00AF5E25 /* ServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */; };
+		8BF919091D09DC1400C36F66 /* PersonUITableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF919081D09DC1400C36F66 /* PersonUITableViewHeaderFooterView.swift */; };
+		8BF9190C1D09FBC800C36F66 /* PersonUITableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF9190B1D09FBC800C36F66 /* PersonUITableViewHeaderFooterView.xib */; };
 		8BFBE4131D07770900EA29F3 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBE4111D07770900EA29F3 /* NumberTableViewCell.swift */; };
 		8BFBE4141D07770900EA29F3 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBE4121D07770900EA29F3 /* NumberTableViewCell.xib */; };
 		8BFBE4181D0779A800EA29F3 /* RangeTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBE4161D0779A800EA29F3 /* RangeTimeTableViewCell.swift */; };
@@ -88,7 +89,6 @@
 		8B35014A1CF33D1E0074D3DA /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Networking/Constants/Error.swift; sourceTree = "<group>"; };
 		8B35014B1CF33D1E0074D3DA /* StatusConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusConstants.swift; path = Networking/Constants/StatusConstants.swift; sourceTree = "<group>"; };
 		8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+StringRepresentation.swift"; path = "Extension/NSDate+StringRepresentation.swift"; sourceTree = "<group>"; };
-		8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSManagedObject+worlWithInheritance.swift"; path = "Extension/NSManagedObject+worlWithInheritance.swift"; sourceTree = "<group>"; };
 		8B45AEDD1CDFE1F300F01815 /* CreatePersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePersonViewController.swift; path = ViewControllers/CreatePerson/CreatePersonViewController.swift; sourceTree = "<group>"; };
 		8B45AEDE1CDFE1F300F01815 /* CreatePersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreatePersonViewController.xib; path = ViewControllers/CreatePerson/CreatePersonViewController.xib; sourceTree = "<group>"; };
 		8B4A97901CDB3259007F3439 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +126,8 @@
 		8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonTableViewCell.xib; path = Views/Cell/Person/PersonTableViewCell.xib; sourceTree = "<group>"; };
 		8BF3B4361CF1E74A00AF5E25 /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceViewController.swift; path = ViewControllers/Service/ServiceViewController.swift; sourceTree = "<group>"; };
 		8BF3B4371CF1E74A00AF5E25 /* ServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceViewController.xib; path = ViewControllers/Service/ServiceViewController.xib; sourceTree = "<group>"; };
+		8BF919081D09DC1400C36F66 /* PersonUITableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonUITableViewHeaderFooterView.swift; path = Views/PersonUITableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		8BF9190B1D09FBC800C36F66 /* PersonUITableViewHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonUITableViewHeaderFooterView.xib; path = Views/PersonUITableViewHeaderFooterView.xib; sourceTree = "<group>"; };
 		8BFBE4111D07770900EA29F3 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberTableViewCell.swift; path = Views/Cell/Number/NumberTableViewCell.swift; sourceTree = "<group>"; };
 		8BFBE4121D07770900EA29F3 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NumberTableViewCell.xib; path = Views/Cell/Number/NumberTableViewCell.xib; sourceTree = "<group>"; };
 		8BFBE4161D0779A800EA29F3 /* RangeTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RangeTimeTableViewCell.swift; path = Views/Cell/RangeTime/RangeTimeTableViewCell.swift; sourceTree = "<group>"; };
@@ -224,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */,
-				8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */,
 				8B291F9B1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift */,
 				8BF3B4281CF1E60C00AF5E25 /* String+StringForAttributeType.swift */,
 				8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */,
@@ -419,6 +420,7 @@
 		8B74E6611CDE6A67008985CC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8BF9190A1D09FB6C00C36F66 /* PersonHeader */,
 				8B33FB9F1D05E3F000653ABD /* Data */,
 				8B33FBA91D05F39C00653ABD /* DataCellProtocol.swift */,
 				8B51DE231CE9101B00684AB5 /* Quote */,
@@ -436,6 +438,15 @@
 				8BF3B42F1CF1E67F00AF5E25 /* PersonTableViewCell.xib */,
 			);
 			name = Person;
+			sourceTree = "<group>";
+		};
+		8BF9190A1D09FB6C00C36F66 /* PersonHeader */ = {
+			isa = PBXGroup;
+			children = (
+				8BF919081D09DC1400C36F66 /* PersonUITableViewHeaderFooterView.swift */,
+				8BF9190B1D09FBC800C36F66 /* PersonUITableViewHeaderFooterView.xib */,
+			);
+			name = PersonHeader;
 			sourceTree = "<group>";
 		};
 		8BFBE4101D0776E300EA29F3 /* Number */ = {
@@ -537,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B4A97B01CDB33E4007F3439 /* LoadingViewController.xib in Resources */,
+				8BF9190C1D09FBC800C36F66 /* PersonUITableViewHeaderFooterView.xib in Resources */,
 				8B33FBA81D05E91300653ABD /* StringTableViewCell.xib in Resources */,
 				8BF3B4311CF1E67F00AF5E25 /* PersonTableViewCell.xib in Resources */,
 				8B45AEE01CDFE1F300F01815 /* CreatePersonViewController.xib in Resources */,
@@ -616,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B4A97E31CDB4BFE007F3439 /* GalleryViewController.swift in Sources */,
+				8BF919091D09DC1400C36F66 /* PersonUITableViewHeaderFooterView.swift in Sources */,
 				8B74E68E1CDE8225008985CC /* FellowWorker.swift in Sources */,
 				8B291F9C1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift in Sources */,
 				8B291FA81CE32F93000F5B0B /* PersonHeaderView.swift in Sources */,
@@ -636,7 +649,6 @@
 				8B3501481CF33CEC0074D3DA /* EZLoadingActivity.swift in Sources */,
 				8BF3B4241CF1E5CB00AF5E25 /* PersonDetailView.swift in Sources */,
 				8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */,
-				8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
 				8B33FBA31D05E47200653ABD /* DataTableViewCell.swift in Sources */,
 				8BF3B4291CF1E60C00AF5E25 /* String+StringForAttributeType.swift in Sources */,

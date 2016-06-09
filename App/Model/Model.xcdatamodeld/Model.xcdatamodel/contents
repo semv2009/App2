@@ -68,7 +68,7 @@
                 <entry key="order" value="101"/>
             </userInfo>
         </attribute>
-        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="salary" optional="YES" attributeType="Integer 64" syncable="YES">
             <userInfo>
                 <entry key="description" value="salary"/>

@@ -31,7 +31,7 @@ class PersonTableViewCell: UITableViewCell {
     
     func configureStackView(attributes: [Attribute]) {
         for attribute in attributes {
-            if attribute.name != "fullName" {
+            if attribute.name != "full name" {
                 let personDetailView = PersonDetailView()
                 personDetailView.updateUI(attribute)
                 stack.addArrangedSubview(personDetailView)

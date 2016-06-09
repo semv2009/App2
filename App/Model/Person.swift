@@ -138,8 +138,6 @@ class Attribute {
         case .RangeTime:
             if let startTime = keys[0]?.value as? NSDate, endTime = keys[1]?.value as? NSDate {
                 if startTime.compare(endTime) == NSComparisonResult.OrderedAscending {
-                    print(startTime)
-                    print(endTime)
                     self.valid = true
                 }
             }
