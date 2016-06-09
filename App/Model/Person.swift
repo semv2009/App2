@@ -45,6 +45,35 @@ class Person: NSManagedObject, CoreDataModelable {
         return attributes
     }
     
+    static func createPerson(entity: String, stack: CoreDataStack, attributes: [Attribute]) -> Person? {
+        var person: Person?
+        switch entity {
+        case Accountant.entityName:
+            person = Accountant(managedObjectContext: stack.mainQueueContext)
+        case Leadership.entityName:
+            person = Leadership(managedObjectContext: stack.mainQueueContext)
+        case FellowWorker.entityName:
+            person = FellowWorker(managedObjectContext: stack.mainQueueContext)
+        default:
+            break
+        }
+        
+        if let person = person {
+            person.update(attributes)
+        }
+        return person
+    }
+    
+    func update(attributes: [Attribute]) {
+        for attribute in attributes {
+            for key in attribute.keys {
+                if let key = key {
+                    self.setValue(key.value, forKey: key.name)
+                }
+            }
+        }
+    }
+    
     static func getListAttributes(entityName: String, stack: CoreDataStack, oldAttribute: [Attribute]? = nil) -> [Attribute] {
         var attributes = [Attribute]()
         switch entityName {
@@ -79,7 +108,6 @@ class Person: NSManagedObject, CoreDataModelable {
                 if let newkey = newkey, oldKey = oldKey {
                     if newkey.name == oldKey.name {
                         newkey.value = oldKey.value
-                        print("newkey = \(newkey.value) oldkey = \(oldKey.value)")
                     }
                 }
             }
@@ -118,19 +146,6 @@ class Attribute {
         }
         return self.valid
     }
-    
-//    func isEmpty() -> Bool {
-//        switch type {
-//        case .Number, .String, .AccountantType:
-//            if let _ = keys[0]?.value {
-//                return  false
-//            }
-//        case .RangeTime:
-//        if let startTime = keys[0]?.value as? NSDate, endTime = keys[1]?.value as? NSDate {
-//                self.valid = true
-//        }
-//    }
-//    }
 }
 
 enum TypeCell: String {

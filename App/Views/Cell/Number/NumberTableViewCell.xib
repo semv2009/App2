@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pqq-wW-pcj">
-                        <rect key="frame" x="53" y="7" width="550" height="33"/>
+                        <rect key="frame" x="55" y="7" width="548" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="550" id="o3Z-cE-NHB"/>
                         </constraints>
@@ -26,11 +26,11 @@
                         </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOV-T2-ZXq">
-                        <rect key="frame" x="8" y="15" width="37" height="18"/>
+                        <rect key="frame" x="8" y="15" width="39" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="wXL-0a-rix"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>

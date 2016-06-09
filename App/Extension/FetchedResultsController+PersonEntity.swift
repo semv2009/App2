@@ -11,7 +11,7 @@ import CoreData
 import BNRCoreDataStack
 
 extension FetchedResultsController {
-    func getObject(indexPath: NSIndexPath) -> NSManagedObject {
+    func getObject(indexPath: NSIndexPath) -> T {
         guard let sections = self.sections else { fatalError("Don't get sessions from fetchedResultsController") }
         return sections[indexPath.section].objects[indexPath.row]
     }

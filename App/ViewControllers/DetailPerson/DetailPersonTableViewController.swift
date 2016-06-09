@@ -9,11 +9,12 @@
 import UIKit
 import BNRCoreDataStack
 class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate {
-    var person: NSManagedObject? {
+    
+    var person: Person? {
         didSet {
             if let person = person, entity = person.entity.name {
                 title = entity
-                attributes = person.getAttributes()
+                attributes = person.getListAttributes()
                 tableView.reloadData()
             }
         }
@@ -23,7 +24,7 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     
     var editButton: UIBarButtonItem!
     
-    var attributes = [AttributeInfo]()
+    var attributes = [Attribute]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +76,8 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         guard let cell =  cell as? DetailTableViewCell else { fatalError("Cell is not registered") }
-        if let person = person {
-            let attribute = attributes[indexPath.row]
-            cell.updateUI(attribute, value: person.valueForKey(attribute.name))
-        }
+        let attribute = attributes[indexPath.row]
+        cell.updateUI(attribute)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -89,5 +88,5 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
 }
 
 protocol ShowPersonDelegate {
-    var person: NSManagedObject? { get set }
+    var person: Person? { get set }
 }

@@ -28,6 +28,7 @@ class AccountantTypeTableViewCell: DataCell {
         
         if let value = attribute.keys[0]?.value as? Int {
             dataPiсker.selectRow(value, inComponent: 0, animated: false)
+            dataTextField.text = dataArray[value].name
         } else {
             dataTextField.text = ""
             dataPiсker.selectRow(0, inComponent: 0, animated: false)

@@ -16,15 +16,15 @@ class DataTableViewCell: UITableViewCell {
     
     var attribute: AttributeInfo!
     var person: NSManagedObject!
-    var switchSaveButtonDelegate: SwitchSaveButtonDelegate?
+    //var switchSaveButtonDelegate: SwitchSaveButtonDelegate?
     
     lazy var datePiсker = UIDatePicker()
     var dataPiсker = UIPickerView()
     var dataArray = [SimpleData]()
     
     
-    func updateUI(attribute: AttributeInfo, person: NSManagedObject, delegate: SwitchSaveButtonDelegate) {
-        self.switchSaveButtonDelegate = delegate
+    func updateUI(attribute: AttributeInfo, person: NSManagedObject) {
+        //self.switchSaveButtonDelegate = delegate
         let value = person.valueForKey(attribute.name)
         self.attribute = attribute
         self.person = person
@@ -34,7 +34,7 @@ class DataTableViewCell: UITableViewCell {
     
     func configureTextField(type: TypeAttribute, value: AnyObject?) {
         addToolBar(dataTextField)
-        dataTextField.text = String.value(forAttribute: attribute.type, value: value)
+        //dataTextField.text = String.value(forAttribute: attribute.type, value: value)
         switch type {
         case .Date:
             datePiсker.datePickerMode = .Date
@@ -144,6 +144,6 @@ extension DataTableViewCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         person.setValue(value, forKey: attribute.name)
-        switchSaveButtonDelegate?.checkAllAttribute()
+        //switchSaveButtonDelegate?.checkAllAttribute()
     }
 }

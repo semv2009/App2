@@ -14,8 +14,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var personSegmentedControl: UISegmentedControl!
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     
-    weak var person: NSManagedObject?
-    weak var newPerson: NSManagedObject? 
+    var person: Person?
     
     var doneButton: UIBarButtonItem!
     var stack: CoreDataStack!
@@ -51,42 +50,24 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     func configureView() {
         tableView.delegate = self
-        tableView.registerNib(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "DataCell")
+        
         tableView.registerNib(UINib(nibName: "StringTableViewCell", bundle: nil), forCellReuseIdentifier: "StringCell")
         tableView.registerNib(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "NumberCell")
         tableView.registerNib(UINib(nibName: "RangeTimeTableViewCell", bundle: nil), forCellReuseIdentifier: "RangeTimeCell")
-        tableView.registerNib(UINib(nibName: "AccountantTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountantTypeCell")
-        if let person = person, entity = person.entity.name {
+        tableView.registerNib(UINib(nibName: "AccountantTypeTableViewCell", bundle: nil), forCellReuseIdentifier:
+            "AccountantTypeCell")
+        
+        if let person = person {
             title = "Update profile"
-            switch entity {
-            case Accountant.entityName:
-                self.newPerson = Accountant(managedObjectContext: self.stack.mainQueueContext)
-                if let newPerson = self.newPerson {
-                    newPerson.copyData(person)
-                }
-            case Leadership.entityName:
-                self.newPerson = Leadership(managedObjectContext: self.stack.mainQueueContext)
-                if let newPerson = self.newPerson {
-                    newPerson.copyData(person)
-                }
-            case FellowWorker.entityName:
-                self.newPerson = FellowWorker(managedObjectContext: self.stack.mainQueueContext)
-                if let newPerson = self.newPerson {
-                    newPerson.copyData(person)
-                }
-            default:
-                break
-            }
-            
-            attributes = newPerson!.getAttributes()
-            doneButton.enabled = true
+            attr = person.getListAttributes()
+            doneButton.enabled = false
         } else {
             title = "Create profile"
             doneButton.enabled = false
         }
     }
     
-    func configureSegmentedControl(person: NSManagedObject?) {
+    func configureSegmentedControl(person: Person?) {
         if let person = person, entity = person.entity.name {
             switch entity {
             case Accountant.entityName:
@@ -110,34 +91,22 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
     
     @objc private func dismiss() {
-        if let newPerson = newPerson {
-            self.stack.mainQueueContext.deleteObject(newPerson)
-        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     @objc private func done() {
-        if let newPerson = newPerson {
-            for cell in tableView.visibleCells {
-                if let personCell = cell as? DataTableViewCell {
-                    newPerson.setValue(personCell.value, forKey: personCell.attribute.name)
-                }
+        let entity = personSegmentedControl.titleForSegmentAtIndex(personSegmentedControl.selectedSegmentIndex)
+        if let person = person {
+            if person.entity.name == entity {
+                person.update(attr)
+            } else {
+                stack.mainQueueContext.deleteObject(person)
+                self.person = Person.createPerson(entity!, stack: stack, attributes: attr)
             }
-            if let person = person {
-                self.stack.mainQueueContext.deleteObject(person)
-            }
-            showDelegate?.person = newPerson
         } else {
-            if let person = person {
-                for cell in tableView.visibleCells {
-                    if let personCell = cell as? DataTableViewCell {
-                        person.setValue(personCell.value, forKey: personCell.attribute.name)
-                    }
-                }
-                showDelegate?.person = person
-            }
+            person = Person.createPerson(entity!, stack: stack, attributes: attr)
         }
-        
+        showDelegate?.person = person
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -159,7 +128,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     // MARK: - Table view data source
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return  attributes.count
         return  attr.count
     }
     

@@ -13,8 +13,8 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-    func updateUI(attribute: AttributeInfo, value: AnyObject?) {
-        nameLabel.text = attribute.description
-        valueLabel.text = String.value(forAttribute: attribute.type, value: value)
+    func updateUI(attribute: Attribute) {
+        nameLabel.text = attribute.name
+        valueLabel.text = String.value(attribute)
     }
 }

@@ -53,7 +53,7 @@
 		8BF3B4241CF1E5CB00AF5E25 /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4221CF1E5CB00AF5E25 /* PersonDetailView.swift */; };
 		8BF3B4251CF1E5CB00AF5E25 /* PersonDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B4231CF1E5CB00AF5E25 /* PersonDetailView.xib */; };
 		8BF3B4271CF1E5EF00AF5E25 /* WebHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4261CF1E5EF00AF5E25 /* WebHelper.swift */; };
-		8BF3B4291CF1E60C00AF5E25 /* String+toStringForAttributeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4281CF1E60C00AF5E25 /* String+toStringForAttributeType.swift */; };
+		8BF3B4291CF1E60C00AF5E25 /* String+StringForAttributeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B4281CF1E60C00AF5E25 /* String+StringForAttributeType.swift */; };
 		8BF3B42C1CF1E65800AF5E25 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B42A1CF1E65800AF5E25 /* QuoteTableViewCell.swift */; };
 		8BF3B42D1CF1E65800AF5E25 /* QuoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3B42B1CF1E65800AF5E25 /* QuoteTableViewCell.xib */; };
 		8BF3B4301CF1E67F00AF5E25 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3B42E1CF1E67F00AF5E25 /* PersonTableViewCell.swift */; };
@@ -119,7 +119,7 @@
 		8BF3B4221CF1E5CB00AF5E25 /* PersonDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonDetailView.swift; path = Views/PersonDetail/PersonDetailView.swift; sourceTree = "<group>"; };
 		8BF3B4231CF1E5CB00AF5E25 /* PersonDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonDetailView.xib; path = Views/PersonDetail/PersonDetailView.xib; sourceTree = "<group>"; };
 		8BF3B4261CF1E5EF00AF5E25 /* WebHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebHelper.swift; path = Networking/WebHelper.swift; sourceTree = "<group>"; };
-		8BF3B4281CF1E60C00AF5E25 /* String+toStringForAttributeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+toStringForAttributeType.swift"; path = "Extension/String+toStringForAttributeType.swift"; sourceTree = "<group>"; };
+		8BF3B4281CF1E60C00AF5E25 /* String+StringForAttributeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+StringForAttributeType.swift"; path = "Extension/String+StringForAttributeType.swift"; sourceTree = "<group>"; };
 		8BF3B42A1CF1E65800AF5E25 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuoteTableViewCell.swift; path = Views/Cell/Quote/QuoteTableViewCell.swift; sourceTree = "<group>"; };
 		8BF3B42B1CF1E65800AF5E25 /* QuoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuoteTableViewCell.xib; path = Views/Cell/Quote/QuoteTableViewCell.xib; sourceTree = "<group>"; };
 		8BF3B42E1CF1E67F00AF5E25 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonTableViewCell.swift; path = Views/Cell/Person/PersonTableViewCell.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 				8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */,
 				8B39C9041CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift */,
 				8B291F9B1CE32224000F5B0B /* FetchedResultsController+PersonEntity.swift */,
-				8BF3B4281CF1E60C00AF5E25 /* String+toStringForAttributeType.swift */,
+				8BF3B4281CF1E60C00AF5E25 /* String+StringForAttributeType.swift */,
 				8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */,
 				8B3501471CF33CEC0074D3DA /* UIViewController+ EZLoadingActivity.swift */,
 				8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */,
@@ -639,7 +639,7 @@
 				8B39C9051CE20B380046D369 /* NSManagedObject+worlWithInheritance.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
 				8B33FBA31D05E47200653ABD /* DataTableViewCell.swift in Sources */,
-				8BF3B4291CF1E60C00AF5E25 /* String+toStringForAttributeType.swift in Sources */,
+				8BF3B4291CF1E60C00AF5E25 /* String+StringForAttributeType.swift in Sources */,
 				8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */,
 				8B35014D1CF33D1E0074D3DA /* StatusConstants.swift in Sources */,
 				8B4A97DC1CDB4444007F3439 /* MainTabViewController.swift in Sources */,

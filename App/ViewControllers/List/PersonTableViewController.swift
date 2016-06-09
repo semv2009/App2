@@ -76,7 +76,7 @@ class PersonTableViewController: UITableViewController {
     }
     
     func showCreatePersonViewController() {
-        frcDelegate.tableView = nil
+        //frcDelegate.tableView = nil
         let createPersonVC = CreatePersonViewController(coreDataStack: stack)
         showViewController(UINavigationController(rootViewController: createPersonVC), sender: self)
     }
@@ -146,11 +146,10 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        frcDelegate.tableView = nil
-        let person = fetchedResultsController.getObject(indexPath)
+        //frcDelegate.tableView = nil
         let createVC = DetailPersonTableViewController(coreDataStack: stack)
-        createVC.person = person
-        print(person)
+        createVC.person = fetchedResultsController.getObject(indexPath)
+        //print(person)
         showViewController(createVC, sender: self)
     }
     
