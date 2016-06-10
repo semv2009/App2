@@ -13,7 +13,7 @@ import BNRCoreDataStack
 class Person: NSManagedObject, CoreDataModelable {
     @NSManaged var fullName: String?
     @NSManaged var salary: NSNumber?
-    @NSManaged var order: Int
+    @NSManaged var order: NSNumber?
     
     // MARK: - CoreDataModelable
     class var entityName: String {
