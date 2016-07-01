@@ -19,20 +19,25 @@ class Employee: Person {
     override class var entityName: String {
         return "Employee"
     }
-    
-    override func getListAttributes() -> [Attribute] {
-        var attributes = super.getListAttributes()
-        attributes.append(Attribute(
+
+    override func attributes() -> AttributeManager {
+        let manager = super.attributes()
+        var attributes = [Attribute]()
+        attributes.append(RangeTimeAttribute(
             name: "lunch time",
-            type: .RangeTime,
-            keys: [Key(name: "beginLunchTime", value: beginLunchTime),
-                   Key(name: "endLunchTime", value: endLunchTime)])
+            key: "beginLunchTime",
+            secondKey: "endLunchTime",
+            placeholder: "12:00",
+            secondPlaceholder: "13:00",
+            value: RangeTime(start: beginLunchTime, end: endLunchTime))
         )
-        attributes.append(Attribute(
+        attributes.append(NumberAttribute(
             name: "workplace",
-            type: .Number,
-            keys: [Key(name: "workplace", value: workplace)])
+            key: "workplace",
+            placeholder: "42",
+            value: workplace)
         )
-        return attributes
+        manager.sections.append(attributes)
+        return manager
     }
 }

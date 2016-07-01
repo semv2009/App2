@@ -14,12 +14,12 @@ class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     func updateUI(person: Person) {
-        let attributes = person.getListAttributes()
-        if let name = attributes[0].keys[0]?.value as? String {
+        let manager = person.attributes()
+        if let name = manager.value(forName: "full name") as? String {
             nameLabel.text = name
         }
         removeOldView()
-        configureStackView(attributes)
+        configureStackView(manager)
     }
     
     func removeOldView() {
@@ -29,12 +29,14 @@ class PersonTableViewCell: UITableViewCell {
         }
     }
     
-    func configureStackView(attributes: [Attribute]) {
-        for attribute in attributes {
-            if attribute.name != "full name" {
-                let personDetailView = PersonDetailView()
-                personDetailView.updateUI(attribute)
-                stack.addArrangedSubview(personDetailView)
+    func configureStackView(manager: AttributeManager) {
+        for section in manager.sections {
+            for attribute in section {
+                if attribute.name != "full name" {
+                    let personDetailView = PersonDetailView()
+                    personDetailView.updateUI(attribute)
+                    stack.addArrangedSubview(personDetailView)
+                }
             }
         }
     }

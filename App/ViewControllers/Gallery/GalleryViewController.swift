@@ -134,7 +134,10 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
             resetRightImage(indexOfPage + 1)
             indexOfPage += 1
             nextView.resetScale()
-            self.scrollView.scrollRectToVisible(nextView.frame, animated: true)
+            UIView.animateWithDuration(0.2) {
+                self.scrollView.scrollRectToVisible(nextView.frame, animated: false)
+            }
+            
         }
     }
     
@@ -144,7 +147,9 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
             resetLeftImage(indexOfPage - 1)
             indexOfPage -= 1
             previousView.resetScale()
-            self.scrollView.scrollRectToVisible(previousView.frame, animated: true)
+            UIView.animateWithDuration(0.2) {
+                self.scrollView.scrollRectToVisible(previousView.frame, animated: false)
+            }
         }
     }
     

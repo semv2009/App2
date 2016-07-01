@@ -1,11 +1,3 @@
-//
-//  PersonTableViewController.swift
-//  App
-//
-//  Created by developer on 05.05.16.
-//  Copyright © 2016 developer. All rights reserved.
-//
-
 import UIKit
 import BNRCoreDataStack
 import CoreData
@@ -15,25 +7,16 @@ class PersonTableViewController: UITableViewController {
     var stack: CoreDataStack
     var editingMode = false
     
-    private lazy var fetchedResultsController: FetchedResultsController<Person> = {
+    private lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: Person.entityName)
-        
-        let nameSortDescriptor = NSSortDescriptor(key: "fullName", ascending:  true)
-        let sectionSortDescriptor = NSSortDescriptor(key: "entity.name", ascending:  true)
-        let orderSortDescriptor = NSSortDescriptor(key: "order", ascending:  true)
-    
-        fetchRequest.sortDescriptors = [sectionSortDescriptor, orderSortDescriptor, nameSortDescriptor]
-        
-        let frc = FetchedResultsController<Person>(fetchRequest: fetchRequest, managedObjectContext: self.stack.mainQueueContext, sectionNameKeyPath: "entity.name")
-        
-        frc.setDelegate(self.frcDelegate)
+        let sectionsSortDescriptor = NSSortDescriptor(key: "sectionOrder", ascending: true)
+        let nameSortDescriptor = NSSortDescriptor(key: "fullName", ascending: true)
+        let orderSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        fetchRequest.sortDescriptors = [sectionsSortDescriptor, orderSortDescriptor, nameSortDescriptor]
+        var frc =  NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.stack.mainQueueContext, sectionNameKeyPath: "sectionOrder", cacheName: nil)
+        frc.delegate = self
         return frc
     }()
-    
-    private lazy var frcDelegate: PersonsFetchedResultsControllerDelegate = {
-        return PersonsFetchedResultsControllerDelegate(tableView: self.tableView)
-    }()
-    
     
     init(coreDataStack stack: CoreDataStack) {
         self.stack = stack
@@ -52,10 +35,6 @@ class PersonTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        frcDelegate.tableView = tableView
-        performFetch()
-        tableView.reloadData()
-        stack.mainQueueContext.saveContext()
     }
     
     func configureView() {
@@ -65,12 +44,15 @@ class PersonTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "PersonTableViewCell", bundle: nil), forCellReuseIdentifier: "PersonCell")
+        tableView.registerNib(UINib(nibName: "FellowWorkerTableViewCell", bundle: nil), forCellReuseIdentifier: "FellowWorkerCell")
+        tableView.registerNib(UINib(nibName: "DirectorTableViewCell", bundle: nil), forCellReuseIdentifier: "DirectorCell")
+        tableView.registerNib(UINib(nibName: "AccountantTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountantCell")
         tableView.sectionHeaderHeight = 48.0
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        frcDelegate.editingMode = editing
+        editingMode = editing
     }
     
     func performFetch() {
@@ -100,21 +82,19 @@ class PersonTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.sections?[section].objects.count ?? 0
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let sections = fetchedResultsController.sections, name = sections[section].name {
-            let headerView = PersonHeaderView()
-            headerView.updateUI(name)
-            return headerView
-        }
-        return nil
+        let object = fetchedResultsController.getObject(NSIndexPath(forRow: 0, inSection: section))
+        let headerView = PersonHeaderView()
+        headerView.updateUI(object.entity.name!)
+        return headerView
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = (tableView.dequeueReusableCellWithIdentifier("PersonCell", forIndexPath: indexPath)) as? PersonTableViewCell else { fatalError("Cell is not registered") }
         let person = fetchedResultsController.getObject(indexPath)
+        let cell = tableView.dequeueReusable(person.entity.name!, indexPath: indexPath)
         cell.updateUI(person)
         return cell
     }
@@ -126,33 +106,23 @@ class PersonTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-   
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+            editingMode = false
             let person = fetchedResultsController.getObject(indexPath)
-            //if section
-            if let section = fetchedResultsController.sections {
-                var persons = section[indexPath.section].objects
-                persons.removeAtIndex(indexPath.row)
-                var index = -1
-                for sortPerson in persons {
-                    index += 1
-                    sortPerson.order = index
-                }
-                self.stack.mainQueueContext.deleteObject(person)
-            }
-            
+            self.stack.mainQueueContext.deleteObject(person)
         }
     }
-   
+    
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        self.frcDelegate.editingMode = true
+        editingMode = true
         let person = fetchedResultsController.getObject(fromIndexPath)
-        if let sections = fetchedResultsController.sections {
+        if let sections = fetchedResultsController.sections, var persons = sections[fromIndexPath.section].objects as? [Person] {
             if fromIndexPath != toIndexPath {
-                var persons = sections[fromIndexPath.section].objects
                 persons.removeAtIndex(fromIndexPath.row)
                 persons.insert(person, atIndex: toIndexPath.row)
+                
                 var index = -1
                 for sortPerson in persons {
                     index += 1
@@ -161,16 +131,16 @@ class PersonTableViewController: UITableViewController {
             }
         }
     }
-
+    
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         if self.tableView.editing {return .Delete}
         return .None
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.setEditing(false, animated: true)
         let detailVC = DetailPersonTableViewController(coreDataStack: stack)
         detailVC.person = fetchedResultsController.getObject(indexPath)
-        self.setEditing(false, animated: true)
         showViewController(detailVC, sender: self)
     }
     
@@ -180,91 +150,88 @@ class PersonTableViewController: UITableViewController {
         }
         return proposedDestinationIndexPath
     }
+    
 }
-
 // MARK: - Lifecycle FetchedResultsController
 
-class PersonsFetchedResultsControllerDelegate: FetchedResultsControllerDelegate {
+extension PersonTableViewController: NSFetchedResultsControllerDelegate {
     
-    private weak var tableView: UITableView?
-    var editingMode: Bool = false
-    
-    init(tableView: UITableView) {
-        self.tableView = tableView
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        if editingMode {return}
+        tableView.beginUpdates()
     }
     
-    func fetchedResultsControllerDidPerformFetch(controller: FetchedResultsController<Person>) {
-        tableView?.reloadData()
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        if editingMode {return}
+        tableView.endUpdates()
     }
     
-    func fetchedResultsControllerWillChangeContent(controller: FetchedResultsController<Person>) {
-        tableView?.beginUpdates()
-    }
-    
-    func fetchedResultsControllerDidChangeContent(controller: FetchedResultsController<Person>) {
-        tableView?.endUpdates()
-    }
-    
-    func fetchedResultsController(controller: FetchedResultsController<Person>, didChangeObject change: FetchedResultsObjectChange<Person>) {
-        switch change {
-        case let .Insert(_, indexPath):
-            insert(editingMode, indexPath: indexPath, controller: controller)
-        case let .Delete(_, indexPath):
-            delete(editingMode, indexPath: indexPath, controller: controller)
-        case let .Move(_, fromIndexPath, toIndexPath):
-            if !editingMode {
-                tableView?.moveRowAtIndexPath(fromIndexPath, toIndexPath: toIndexPath)
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        if editingMode {return}
+        switch type {
+        case .Insert:
+            if let indexPath = newIndexPath {
+                let person = controller.getObject(indexPath)
+                let maxOrder = controller.maxOrder(indexPath)
+                if maxOrder > 0 {
+                    person.order = maxOrder + 1
+                }
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
-        case let .Update(_, indexPath):
-            if !editingMode {
-                tableView?.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
-            }}
-    }
-
-    func fetchedResultsController(controller: FetchedResultsController<Person>,
-                                  didChangeSection change: FetchedResultsSectionChange<Person>) {
-        switch change {
-        case let .Insert(_, index):
-            tableView?.insertSections(NSIndexSet(index: index), withRowAnimation: .Automatic)
-        case let .Delete(_, index):
-            tableView?.deleteSections(NSIndexSet(index: index), withRowAnimation: .Automatic)
             
-        }
-    }
-    
-    func insert(editingMode: Bool, indexPath: NSIndexPath, controller: FetchedResultsController<Person>) {
-        if !editingMode {
-            let person = controller.getObject(indexPath)
-            if let sections = controller.sections {
-                if controller.checkSort(indexPath) {
-                    person.order = sections[indexPath.section].objects.count - 1
-                }
+        case .Delete:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
-            tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
-    }
-    
-    func delete(editingMode: Bool, indexPath: NSIndexPath, controller: FetchedResultsController<Person>) {
-        if !editingMode {
-            if let sections = controller.sections {
-                let isIndexValid = sections.indices.contains(indexPath.section)
-                if isIndexValid {
-                    let persons = sections[indexPath.section].objects
-                    if controller.checkSort(indexPath) {
-                        setIndexs(persons)
-                    }
-                }
+            
+        case .Update:
+            if let indexPath = indexPath {
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+            
+        case .Move:
+            if let indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
             }
         }
-        tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
     
-    func setIndexs(array: [Person]) {
-        var index = -1
-        for sortPerson in array {
-            index += 1
-            sortPerson.order = index
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+                    atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        if editingMode {return}
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        default:
+            break
         }
+    }
+}
+
+extension UITableView {
+    func dequeueReusable(entityName: String, indexPath: NSIndexPath) -> PersonTableViewCell {
+        switch entityName {
+        case FellowWorker.entityName:
+            if let cell = self.dequeueReusableCellWithIdentifier("FellowWorkerCell", forIndexPath: indexPath) as? FellowWorkerTableViewCell {
+                return cell
+            }
+        case Director.entityName:
+            if let cell = self.dequeueReusableCellWithIdentifier("DirectorCell", forIndexPath: indexPath) as? DirectorTableViewCell {
+                return cell
+            }
+        case Accountant.entityName:
+            if let cell = self.dequeueReusableCellWithIdentifier("AccountantCell", forIndexPath: indexPath) as? AccountantTableViewCell {
+                return cell
+            }
+        default:
+            break
+        }
+        return PersonTableViewCell()
     }
 }

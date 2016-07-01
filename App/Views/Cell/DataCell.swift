@@ -9,47 +9,54 @@
 import UIKit
 
 class DataCell: UITableViewCell {
-    var checkAllValid: (() -> Void)?
-    
+    var onChange: ((value: AnyObject?, indexPath: NSIndexPath) -> Void)?
+    var indexPath: NSIndexPath?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func addTarget(editingChanged editingChanged: (() -> Void)?) {
-        self.checkAllValid = editingChanged
+    func onChange(onChange change: ((value: AnyObject?, indexPath: NSIndexPath) -> Void)?) {
+        self.onChange = change
     }
     
-    func updateUI(attribute: Attribute) {
+    func updateUI(attribute: Attribute) -> DataCell {
         switch attribute.type {
         case .String:
-            if let cell = self as? StringTableViewCell {
-                cell.updateUI(attribute)
+            if let cell = self as? StringTableViewCell, attribute = attribute as? StringAttribute {
+                let value = attribute.value as? String
+                cell.updateUI(attribute.name, value: value)
+                    .cellSetup { cell in
+                        cell.dataTextField.placeholder = attribute.placeholder
+                    }
             }
         case .Number:
-            if let cell = self as? NumberTableViewCell {
-                cell.updateUI(attribute)
+            if let cell = self as? NumberTableViewCell, attribute = attribute as? NumberAttribute {
+                let value = attribute.value as? Int
+                cell.updateUI(attribute.name, value: value)
+                    .cellSetup { cell in
+                        cell.dataTextField.placeholder = attribute.placeholder
+                    }
             }
         case .RangeTime:
-            if let cell = self as? RangeTimeTableViewCell {
-                cell.updateUI(attribute)
+            if let cell = self as? RangeTimeTableViewCell, attribute = attribute as? RangeTimeAttribute {
+                let value = attribute.value as? RangeTime
+                cell.updateUI(attribute.name, rangeTime: value)
+                    .cellSetup { cell in
+                        cell.startTime.placeholder = attribute.placeholder
+                        cell.endTime.placeholder = attribute.secondPlaceholder
+                }
             }
         case .AccountantType:
-            if let cell = self as? AccountantTypeTableViewCell {
-                cell.updateUI(attribute)
+            if let cell = self as? AccountantTypeTableViewCell, attribute = attribute as? AccountantAttribute {
+                let value = attribute.value as? Int
+                cell.updateUI(attribute.name, value: value)
+                    .cellSetup { cell in
+                        cell.dataTextField.placeholder = attribute.placeholder
+                    }
             }
         }
-    }
-    
-    func setValidLabel(valid: StateValid, label: UILabel) {
-        switch valid {
-        case .Blank:
-            label.textColor = UIColor.blackColor()
-        case .Valid:
-            label.textColor = UIColor.greenColor()
-        case .NotValid:
-            label.textColor = UIColor.redColor()
-        }
+        return self
     }
 
 }
@@ -78,10 +85,4 @@ extension DataCell: UITextFieldDelegate {
         self.contentView.endEditing(true)
         return true
     }
-}
-
-enum StateValid {
-    case Valid
-    case NotValid
-    case Blank
 }

@@ -45,6 +45,6 @@ import UIKit
     
     func updateUI(sectionName: String) {
         headerTitle.text = sectionName
-        headerImage.image = UIImage(imageLiteral: sectionName)
+        //headerImage.image = UIImage(imageLiteral: sectionName)
     }
 }

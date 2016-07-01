@@ -9,7 +9,7 @@
 import UIKit
 import BNRCoreDataStack
 
-class CreatePersonViewController: UIViewController, UITableViewDelegate {
+class CreatePersonViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var personSegmentedControl: UISegmentedControl!
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
@@ -21,6 +21,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     var showDelegate: ShowPersonDelegate?
     var attributes = [Attribute]()
+    var manager = AttributeManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     
     func configureView() {
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.registerNib(UINib(nibName: "StringTableViewCell", bundle: nil), forCellReuseIdentifier: "StringCell")
         tableView.registerNib(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "NumberCell")
         tableView.registerNib(UINib(nibName: "RangeTimeTableViewCell", bundle: nil), forCellReuseIdentifier: "RangeTimeCell")
@@ -55,11 +57,14 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
         
         if let person = person {
             title = "Update profile"
-            attributes = person.getListAttributes()
+            manager = person.attributes()
         } else {
             title = "Create profile"
+            updateTableView(FellowWorker.entityName)
+            personSegmentedControl.selectedSegmentIndex = 0
         }
         doneButton.enabled = false
+        tableView.sectionHeaderHeight = 20
     }
     
     func configureSegmentedControl(person: Person?) {
@@ -90,17 +95,21 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
     
     @objc private func done() {
+         print("Done")
         let entity = personSegmentedControl.titleForSegmentAtIndex(personSegmentedControl.selectedSegmentIndex)
         if let person = person {
             if person.entity.name == entity {
-                person.update(attributes)
+                person.update(manager.dictionary())
             } else {
                 stack.mainQueueContext.deleteObject(person)
-                self.person = Person.createPerson(entity!, stack: stack, attributes: attributes)
+                self.person = Person.createPerson(entity!, stack: stack, manager: manager)
+                self.person?.sectionOrder = personSegmentedControl.selectedSegmentIndex - 1
             }
         } else {
-            person = Person.createPerson(entity!, stack: stack, attributes: attributes)
+            person = Person.createPerson(entity!, stack: stack, manager: manager)
+            self.person?.sectionOrder = personSegmentedControl.selectedSegmentIndex - 1
         }
+        stack.mainQueueContext.saveContext()
         showDelegate?.person = person
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -115,36 +124,42 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate {
     }
     
     func updateTableView(nameEntity: String) {
-        attributes = Person.getListAttributes(nameEntity, stack: stack, oldAttribute: attributes)
-        checkAllAttributes()
+        manager = Person.attributes(nameEntity, stack: stack, oldManger: manager)
         tableView.reloadData()
+        isValid()
     }
     
     // MARK: - Table view data source
-
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return manager.sections.count ?? 0
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  attributes.count
+        return  manager.sections[section].count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let attribute = attributes[indexPath.row]
+        let attribute = manager.attribute(forIndexPath: indexPath)
         let cell = tableView.dequeueReusableCellWithIdentifier(attribute.type.rawValue, forIndexPath: indexPath)
         if let cell = cell as? DataCell {
-            cell.addTarget(
-                editingChanged: {[unowned self] () in
-                    self.checkAllAttributes()
-                })
+            cell.indexPath = indexPath
             cell.updateUI(attribute)
+                .onChange {[unowned self] value, indexPath in
+                    self.manager.setValue(forIndexPath: indexPath, value: value)
+                    self.isValid()
+            }
         }
         return cell
     }
     
-    func checkAllAttributes() {
-        var valid = true
-        for attribute in self.attributes {
-            valid = valid && attribute.isValid()
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+             return tableView.sectionHeaderHeight
         }
-        self.doneButton.enabled = valid
+        return tableView.sectionHeaderHeight
+    }
+    
+    func isValid() {
+        self.doneButton.enabled = (manager.isValid()) ? true : false
     }
     
     // MARK: Keyboard space

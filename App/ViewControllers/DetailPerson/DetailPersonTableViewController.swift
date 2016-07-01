@@ -14,7 +14,7 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
         didSet {
             if let person = person, entity = person.entity.name {
                 title = entity
-                attributes = person.getListAttributes()
+                manager = person.attributes()
                 tableView.reloadData()
             }
         }
@@ -24,7 +24,7 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     
     var editButton: UIBarButtonItem!
     
-    var attributes = [Attribute]()
+    var manager = AttributeManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,16 +66,16 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return  1
+        return  manager.sections.count ?? 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  attributes.count ?? 0
+        return  manager.sections[section].count ?? 0
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         guard let cell =  cell as? DetailTableViewCell else { fatalError("Cell is not registered") }
-        let attribute = attributes[indexPath.row]
+        let attribute = manager.attribute(forIndexPath: indexPath)
         cell.updateUI(attribute)
     }
     

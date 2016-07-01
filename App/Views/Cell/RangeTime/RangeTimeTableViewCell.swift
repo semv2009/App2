@@ -15,68 +15,61 @@ class RangeTimeTableViewCell: DataCell {
     @IBOutlet weak var startTime: UITextField!
     @IBOutlet weak var endTime: UITextField!
     
-    var startTimePiсker = UIDatePicker()
-    var endTimePiсker = UIDatePicker()
+    var startTimePiсker: UIDatePicker!
+    var endTimePiсker: UIDatePicker!
     
-    var attribute: Attribute!
+    var rangeTime: RangeTime!
     
-    override func updateUI(attribute: Attribute) {
-        self.attribute = attribute
+    func updateUI(name: String, rangeTime: RangeTime?) -> RangeTimeTableViewCell {
+        startTimePiсker = UIDatePicker()
+        endTimePiсker = UIDatePicker()
+        
         addToolBar(startTime)
         addToolBar(endTime)
         configureTimePikers()
-        nameLabel.text = attribute.name
+        nameLabel.text = name
         
-        if let date = attribute.keys[0]?.value as? NSDate {
-            startTimePiсker.date = date
-            startTime.text = date.getTimeFormat()
+        if let start = rangeTime?.start {
+            startTimePiсker.date = start
+            startTime.text = start.getTimeFormat()
         } else {
             startTimePiсker.date = NSDate()
             startTime.text = ""
         }
-        if let date = attribute.keys[1]?.value as? NSDate {
-            endTimePiсker.date = date
-            endTime.text = date.getTimeFormat()
+        if let end = rangeTime?.end {
+            endTimePiсker.date = end
+            endTime.text = end.getTimeFormat()
         } else {
             endTimePiсker.date = NSDate()
             endTime.text = ""
         }
-        valid()
+        
+        self.rangeTime = rangeTime
+        return self
+    }
+    
+    func cellSetup(setup: (cell: RangeTimeTableViewCell) -> Void) {
+        setup(cell: self)
     }
     
     func editingChanged(datePiker: UIDatePicker) {
         if datePiker == startTimePiсker {
-            self.attribute.keys[0]?.value = datePiker.date
+            rangeTime.start = datePiker.date
             startTime.text = datePiker.date.getTimeFormat()
         } else {
-            self.attribute.keys[1]?.value = datePiker.date
+            rangeTime.end = datePiker.date
             endTime.text = datePiker.date.getTimeFormat()
         }
-        valid()
-        self.checkAllValid?()
+        onChange?(value: rangeTime, indexPath: indexPath!)
     }
     
     func editingText(textField: UITextField) {
         if textField == startTime {
-            attribute.keys[0]?.value = nil
+            rangeTime.start = nil
         } else {
-            attribute.keys[1]?.value = nil
+            rangeTime.end = nil
         }
-        valid()
-        self.checkAllValid?()
-    }
-    
-    func valid() {
-        if startTime.text?.characters.count > 0 && endTime.text?.characters.count > 0 {
-            if attribute.isValid() {
-                setValidLabel(.Valid, label: nameLabel)
-            } else {
-                setValidLabel(.NotValid, label: nameLabel)
-            }
-        } else {
-            setValidLabel(.Blank, label: nameLabel)
-        }
-
+        onChange?(value: rangeTime, indexPath: indexPath!)
     }
     
     func configureTimePikers() {

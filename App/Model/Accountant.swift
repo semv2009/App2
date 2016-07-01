@@ -18,30 +18,31 @@ class Accountant: Employee {
         return "Accountant"
     }
     
-    override func getListAttributes() -> [Attribute] {
-        var attributes = super.getListAttributes()
-        attributes.append(Attribute(
+    override func attributes() -> AttributeManager {
+        let manager = super.attributes()
+        var attributes = [Attribute]()
+        attributes.append(AccountantAttribute(
             name: "type",
-            type: .AccountantType,
-            keys: [Key(name: "type", value: type)])
+            key: "type",
+            placeholder: "Manager",
+            value: type)
         )
-        return attributes
+        manager.sections.append(attributes)
+        return manager
     }
 }
 
-
-
-struct SimpleData {
+struct AccountantData {
     let name: String
     let index: Int
 }
 
-struct TypeAccountants {
-    static let Financial = SimpleData(name: "Financial", index: 0)
-    static let Management = SimpleData(name: "Management", index: 1)
-    static let Project = SimpleData(name: "Project", index: 2)
+struct AccountantTypes {
+    static let Financial = AccountantData(name: "Financial", index: 0)
+    static let Management = AccountantData(name: "Management", index: 1)
+    static let Project = AccountantData(name: "Project", index: 2)
     
-    static func getTypeAccountant(index index: Int) -> SimpleData {
+    static func accountantType(forIndex index: Int) -> AccountantData {
         switch index {
         case 0: return Financial
         case 1: return Management
@@ -50,5 +51,5 @@ struct TypeAccountants {
         }
     }
     
-    static let allAccountants: [SimpleData] = [Financial, Management, Project]
+    static let allAccountants: [AccountantData] = [Financial, Management, Project]
 }

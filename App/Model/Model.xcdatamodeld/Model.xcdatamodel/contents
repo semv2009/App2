@@ -9,7 +9,7 @@
             </userInfo>
         </attribute>
         <userInfo>
-            <entry key="description" value="Accountant"/>
+            <entry key="description" value="2"/>
             <entry key="sort" value="0"/>
         </userInfo>
     </entity>
@@ -29,11 +29,11 @@
             </userInfo>
         </attribute>
         <userInfo>
-            <entry key="description" value="Leadership"/>
+            <entry key="description" value="1"/>
             <entry key="sort" value="0"/>
         </userInfo>
     </entity>
-    <entity name="Employee" representedClassName=".Employee" parentEntity="Person" syncable="YES">
+    <entity name="Employee" representedClassName=".Employee" isAbstract="YES" parentEntity="Person" syncable="YES">
         <attribute name="beginLunchTime" optional="YES" attributeType="Date" syncable="YES">
             <userInfo>
                 <entry key="description" value="begin lunch time"/>
@@ -57,11 +57,11 @@
     </entity>
     <entity name="FellowWorker" representedClassName=".FellowWorker" parentEntity="Employee" syncable="YES">
         <userInfo>
-            <entry key="description" value="Fellow Worker"/>
+            <entry key="description" value="0"/>
             <entry key="sort" value="0"/>
         </userInfo>
     </entity>
-    <entity name="Person" representedClassName=".Person" syncable="YES">
+    <entity name="Person" representedClassName=".Person" isAbstract="YES" syncable="YES">
         <attribute name="fullName" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="description" value="full name"/>
@@ -75,12 +75,13 @@
                 <entry key="order" value="102"/>
             </userInfo>
         </attribute>
+        <attribute name="sectionOrder" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Accountant" positionX="9" positionY="54" width="128" height="60"/>
-        <element name="Employee" positionX="36" positionY="81" width="128" height="90"/>
-        <element name="FellowWorker" positionX="-90" positionY="27" width="128" height="45"/>
-        <element name="Director" positionX="-216" positionY="18" width="128" height="75"/>
-        <element name="Person" positionX="-11" positionY="-243" width="128" height="90"/>
+        <element name="Accountant" positionX="9" positionY="54" width="128" height="58"/>
+        <element name="Director" positionX="-216" positionY="18" width="128" height="73"/>
+        <element name="Employee" positionX="36" positionY="81" width="128" height="88"/>
+        <element name="FellowWorker" positionX="-90" positionY="27" width="128" height="43"/>
+        <element name="Person" positionX="-11" positionY="-243" width="128" height="103"/>
     </elements>
 </model>

@@ -14,6 +14,7 @@ class Person: NSManagedObject, CoreDataModelable {
     @NSManaged var fullName: String?
     @NSManaged var salary: NSNumber?
     @NSManaged var order: NSNumber?
+    @NSManaged var sectionOrder: Int
     
     // MARK: - CoreDataModelable
     class var entityName: String {
@@ -30,22 +31,7 @@ class Person: NSManagedObject, CoreDataModelable {
         }
     }
     
-    func getListAttributes() -> [Attribute] {
-        var attributes = [Attribute]()
-        attributes.append(Attribute(
-            name: "full name",
-            type: .String,
-            keys: [Key(name: "fullName", value: fullName)])
-        )
-        attributes.append(Attribute(
-            name: "salary",
-            type: .Number,
-            keys: [Key(name: "salary", value: salary)])
-        )
-        return attributes
-    }
-    
-    static func createPerson(entity: String, stack: CoreDataStack, attributes: [Attribute]) -> Person? {
+    static func createPerson(entity: String, stack: CoreDataStack, manager: AttributeManager) -> Person? {
         var person: Person?
         switch entity {
         case Accountant.entityName:
@@ -59,106 +45,58 @@ class Person: NSManagedObject, CoreDataModelable {
         }
         
         if let person = person {
-            person.update(attributes)
+            person.update(manager.dictionary())
         }
         return person
     }
     
-    func update(attributes: [Attribute]) {
-        for attribute in attributes {
-            for key in attribute.keys {
-                if let key = key {
-                    self.setValue(key.value, forKey: key.name)
-                }
-            }
+    func update(values: [String : AnyObject?]) {
+        for (key, value) in values {
+            self.setValue(value, forKey: key)
         }
     }
     
-    static func getListAttributes(entityName: String, stack: CoreDataStack, oldAttribute: [Attribute]? = nil) -> [Attribute] {
-        var attributes = [Attribute]()
+    static func attributes(entityName: String, stack: CoreDataStack, oldManger: AttributeManager? = nil) -> AttributeManager {
+        var manager: AttributeManager = AttributeManager()
         switch entityName {
         case Accountant.entityName:
-            attributes = Accountant(managedObjectContext: stack.newChildContext()).getListAttributes()
+            manager = Accountant(managedObjectContext: stack.newChildContext()).attributes()
         case Director.entityName:
-            attributes = Director(managedObjectContext: stack.newChildContext()).getListAttributes()
+            manager = Director(managedObjectContext: stack.newChildContext()).attributes()
         case FellowWorker.entityName:
-            attributes = FellowWorker(managedObjectContext: stack.newChildContext()).getListAttributes()
+            manager = FellowWorker(managedObjectContext: stack.newChildContext()).attributes()
         default:
             break
         }
-        if let oldAttribute = oldAttribute {
-            copyOldAttributes(attributes, oldAttributes: oldAttribute)
+        if let oldManger = oldManger {
+            manager.update(oldManger)
         }
-        return attributes
+        return manager
     }
-    
-    static func copyOldAttributes(newAttributes: [Attribute], oldAttributes: [Attribute]) {
-        for newAttribute in newAttributes {
-            for oldAttribute in oldAttributes {
-                if oldAttribute.name == newAttribute.name {
-                    compare(newAttribute, old: oldAttribute)
-                }
-            }
-        }
-    }
-    
-    static func compare(new: Attribute, old: Attribute) {
-        for newkey in new.keys {
-            for oldKey in old.keys {
-                if let newkey = newkey, oldKey = oldKey {
-                    if newkey.name == oldKey.name {
-                        newkey.value = oldKey.value
-                    }
-                }
-            }
-        }
+
+    func attributes() -> AttributeManager {
+        var attributes = [Attribute]()
+        attributes.append(StringAttribute(
+            name: "full name",
+            key: "fullName",
+            placeholder: "John Snow",
+            value: fullName)
+        )
+        attributes.append(NumberAttribute(
+            name: "salary",
+            key: "salary",
+            placeholder: "35000",
+            value: salary)
+        )
+        let manager = AttributeManager()
+        manager.sections.append(attributes)
+        return manager
     }
 }
 
-class Attribute {
-    var name: String
-    var type: TypeCell
-    var keys: [Key?]
-    var valid: Bool
-    
-    init(name: String, type: TypeCell, keys: [Key?], valid: Bool = true) {
-        self.name = name
-        self.type = type
-        self.keys = keys
-        self.valid = valid
-    }
-    
-    func isValid() -> Bool {
-        self.valid = false
-        switch type {
-        case .Number, .String, .AccountantType:
-            if let _ = keys[0]?.value {
-                self.valid =  true
-            }
-        case .RangeTime:
-            if let startTime = keys[0]?.value as? NSDate, endTime = keys[1]?.value as? NSDate {
-                if startTime.compare(endTime) == NSComparisonResult.OrderedAscending {
-                    self.valid = true
-                }
-            }
-        }
-        return self.valid
-    }
-}
-
-enum TypeCell: String {
+enum CellType: String {
     case String = "StringCell"
     case Number = "NumberCell"
     case RangeTime = "RangeTimeCell"
     case AccountantType = "AccountantTypeCell"
-}
-
-class Key {
-    var name: String
-    var value: AnyObject?
-    
-    init(name: String, value: AnyObject? = nil) {
-        self.name = name
-        self.value = value
-    }
 }

@@ -12,24 +12,22 @@ extension String {
     static func value(attribute: Attribute) -> String {
         switch attribute.type {
         case .String:
-            if let value = attribute.keys[0]?.value as? String {
+            if let value = attribute.value as? String {
                 return value
             }
         case .Number:
-            if let value = attribute.keys[0]?.value as? Int {
+            if let value = attribute.value as? Int {
                 return "\(value)"
             }
         case .AccountantType:
-            if let value = attribute.keys[0]?.value as? Int, str = TypeAccountants.allAccountants.getElement(value)?.name {
+            if let value = attribute.value as? Int, str = AccountantTypes.allAccountants.getElement(value)?.name {
                 return str
             }
         case .RangeTime:
-            if let startTime = attribute.keys[0]?.value as? NSDate,
-                   endTime = attribute.keys[1]?.value as? NSDate {
-                return "from \(startTime.getTimeFormat()) to  \(endTime.getTimeFormat())"
+            if let value = attribute.value as? RangeTime, startTime = value.start, endTime = value.end {
+            return "from \(startTime.getTimeFormat()) to  \(endTime.getTimeFormat())"
             }
         }
         return ""
     }
-    
 }

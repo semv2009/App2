@@ -13,43 +13,20 @@ class StringTableViewCell: DataCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dataTextField: UITextField!
-    var attribute: Attribute!
     
-    
-    override func updateUI(attribute: Attribute) {
-        self.attribute = attribute
+    func updateUI(name: String, value: String?) -> StringTableViewCell {
         addToolBar(dataTextField)
         dataTextField.addTarget(self, action: #selector(StringTableViewCell.editingChanged), forControlEvents: .EditingChanged)
-        nameLabel.text = attribute.name
-        if let data = attribute.keys[0]?.value as? String {
-             dataTextField.text = data
-        } else {
-            dataTextField.text = ""
-        }
-        valid()
+        nameLabel.text = name
+        dataTextField.text = value
+        return self
+    }
+
+    func cellSetup(setup: (cell: StringTableViewCell) -> Void) {
+        setup(cell: self)
     }
     
     func editingChanged(textField: UITextField) {
-       if let text = textField.text {
-            if text.characters.count > 0 {
-                self.attribute.keys[0]?.value = textField.text
-            } else {
-                self.attribute.keys[0]?.value = nil
-            }
-        }
-        valid()
-        self.checkAllValid?()
-    }
-    
-    func valid() {
-        if dataTextField.text?.characters.count > 0 {
-            if attribute.isValid() {
-                setValidLabel(.Valid, label: nameLabel)
-            } else {
-                setValidLabel(.NotValid, label: nameLabel)
-            }
-        } else {
-            setValidLabel(.Blank, label: nameLabel)
-        }
+        self.onChange?(value: textField.text, indexPath: indexPath!)
     }
 }

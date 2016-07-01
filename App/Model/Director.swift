@@ -20,14 +20,19 @@ class Director: Person {
         return "Director"
     }
     
-    override func getListAttributes() -> [Attribute] {
-        var attributes = super.getListAttributes()
-        attributes.append(Attribute(
+    override func attributes() -> AttributeManager {
+        let manager = super.attributes()
+        var attributes = [Attribute]()
+        attributes.append(RangeTimeAttribute(
             name: "business hours",
-            type: .RangeTime,
-            keys: [Key(name: "beginBusinessHours", value: beginBusinessHours),
-                Key(name: "endBusinessHours", value: endBusinessHours)])
+            key: "beginBusinessHours",
+            secondKey: "endBusinessHours",
+            placeholder: "15:00",
+            secondPlaceholder: "17:00",
+            value: RangeTime(start: beginBusinessHours, end: endBusinessHours))
         )
-        return attributes
+        manager.sections.append(attributes)
+        return manager
     }
+
 }
