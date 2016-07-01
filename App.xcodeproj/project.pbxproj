@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B03ABF81D24043F004449FC /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03ABF71D24043F004449FC /* Attribute.swift */; };
-		8B03ABFA1D24078B004449FC /* NumberAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03ABF91D24078B004449FC /* NumberAttribute.swift */; };
-		8B03ABFC1D240A29004449FC /* StringAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03ABFB1D240A29004449FC /* StringAttribute.swift */; };
-		8B03AC001D240C53004449FC /* RangeTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03ABFF1D240C53004449FC /* RangeTime.swift */; };
-		8B03AC021D240CD5004449FC /* RangeTimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03AC011D240CD5004449FC /* RangeTimeAttribute.swift */; };
-		8B03AC041D2457F7004449FC /* AccountantAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03AC031D2457F7004449FC /* AccountantAttribute.swift */; };
-		8B03AC071D2458FF004449FC /* AttributeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03AC061D2458FF004449FC /* AttributeManager.swift */; };
 		8B291F9C1CE32224000F5B0B /* NSFetchedResultsController+PersonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B291F9B1CE32224000F5B0B /* NSFetchedResultsController+PersonEntity.swift */; };
 		8B291FA81CE32F93000F5B0B /* PersonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B291FA61CE32F93000F5B0B /* PersonHeaderView.swift */; };
 		8B291FA91CE32F93000F5B0B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */; };
@@ -23,8 +16,16 @@
 		8B2FD94A1D26976C00ABAF8C /* FellowWorkerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2FD9481D26976C00ABAF8C /* FellowWorkerTableViewCell.xib */; };
 		8B2FD94E1D26A10C00ABAF8C /* AccountantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD94C1D26A10C00ABAF8C /* AccountantTableViewCell.swift */; };
 		8B2FD94F1D26A10C00ABAF8C /* AccountantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2FD94D1D26A10C00ABAF8C /* AccountantTableViewCell.xib */; };
-		8B2FD9511D26A91D00ABAF8C /* UITableView+dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9501D26A91D00ABAF8C /* UITableView+dequeue.swift */; };
-		8B2FD9531D26B04F00ABAF8C /* ImageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9521D26B04F00ABAF8C /* ImageViewManager.swift */; };
+		8B2FD95B1D26D70700ABAF8C /* AccountantAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9541D26D70700ABAF8C /* AccountantAttribute.swift */; };
+		8B2FD95C1D26D70700ABAF8C /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9551D26D70700ABAF8C /* Attribute.swift */; };
+		8B2FD95D1D26D70700ABAF8C /* AttributeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9561D26D70700ABAF8C /* AttributeManager.swift */; };
+		8B2FD95E1D26D70700ABAF8C /* NumberAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9571D26D70700ABAF8C /* NumberAttribute.swift */; };
+		8B2FD95F1D26D70700ABAF8C /* RangeTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9581D26D70700ABAF8C /* RangeTime.swift */; };
+		8B2FD9601D26D70700ABAF8C /* RangeTimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9591D26D70700ABAF8C /* RangeTimeAttribute.swift */; };
+		8B2FD9611D26D70700ABAF8C /* StringAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD95A1D26D70700ABAF8C /* StringAttribute.swift */; };
+		8B2FD9641D26D73500ABAF8C /* Dictionary+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9621D26D73500ABAF8C /* Dictionary+Merge.swift */; };
+		8B2FD9651D26D73500ABAF8C /* UITableView+dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9631D26D73500ABAF8C /* UITableView+dequeue.swift */; };
+		8B2FD9671D26D74F00ABAF8C /* ImageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9661D26D74F00ABAF8C /* ImageViewManager.swift */; };
 		8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */; };
 		8B33FB9E1D05E2F000653ABD /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB9D1D05E2F000653ABD /* DataCell.swift */; };
 		8B33FBA71D05E91300653ABD /* StringTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */; };
@@ -53,7 +54,6 @@
 		8B51DE1E1CE9044C00684AB5 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51DE1D1CE9044C00684AB5 /* Quote.swift */; };
 		8B51DE261CE9108000684AB5 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51DE241CE9108000684AB5 /* DetailTableViewCell.swift */; };
 		8B51DE271CE9108000684AB5 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B51DE251CE9108000684AB5 /* DetailTableViewCell.xib */; };
-		8B677C081D24EC7800E42E9B /* Dictionary+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B677C071D24EC7800E42E9B /* Dictionary+Merge.swift */; };
 		8B707BD71D0208040030F068 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 8B707BD61D0208040030F068 /* Images */; };
 		8B74E6821CDE817D008985CC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6801CDE817D008985CC /* Person.swift */; };
 		8B74E6861CDE81CB008985CC /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74E6841CDE81CB008985CC /* Employee.swift */; };
@@ -83,13 +83,6 @@
 
 /* Begin PBXFileReference section */
 		27819D767AD0DEF8D8380DD9 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B03ABF71D24043F004449FC /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
-		8B03ABF91D24078B004449FC /* NumberAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberAttribute.swift; sourceTree = "<group>"; };
-		8B03ABFB1D240A29004449FC /* StringAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringAttribute.swift; sourceTree = "<group>"; };
-		8B03ABFF1D240C53004449FC /* RangeTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeTime.swift; sourceTree = "<group>"; };
-		8B03AC011D240CD5004449FC /* RangeTimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeTimeAttribute.swift; sourceTree = "<group>"; };
-		8B03AC031D2457F7004449FC /* AccountantAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountantAttribute.swift; sourceTree = "<group>"; };
-		8B03AC061D2458FF004449FC /* AttributeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeManager.swift; sourceTree = "<group>"; };
 		8B291F9B1CE32224000F5B0B /* NSFetchedResultsController+PersonEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSFetchedResultsController+PersonEntity.swift"; path = "Extension/NSFetchedResultsController+PersonEntity.swift"; sourceTree = "<group>"; };
 		8B291FA61CE32F93000F5B0B /* PersonHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonHeaderView.swift; path = Views/PersonHeader/PersonHeaderView.swift; sourceTree = "<group>"; };
 		8B291FA71CE32F93000F5B0B /* PersonHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PersonHeaderView.xib; path = Views/PersonHeader/PersonHeaderView.xib; sourceTree = "<group>"; };
@@ -99,8 +92,16 @@
 		8B2FD9481D26976C00ABAF8C /* FellowWorkerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FellowWorkerTableViewCell.xib; path = Views/Cell/FellowWorker/FellowWorkerTableViewCell.xib; sourceTree = "<group>"; };
 		8B2FD94C1D26A10C00ABAF8C /* AccountantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountantTableViewCell.swift; path = Views/Cell/Accountant/AccountantTableViewCell.swift; sourceTree = "<group>"; };
 		8B2FD94D1D26A10C00ABAF8C /* AccountantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountantTableViewCell.xib; path = Views/Cell/Accountant/AccountantTableViewCell.xib; sourceTree = "<group>"; };
-		8B2FD9501D26A91D00ABAF8C /* UITableView+dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+dequeue.swift"; sourceTree = "<group>"; };
-		8B2FD9521D26B04F00ABAF8C /* ImageViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewManager.swift; sourceTree = "<group>"; };
+		8B2FD9541D26D70700ABAF8C /* AccountantAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountantAttribute.swift; path = Model/Attributes/AccountantAttribute.swift; sourceTree = "<group>"; };
+		8B2FD9551D26D70700ABAF8C /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attribute.swift; path = Model/Attributes/Attribute.swift; sourceTree = "<group>"; };
+		8B2FD9561D26D70700ABAF8C /* AttributeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributeManager.swift; path = Model/Attributes/AttributeManager.swift; sourceTree = "<group>"; };
+		8B2FD9571D26D70700ABAF8C /* NumberAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberAttribute.swift; path = Model/Attributes/NumberAttribute.swift; sourceTree = "<group>"; };
+		8B2FD9581D26D70700ABAF8C /* RangeTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RangeTime.swift; path = Model/Attributes/RangeTime.swift; sourceTree = "<group>"; };
+		8B2FD9591D26D70700ABAF8C /* RangeTimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RangeTimeAttribute.swift; path = Model/Attributes/RangeTimeAttribute.swift; sourceTree = "<group>"; };
+		8B2FD95A1D26D70700ABAF8C /* StringAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringAttribute.swift; path = Model/Attributes/StringAttribute.swift; sourceTree = "<group>"; };
+		8B2FD9621D26D73500ABAF8C /* Dictionary+Merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Merge.swift"; path = "Extension/Dictionary+Merge.swift"; sourceTree = "<group>"; };
+		8B2FD9631D26D73500ABAF8C /* UITableView+dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+dequeue.swift"; path = "Extension/UITableView+dequeue.swift"; sourceTree = "<group>"; };
+		8B2FD9661D26D74F00ABAF8C /* ImageViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewManager.swift; path = ViewControllers/Gallery/ImageViewManager.swift; sourceTree = "<group>"; };
 		8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+SafeGetElement.swift"; path = "Extension/Array+SafeGetElement.swift"; sourceTree = "<group>"; };
 		8B33FB9D1D05E2F000653ABD /* DataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataCell.swift; path = Views/Cell/DataCell.swift; sourceTree = "<group>"; };
 		8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringTableViewCell.swift; path = Views/Cell/String/StringTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		8B51DE1D1CE9044C00684AB5 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quote.swift; path = Model/Quote.swift; sourceTree = "<group>"; };
 		8B51DE241CE9108000684AB5 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTableViewCell.swift; path = Views/Cell/Detail/DetailTableViewCell.swift; sourceTree = "<group>"; };
 		8B51DE251CE9108000684AB5 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailTableViewCell.xib; path = Views/Cell/Detail/DetailTableViewCell.xib; sourceTree = "<group>"; };
-		8B677C071D24EC7800E42E9B /* Dictionary+Merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Merge.swift"; sourceTree = "<group>"; };
 		8B707BD61D0208040030F068 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = Resources/Images; sourceTree = "<group>"; };
 		8B74E6801CDE817D008985CC /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Model/Person.swift; sourceTree = "<group>"; };
 		8B74E6841CDE81CB008985CC /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Employee.swift; path = Model/Employee.swift; sourceTree = "<group>"; };
@@ -183,13 +183,13 @@
 		8B03ABF61D24041B004449FC /* Attributes */ = {
 			isa = PBXGroup;
 			children = (
-				8B03AC061D2458FF004449FC /* AttributeManager.swift */,
-				8B03ABF71D24043F004449FC /* Attribute.swift */,
-				8B03ABF91D24078B004449FC /* NumberAttribute.swift */,
-				8B03ABFB1D240A29004449FC /* StringAttribute.swift */,
-				8B03AC011D240CD5004449FC /* RangeTimeAttribute.swift */,
-				8B03AC031D2457F7004449FC /* AccountantAttribute.swift */,
-				8B03ABFF1D240C53004449FC /* RangeTime.swift */,
+				8B2FD9541D26D70700ABAF8C /* AccountantAttribute.swift */,
+				8B2FD9551D26D70700ABAF8C /* Attribute.swift */,
+				8B2FD9561D26D70700ABAF8C /* AttributeManager.swift */,
+				8B2FD9571D26D70700ABAF8C /* NumberAttribute.swift */,
+				8B2FD9581D26D70700ABAF8C /* RangeTime.swift */,
+				8B2FD9591D26D70700ABAF8C /* RangeTimeAttribute.swift */,
+				8B2FD95A1D26D70700ABAF8C /* StringAttribute.swift */,
 			);
 			name = Attributes;
 			sourceTree = "<group>";
@@ -290,14 +290,14 @@
 		8B39C8F71CE204FF0046D369 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8B2FD9621D26D73500ABAF8C /* Dictionary+Merge.swift */,
+				8B2FD9631D26D73500ABAF8C /* UITableView+dequeue.swift */,
 				8B39C9021CE205C60046D369 /* NSDate+StringRepresentation.swift */,
 				8B291F9B1CE32224000F5B0B /* NSFetchedResultsController+PersonEntity.swift */,
 				8BF3B4281CF1E60C00AF5E25 /* String+StringForAttributeType.swift */,
 				8B3501461CF33CEC0074D3DA /* EZLoadingActivity.swift */,
 				8B3501471CF33CEC0074D3DA /* UIViewController+ EZLoadingActivity.swift */,
 				8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */,
-				8B677C071D24EC7800E42E9B /* Dictionary+Merge.swift */,
-				8B2FD9501D26A91D00ABAF8C /* UITableView+dequeue.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -421,7 +421,7 @@
 				8B707BD61D0208040030F068 /* Images */,
 				8B4A97E11CDB4BFE007F3439 /* GalleryViewController.swift */,
 				8B4A97E21CDB4BFE007F3439 /* GalleryViewController.xib */,
-				8B2FD9521D26B04F00ABAF8C /* ImageViewManager.swift */,
+				8B2FD9661D26D74F00ABAF8C /* ImageViewManager.swift */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -677,54 +677,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2FD9641D26D73500ABAF8C /* Dictionary+Merge.swift in Sources */,
 				8B4A97E31CDB4BFE007F3439 /* GalleryViewController.swift in Sources */,
 				8B74E68E1CDE8225008985CC /* FellowWorker.swift in Sources */,
 				8B291F9C1CE32224000F5B0B /* NSFetchedResultsController+PersonEntity.swift in Sources */,
 				8B291FA81CE32F93000F5B0B /* PersonHeaderView.swift in Sources */,
-				8B03AC041D2457F7004449FC /* AccountantAttribute.swift in Sources */,
+				8B2FD95B1D26D70700ABAF8C /* AccountantAttribute.swift in Sources */,
 				8BFBE41D1D07935200EA29F3 /* AccountantTypeTableViewCell.swift in Sources */,
 				8B3501491CF33CEC0074D3DA /* UIViewController+ EZLoadingActivity.swift in Sources */,
 				8B2FD9491D26976C00ABAF8C /* FellowWorkerTableViewCell.swift in Sources */,
-				8B03AC071D2458FF004449FC /* AttributeManager.swift in Sources */,
 				8B74E68A1CDE8208008985CC /* Accountant.swift in Sources */,
 				8B4A97EB1CDB4C4B007F3439 /* PersonTableViewController.swift in Sources */,
-				8B03ABFA1D24078B004449FC /* NumberAttribute.swift in Sources */,
 				8B51DE261CE9108000684AB5 /* DetailTableViewCell.swift in Sources */,
 				8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */,
 				8BFBE4181D0779A800EA29F3 /* RangeTimeTableViewCell.swift in Sources */,
+				8B2FD95C1D26D70700ABAF8C /* Attribute.swift in Sources */,
 				8B74E6821CDE817D008985CC /* Person.swift in Sources */,
 				8BFBE4131D07770900EA29F3 /* NumberTableViewCell.swift in Sources */,
 				8B4A97941CDB3259007F3439 /* AppDelegate.swift in Sources */,
 				8B74E6861CDE81CB008985CC /* Employee.swift in Sources */,
 				8BF3B4271CF1E5EF00AF5E25 /* WebHelper.swift in Sources */,
-				8B03ABFC1D240A29004449FC /* StringAttribute.swift in Sources */,
 				8B3501481CF33CEC0074D3DA /* EZLoadingActivity.swift in Sources */,
 				8BF3B4241CF1E5CB00AF5E25 /* PersonDetailView.swift in Sources */,
 				8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
 				8BF3B4291CF1E60C00AF5E25 /* String+StringForAttributeType.swift in Sources */,
-				8B2FD9531D26B04F00ABAF8C /* ImageViewManager.swift in Sources */,
 				8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */,
+				8B2FD9671D26D74F00ABAF8C /* ImageViewManager.swift in Sources */,
 				8B2FD9441D268DC200ABAF8C /* DirectorTableViewCell.swift in Sources */,
+				8B2FD9611D26D70700ABAF8C /* StringAttribute.swift in Sources */,
+				8B2FD9601D26D70700ABAF8C /* RangeTimeAttribute.swift in Sources */,
+				8B2FD9651D26D73500ABAF8C /* UITableView+dequeue.swift in Sources */,
 				8B35014D1CF33D1E0074D3DA /* StatusConstants.swift in Sources */,
+				8B2FD95D1D26D70700ABAF8C /* AttributeManager.swift in Sources */,
 				8B2FD94E1D26A10C00ABAF8C /* AccountantTableViewCell.swift in Sources */,
 				8B4A97DC1CDB4444007F3439 /* MainTabViewController.swift in Sources */,
 				8B39C9031CE205C60046D369 /* NSDate+StringRepresentation.swift in Sources */,
 				8BF3B4301CF1E67F00AF5E25 /* PersonTableViewCell.swift in Sources */,
 				8B4A97D41CDB3581007F3439 /* Model.xcdatamodeld in Sources */,
-				8B2FD9511D26A91D00ABAF8C /* UITableView+dequeue.swift in Sources */,
 				8BF3B42C1CF1E65800AF5E25 /* QuoteTableViewCell.swift in Sources */,
+				8B2FD95F1D26D70700ABAF8C /* RangeTime.swift in Sources */,
 				8B33FB9E1D05E2F000653ABD /* DataCell.swift in Sources */,
+				8B2FD95E1D26D70700ABAF8C /* NumberAttribute.swift in Sources */,
 				8B51DE1E1CE9044C00684AB5 /* Quote.swift in Sources */,
-				8B03ABF81D24043F004449FC /* Attribute.swift in Sources */,
 				8BF3B4201CF1E59500AF5E25 /* GalleryView.swift in Sources */,
 				8B33FBA71D05E91300653ABD /* StringTableViewCell.swift in Sources */,
 				8B35014C1CF33D1E0074D3DA /* Error.swift in Sources */,
 				8BF919141D0A0D6200C36F66 /* Director.swift in Sources */,
-				8B03AC001D240C53004449FC /* RangeTime.swift in Sources */,
-				8B677C081D24EC7800E42E9B /* Dictionary+Merge.swift in Sources */,
 				8B3450961CE8CF36005777C9 /* DetailPersonTableViewController.swift in Sources */,
-				8B03AC021D240CD5004449FC /* RangeTimeAttribute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
