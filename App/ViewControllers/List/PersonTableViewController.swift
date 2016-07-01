@@ -171,11 +171,7 @@ extension PersonTableViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .Insert:
             if let indexPath = newIndexPath {
-                let person = controller.getObject(indexPath)
-                let maxOrder = controller.maxOrder(indexPath)
-                if maxOrder > 0 {
-                    person.order = maxOrder + 1
-                }
+                sortInsert(indexPath)
                 tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
             
@@ -210,6 +206,14 @@ extension PersonTableViewController: NSFetchedResultsControllerDelegate {
             tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
         default:
             break
+        }
+    }
+    
+    func sortInsert(indexPath: NSIndexPath) {
+        let person = fetchedResultsController.getObject(indexPath)
+        let maxOrder = fetchedResultsController.maxOrder(indexPath)
+        if maxOrder > 0 {
+            person.order = maxOrder + 1
         }
     }
 }

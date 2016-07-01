@@ -71,6 +71,7 @@ class ImageViewManager {
     }
     
     func resetLeftImage(index: Int) {
+        print("Left \(index)")
         if index < images.count - rightBorder - 1 && index >= leftBorder - 1 {
             views.getElement(index + rightBorder + 1)?.removeImage()
             views.getElement(index - leftBorder + 1)?.loadImage()
@@ -79,6 +80,7 @@ class ImageViewManager {
     }
     
     func resetRightImage(index: Int) {
+         print("Right \(index)")  
         if index > leftBorder - 1 && index < images.count - rightBorder {
             views.getElement(index - leftBorder)?.removeImage()
             views.getElement(index + rightBorder)?.loadImage()
