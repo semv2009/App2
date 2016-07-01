@@ -27,6 +27,8 @@ class StringTableViewCell: DataCell {
     }
     
     func editingChanged(textField: UITextField) {
-        self.onChange?(value: textField.text, indexPath: indexPath!)
+        if let indexPath = indexPath {
+            self.onChange?(value: textField.text, indexPath: indexPath)
+        }
     }
 }

@@ -39,7 +39,9 @@ class AccountantTypeTableViewCell: DataCell {
     }
     
     func editingChanged(textField: UITextField) {
-        onChange?(value: nil, indexPath: indexPath!)
+        if let indexPath = indexPath {
+            onChange?(value: nil, indexPath: indexPath)
+        }
     }
 }
 
@@ -58,7 +60,8 @@ extension AccountantTypeTableViewCell: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         dataTextField.text = dataArray[row].name
-        onChange?(value: row, indexPath: indexPath!)
-        //self.checkAllValid?()
+        if let indexPath = indexPath {
+            onChange?(value: row, indexPath: indexPath)
+        }
     }
 }

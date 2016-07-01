@@ -23,7 +23,9 @@ class DirectorTableViewCell: PersonTableViewCell {
                 salaryLabel.text = "\(salary)"
             }
             
-            fullNameLabel.text = director.fullName
+            if let name = director.fullName {
+                fullNameLabel.text = "name: " + name
+            }
             
             if let start = director.beginBusinessHours?.getTimeFormat(), end = director.endBusinessHours?.getTimeFormat() {
                 timeLabel.text = start + " - " + end

@@ -33,7 +33,9 @@ class NumberTableViewCell: DataCell {
     }
     
     func editingChanged(textField: UITextField) {
-        let number: Int? = Int(textField.text!)
-        onChange?(value: number, indexPath: indexPath!)
+        if let text = textField.text, indexPath = indexPath {
+            let number: Int? = Int(text)
+            onChange?(value: number, indexPath: indexPath)
+        }
     }
 }

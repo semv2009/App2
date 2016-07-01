@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Никулин Семен Викторович" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwB-61-7PA">
-                        <rect key="frame" x="8" y="13" width="584" height="37"/>
+                        <rect key="frame" x="8" y="13" width="584" height="31"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="584" id="e6S-TS-Pmg"/>
@@ -31,25 +31,25 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="business hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SML-eZ-sOG">
-                        <rect key="frame" x="300" y="58" width="292" height="22"/>
+                        <rect key="frame" x="300" y="52" width="292" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4343" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT7-0N-PQd">
-                        <rect key="frame" x="300" y="88" width="292" height="18"/>
+                        <rect key="frame" x="300" y="82" width="292" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="43" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYK-YF-V7G">
-                        <rect key="frame" x="8" y="88" width="292" height="18"/>
+                        <rect key="frame" x="8" y="82" width="292" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="salary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHE-es-ObJ">
-                        <rect key="frame" x="8" y="58" width="292" height="22"/>
+                        <rect key="frame" x="8" y="52" width="292" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -64,9 +64,9 @@
                     <constraint firstItem="EYK-YF-V7G" firstAttribute="top" secondItem="pHE-es-ObJ" secondAttribute="bottom" constant="8" id="LAJ-gN-pG8"/>
                     <constraint firstItem="EYK-YF-V7G" firstAttribute="width" secondItem="pHE-es-ObJ" secondAttribute="width" id="MEf-ea-oyO"/>
                     <constraint firstItem="nT7-0N-PQd" firstAttribute="top" secondItem="SML-eZ-sOG" secondAttribute="bottom" constant="8" id="VCb-YS-2vo"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="EYK-YF-V7G" secondAttribute="bottom" id="Xrk-7R-3h2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="EYK-YF-V7G" secondAttribute="bottom" constant="6" id="Xrk-7R-3h2"/>
                     <constraint firstItem="pHE-es-ObJ" firstAttribute="top" secondItem="kwB-61-7PA" secondAttribute="bottom" constant="8" id="a3o-Ux-d9p"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="nT7-0N-PQd" secondAttribute="bottom" id="dje-q7-VjD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nT7-0N-PQd" secondAttribute="bottom" constant="6" id="dje-q7-VjD"/>
                     <constraint firstAttribute="leadingMargin" secondItem="kwB-61-7PA" secondAttribute="leading" id="fim-bq-OhJ"/>
                     <constraint firstItem="SML-eZ-sOG" firstAttribute="top" secondItem="kwB-61-7PA" secondAttribute="bottom" constant="8" id="hpN-M3-yAu"/>
                     <constraint firstItem="SML-eZ-sOG" firstAttribute="leading" secondItem="pHE-es-ObJ" secondAttribute="trailing" id="i0h-7A-bFB"/>
@@ -78,10 +78,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="fullNameLabel" destination="kwB-61-7PA" id="JTm-9E-PuI"/>
-                <outlet property="nameLabel" destination="kwB-61-7PA" id="Lxd-ja-DTY"/>
-                <outlet property="salaryLabel" destination="EYK-YF-V7G" id="5zz-Hc-gJe"/>
-                <outlet property="timeLabel" destination="EYK-YF-V7G" id="cgn-6Y-rv5"/>
+                <outlet property="fullNameLabel" destination="kwB-61-7PA" id="BoF-m7-JUJ"/>
+                <outlet property="salaryLabel" destination="EYK-YF-V7G" id="vlQ-pc-BjG"/>
+                <outlet property="timeLabel" destination="nT7-0N-PQd" id="icF-OJ-seS"/>
             </connections>
             <point key="canvasLocation" x="525" y="211.5"/>
         </tableViewCell>

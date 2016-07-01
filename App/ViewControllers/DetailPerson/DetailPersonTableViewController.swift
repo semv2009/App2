@@ -8,7 +8,7 @@
 
 import UIKit
 import BNRCoreDataStack
-class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate {
+class DetailPersonTableViewController: UITableViewController, CreatePersonViewControllerDelegate {
     
     var person: Person? {
         didSet {
@@ -20,7 +20,7 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
         }
     }
     
-    var stack: CoreDataStack!
+    var stack: CoreDataStack
     
     var editButton: UIBarButtonItem!
     
@@ -58,7 +58,7 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
     @objc private func edit() {
         let createVC = CreatePersonViewController(coreDataStack: stack)
         createVC.person = person
-        createVC.showDelegate = self
+        createVC.delegate = self
         showViewController(UINavigationController(rootViewController: createVC), sender: self)
     }
     
@@ -84,8 +84,7 @@ class DetailPersonTableViewController: UITableViewController, ShowPersonDelegate
         return cell
     }
     
-}
-
-protocol ShowPersonDelegate {
-    var person: Person? { get set }
+    func createPersonViewController(didUpdatePerson person: Person?) {
+        self.person = person
+    }
 }

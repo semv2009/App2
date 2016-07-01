@@ -60,7 +60,9 @@ class RangeTimeTableViewCell: DataCell {
             rangeTime.end = datePiker.date
             endTime.text = datePiker.date.getTimeFormat()
         }
-        onChange?(value: rangeTime, indexPath: indexPath!)
+        if let indexPath = indexPath {
+            onChange?(value: rangeTime, indexPath: indexPath)
+        }
     }
     
     func editingText(textField: UITextField) {
@@ -69,7 +71,9 @@ class RangeTimeTableViewCell: DataCell {
         } else {
             rangeTime.end = nil
         }
-        onChange?(value: rangeTime, indexPath: indexPath!)
+        if let indexPath = indexPath {
+            onChange?(value: rangeTime, indexPath: indexPath)
+        }
     }
     
     func configureTimePikers() {

@@ -27,7 +27,9 @@ class AccountantTableViewCell: PersonTableViewCell {
                 salaryLabel.text = "\(salary)"
             }
             
-            fullNameLabel.text = accountant.fullName
+            if let name = accountant.fullName {
+                fullNameLabel.text = "name: " + name
+            }
             
             if let start = accountant.beginLunchTime?.getTimeFormat(), end = accountant.endLunchTime?.getTimeFormat() {
                 timeLabel.text = start + " - " + end

@@ -23,6 +23,8 @@
 		8B2FD94A1D26976C00ABAF8C /* FellowWorkerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2FD9481D26976C00ABAF8C /* FellowWorkerTableViewCell.xib */; };
 		8B2FD94E1D26A10C00ABAF8C /* AccountantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD94C1D26A10C00ABAF8C /* AccountantTableViewCell.swift */; };
 		8B2FD94F1D26A10C00ABAF8C /* AccountantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2FD94D1D26A10C00ABAF8C /* AccountantTableViewCell.xib */; };
+		8B2FD9511D26A91D00ABAF8C /* UITableView+dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9501D26A91D00ABAF8C /* UITableView+dequeue.swift */; };
+		8B2FD9531D26B04F00ABAF8C /* ImageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2FD9521D26B04F00ABAF8C /* ImageViewManager.swift */; };
 		8B33FB971D05D1CE00653ABD /* Array+SafeGetElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */; };
 		8B33FB9E1D05E2F000653ABD /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FB9D1D05E2F000653ABD /* DataCell.swift */; };
 		8B33FBA71D05E91300653ABD /* StringTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */; };
@@ -97,6 +99,8 @@
 		8B2FD9481D26976C00ABAF8C /* FellowWorkerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FellowWorkerTableViewCell.xib; path = Views/Cell/FellowWorker/FellowWorkerTableViewCell.xib; sourceTree = "<group>"; };
 		8B2FD94C1D26A10C00ABAF8C /* AccountantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountantTableViewCell.swift; path = Views/Cell/Accountant/AccountantTableViewCell.swift; sourceTree = "<group>"; };
 		8B2FD94D1D26A10C00ABAF8C /* AccountantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountantTableViewCell.xib; path = Views/Cell/Accountant/AccountantTableViewCell.xib; sourceTree = "<group>"; };
+		8B2FD9501D26A91D00ABAF8C /* UITableView+dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+dequeue.swift"; sourceTree = "<group>"; };
+		8B2FD9521D26B04F00ABAF8C /* ImageViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewManager.swift; sourceTree = "<group>"; };
 		8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+SafeGetElement.swift"; path = "Extension/Array+SafeGetElement.swift"; sourceTree = "<group>"; };
 		8B33FB9D1D05E2F000653ABD /* DataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataCell.swift; path = Views/Cell/DataCell.swift; sourceTree = "<group>"; };
 		8B33FBA51D05E91300653ABD /* StringTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringTableViewCell.swift; path = Views/Cell/String/StringTableViewCell.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				8B3501471CF33CEC0074D3DA /* UIViewController+ EZLoadingActivity.swift */,
 				8B33FB961D05D1CE00653ABD /* Array+SafeGetElement.swift */,
 				8B677C071D24EC7800E42E9B /* Dictionary+Merge.swift */,
+				8B2FD9501D26A91D00ABAF8C /* UITableView+dequeue.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				8B707BD61D0208040030F068 /* Images */,
 				8B4A97E11CDB4BFE007F3439 /* GalleryViewController.swift */,
 				8B4A97E21CDB4BFE007F3439 /* GalleryViewController.xib */,
+				8B2FD9521D26B04F00ABAF8C /* ImageViewManager.swift */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -697,6 +703,7 @@
 				8B45AEDF1CDFE1F300F01815 /* CreatePersonViewController.swift in Sources */,
 				8B4A97AF1CDB33E4007F3439 /* LoadingViewController.swift in Sources */,
 				8BF3B4291CF1E60C00AF5E25 /* String+StringForAttributeType.swift in Sources */,
+				8B2FD9531D26B04F00ABAF8C /* ImageViewManager.swift in Sources */,
 				8BF3B4381CF1E74A00AF5E25 /* ServiceViewController.swift in Sources */,
 				8B2FD9441D268DC200ABAF8C /* DirectorTableViewCell.swift in Sources */,
 				8B35014D1CF33D1E0074D3DA /* StatusConstants.swift in Sources */,
@@ -705,6 +712,7 @@
 				8B39C9031CE205C60046D369 /* NSDate+StringRepresentation.swift in Sources */,
 				8BF3B4301CF1E67F00AF5E25 /* PersonTableViewCell.swift in Sources */,
 				8B4A97D41CDB3581007F3439 /* Model.xcdatamodeld in Sources */,
+				8B2FD9511D26A91D00ABAF8C /* UITableView+dequeue.swift in Sources */,
 				8BF3B42C1CF1E65800AF5E25 /* QuoteTableViewCell.swift in Sources */,
 				8B33FB9E1D05E2F000653ABD /* DataCell.swift in Sources */,
 				8B51DE1E1CE9044C00684AB5 /* Quote.swift in Sources */,

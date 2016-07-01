@@ -17,9 +17,9 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITable
     var person: Person?
     
     var doneButton: UIBarButtonItem!
-    var stack: CoreDataStack!
+    var stack: CoreDataStack
     
-    var showDelegate: ShowPersonDelegate?
+    var delegate: CreatePersonViewControllerDelegate?
     var attributes = [Attribute]()
     var manager = AttributeManager()
     
@@ -27,7 +27,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         createBarButtons()
         configureView()
-        configureSegmentedControl(person)
+        configureSegmentedControl()
         configureKeyboardNotification()
     }
     
@@ -49,11 +49,11 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITable
     func configureView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerNib(UINib(nibName: "StringTableViewCell", bundle: nil), forCellReuseIdentifier: "StringCell")
-        tableView.registerNib(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "NumberCell")
-        tableView.registerNib(UINib(nibName: "RangeTimeTableViewCell", bundle: nil), forCellReuseIdentifier: "RangeTimeCell")
+        tableView.registerNib(UINib(nibName: "StringTableViewCell", bundle: nil), forCellReuseIdentifier: CellType.String.rawValue)
+        tableView.registerNib(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: CellType.Number.rawValue)
+        tableView.registerNib(UINib(nibName: "RangeTimeTableViewCell", bundle: nil), forCellReuseIdentifier: CellType.RangeTime.rawValue)
         tableView.registerNib(UINib(nibName: "AccountantTypeTableViewCell", bundle: nil), forCellReuseIdentifier:
-            "AccountantTypeCell")
+           CellType.AccountantType.rawValue)
         
         if let person = person {
             title = "Update profile"
@@ -67,7 +67,7 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITable
         tableView.sectionHeaderHeight = 20
     }
     
-    func configureSegmentedControl(person: Person?) {
+    func configureSegmentedControl() {
         if let person = person, entity = person.entity.name {
             switch entity {
             case Accountant.entityName:
@@ -95,22 +95,22 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @objc private func done() {
-         print("Done")
-        let entity = personSegmentedControl.titleForSegmentAtIndex(personSegmentedControl.selectedSegmentIndex)
-        if let person = person {
-            if person.entity.name == entity {
-                person.update(manager.dictionary())
+        if let entity = personSegmentedControl.titleForSegmentAtIndex(personSegmentedControl.selectedSegmentIndex) {
+            if let person = person {
+                if person.entity.name == entity {
+                    person.update(manager.dictionary())
+                } else {
+                    stack.mainQueueContext.deleteObject(person)
+                    self.person = Person.createPerson(entity, stack: stack, manager: manager)
+                    self.person?.sectionOrder = personSegmentedControl.selectedSegmentIndex - 1
+                }
             } else {
-                stack.mainQueueContext.deleteObject(person)
-                self.person = Person.createPerson(entity!, stack: stack, manager: manager)
+                person = Person.createPerson(entity, stack: stack, manager: manager)
                 self.person?.sectionOrder = personSegmentedControl.selectedSegmentIndex - 1
             }
-        } else {
-            person = Person.createPerson(entity!, stack: stack, manager: manager)
-            self.person?.sectionOrder = personSegmentedControl.selectedSegmentIndex - 1
+            stack.mainQueueContext.saveContext()
+            delegate?.createPersonViewController(didUpdatePerson: person)
         }
-        stack.mainQueueContext.saveContext()
-        showDelegate?.person = person
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -189,6 +189,6 @@ class CreatePersonViewController: UIViewController, UITableViewDelegate, UITable
     }
 }
 
-extension CreatePersonViewController: UITextFieldDelegate {
-    
+protocol CreatePersonViewControllerDelegate {
+    func createPersonViewController(didUpdatePerson person: Person?)
 }

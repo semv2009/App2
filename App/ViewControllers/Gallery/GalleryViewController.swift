@@ -20,66 +20,29 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     var indexOfPage = 0
     var scrollWidth: CGFloat = 0
-    var views = [GalleryView]()
     var move = true
-    var images = [String]()
+    
+    var manager: ImageViewManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListImages()
+        manager = ImageViewManager(cacheCount: 3, imagesPath: "/Images", view: view)
         configureNavigationBar()
-        addImageViews()
-        loadFirstImage()
-    }
-    
-    func loadFirstImage() {
-        if !images.isEmpty {
-            views[0].loadImage()
-            resetRightImage(0)
-        }
-    }
-    
-    func addImageViews() {
-        if !images.isEmpty {
-            for index in 0...images.count - 1 {
-                if  let newView = GalleryView(frame: view.frame, imagePath: images[index]) {
-                    views.append(newView)
-                    self.scrollView.addSubview(newView)
-                }
-            }
-        }
+        addImageViewsToScrollView()
     }
     
     override func viewDidLayoutSubviews() {
         if scrollWidth != self.scrollView.frame.width {
             move = false
             configureScrollView()
-            if !images.isEmpty {
-                for i in 0...images.count - 1 {
-                    let index = CGFloat(Double(i))
-                    views[i].configureScrollView()
-                    views[i].frame = CGRect.init(x: self.scrollView.frame.width * index, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
-                }
+            if !manager.isEmpty {
+                manager.updateViews(self.scrollView.frame.width, height: self.scrollView.frame.height)
             }
             scrollWidth = self.scrollView.frame.width
             self.scrollView.contentOffset.x = CGFloat(indexOfPage) * scrollView.frame.width
         }
         move = true
         switchNavigationButtons()
-    }
-    
-    func getListImages() {
-        let fileManager = NSFileManager.defaultManager()
-        let str = NSBundle.mainBundle().resourcePath
-        let resource = str! + "/Images"
-        do {
-            let contents = try fileManager.contentsOfDirectoryAtPath(resource)
-            for image in contents {
-                let imagePath = resource + "/\(image)"
-                images.append(imagePath)
-            }
-        } catch {
-        }
     }
     
     func configureNavigationBar() {
@@ -96,60 +59,58 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
     
     func configureScrollView() {
         self.scrollView.frame = CGRect.init(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        self.scrollView.contentSize = CGSize.init(width: self.scrollView.frame.width * CGFloat(views.count), height: self.scrollView.frame.height)
+        self.scrollView.contentSize = CGSize.init(width: self.scrollView.frame.width * CGFloat(manager.count), height: self.scrollView.frame.height)
         self.scrollView.delegate = self
     }
     
     func switchNavigationButtons() {
-        if let _ = views.getElement(indexOfPage + 1) {
+        if let _ = manager.views.getElement(indexOfPage + 1) {
             nextButton.enabled = true
         } else {
             nextButton.enabled = false
         }
         
-        if let _ = views.getElement(indexOfPage - 1) {
+        if let _ = manager.views.getElement(indexOfPage - 1) {
             previousButton.enabled = true
         } else {
             previousButton.enabled = false
         }
+        move = true
     }
 
-    func resetLeftImage(index: Int) {
-        views.getElement(index + 2)?.removeImage()
-        views.getElement(index - 1)?.loadImage()
-        views.getElement(index + 1)?.resetScale()
-    }
-    
-    func resetRightImage(index: Int) {
-        views.getElement(index - 2)?.removeImage()
-        views.getElement(index + 1)?.loadImage()
-        views.getElement(index - 1)?.resetScale()
+    func addImageViewsToScrollView() {
+        if !manager.isEmpty {
+            for view in manager.views {
+                self.scrollView.addSubview(view)
+            }
+        }
     }
     
     // MARK: ScrollView Actions
     
     func moveToNextPage() {
-         if let nextView = views.getElement(indexOfPage + 1) {
+         if let nextView = manager.views.getElement(indexOfPage + 1) {
             move = false
-            resetRightImage(indexOfPage + 1)
+            manager.resetRightImage(indexOfPage + 1)
             indexOfPage += 1
             nextView.resetScale()
+            switchNavigationButtons()
             UIView.animateWithDuration(0.2) {
                 self.scrollView.scrollRectToVisible(nextView.frame, animated: false)
             }
-            
         }
     }
     
     func moveToPreviousPage() {
-        if let previousView = views.getElement(indexOfPage - 1) {
+        if let previousView = manager.views.getElement(indexOfPage - 1) {
             move = false
-            resetLeftImage(indexOfPage - 1)
+            manager.resetLeftImage(indexOfPage - 1)
             indexOfPage -= 1
             previousView.resetScale()
             UIView.animateWithDuration(0.2) {
                 self.scrollView.scrollRectToVisible(previousView.frame, animated: false)
             }
+            switchNavigationButtons()
         }
     }
     
@@ -162,11 +123,12 @@ class GalleryViewController: UIViewController, UIScrollViewDelegate {
             let content = content + scrollView.frame.size.width / 2
             let newindex = Int(content / scrollView.frame.size.width)
             if indexOfPage - newindex > 0 {
-                resetLeftImage(newindex)
+                manager.resetLeftImage(newindex)
             } else if indexOfPage - newindex < 0 {
-                resetRightImage(newindex)
+                manager.resetRightImage(newindex)
             }
             indexOfPage = Int((content) / scrollView.frame.size.width)
+            switchNavigationButtons()
         }
     }
 }
